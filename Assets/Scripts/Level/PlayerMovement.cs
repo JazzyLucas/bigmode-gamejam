@@ -44,6 +44,7 @@ namespace BigModeGameJam.Level.Controls
         groundFriction = 10, gravity = 9.8f;
         new private Rigidbody rigidbody;
         new private Collider collider;
+        private Dash dash;
         [SerializeField] new private Camera camera;
         // Referencing camera's rotation causes issues for some reason. keep track of it here instead.
         private float camX;
@@ -53,6 +54,13 @@ namespace BigModeGameJam.Level.Controls
         /// </summary>
         private bool stunned;
         private Coroutine stunCoroutine;
+        private bool grounded;
+
+        public void Dash(Vector3 dir)
+        {
+            if(playerType == PlayerType.Human || dash == null) return;
+            dash.StartDash(dir);
+        }
 
         /// <summary>
         /// Checks if entity is touching (or close to) ground using raycasts.
@@ -61,9 +69,12 @@ namespace BigModeGameJam.Level.Controls
         public bool IsGrounded()
         {
             float distToBottom = collider.bounds.extents.y;
-            return Physics.Raycast(
-                transform.position, -Vector3.up, distToBottom + GROUND_LENIENCE
-            );
+            if (Physics.Raycast(transform.position, -Vector3.up, distToBottom + GROUND_LENIENCE))
+            {
+                if(dash != null) dash.Replenish();
+                return true;
+            }
+            return false;
         }
 
         public void Jump()
@@ -98,8 +109,6 @@ namespace BigModeGameJam.Level.Controls
         {
             dir = dir.normalized;
             dir = transform.TransformDirection(dir);
-
-            bool grounded = IsGrounded();
 
             // Add friction to movement acceleration for tighter controls
             float totalAcc = acceleration;
@@ -185,6 +194,7 @@ namespace BigModeGameJam.Level.Controls
         {
             rigidbody = GetComponent<Rigidbody>();
             collider = GetComponent<Collider>();
+            dash = GetComponent<Dash>();
         }
 
         private IEnumerator StunCoroutine(float stunTime)
@@ -197,6 +207,7 @@ namespace BigModeGameJam.Level.Controls
 
         private void Update()
         {
+            grounded = IsGrounded();
             ApplyFriction();
             ApplyGravity();
             ApplyAttributes();

@@ -10,10 +10,7 @@ namespace BigModeGameJam.Level.Controls
     {
         public static PlayerControls instance;
         public PlayerMovement playerMovement;
-        public Dash dash;
         public float lookSensitivity = 1;
-
-
         private InputAction lookAction;
         private InputAction moveAction;
         private InputAction jumpAction;
@@ -31,8 +28,8 @@ namespace BigModeGameJam.Level.Controls
         {
             // Handle movement input
             Vector2 moveDir = moveAction.ReadValue<Vector2>();
-            Vector3 hPlane = new Vector3(moveDir.x, 0, moveDir.y);
-            playerMovement.Move(hPlane);
+            Vector3 hDir = new Vector3(moveDir.x, 0, moveDir.y);
+            playerMovement.Move(hDir);
             // Handle Rotation input
             playerMovement.Look(
                 lookAction.ReadValue<Vector2>() * lookSensitivity
@@ -42,9 +39,9 @@ namespace BigModeGameJam.Level.Controls
             {
                 playerMovement.Jump();
             }
-            if (dash != null && dashAction.WasPerformedThisFrame())
+            if (dashAction.WasPerformedThisFrame())
             {
-                dash.StartDash(hPlane);
+                playerMovement.Dash(hDir);
             }
         }
     }

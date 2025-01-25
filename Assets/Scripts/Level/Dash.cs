@@ -13,15 +13,29 @@ namespace BigModeGameJam.Level.Controls
     {
         public float dashSpeed = 20;
         public float dashDistance = 5;
+        /// <summary>
+        /// The time between the end of a dash and when you can start another dash.
+        /// </summary>
+        public float cooldown = 0.5f;
+        /// <summary>
+        /// The number of times that a player can dash in the air.
+        /// </summary>
+        public int maxDashCharges = 1;
         private PlayerMovement movement;
         private new Rigidbody rigidbody;
         private bool dashing;
+        private int dashCharges = 1;
 
+        public void Replenish()
+        {
+            dashCharges = maxDashCharges;
+        }
         public void StartDash(Vector3 dir)
         {
-            if (!enabled || dashing) return;
+            if (!enabled || dashing || dashCharges < 1) return;
             float period = dashDistance / dashSpeed;
             movement.Stun(period);
+            dashCharges--;
             dir = dir.normalized;
             dir = transform.TransformDirection(dir);
             StartCoroutine(DashCoroutine(dir, period));
@@ -29,7 +43,6 @@ namespace BigModeGameJam.Level.Controls
 
         private IEnumerator DashCoroutine(Vector3 dir, float period)
         {
-            Debug.Log(dir);
             float time = 0;
             dashing = true;
             while (time < period)
@@ -38,6 +51,7 @@ namespace BigModeGameJam.Level.Controls
                 yield return new WaitForEndOfFrame();
                 time += Time.deltaTime;
             }
+            yield return new WaitForSeconds(cooldown);
             dashing = false;
         }
 
