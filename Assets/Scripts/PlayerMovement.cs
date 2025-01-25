@@ -67,7 +67,9 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         if(!IsGrounded()) return;
-        rigidbody.linearVelocity += new Vector3(0, jumpVelocity, 0);
+        rigidbody.linearVelocity = new Vector3(
+            rigidbody.linearVelocity.x, jumpVelocity, rigidbody.linearVelocity.z
+        );
     }
 
     /// <summary>
@@ -80,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(0, delta.x, 0);
         // Look up and down
         camX -= delta.y;
-        camX = Mathf.Clamp(camX, -90, 90);
+        camX = Mathf.Clamp(camX, -LOOK_RANGE, LOOK_RANGE);
         camera.transform.localRotation = Quaternion.Euler(
             camX, 0, 0
         );

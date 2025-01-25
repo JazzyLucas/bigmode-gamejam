@@ -29,7 +29,8 @@ public class PlayerControls : MonoBehaviour
     {
         // Handle movement input
         Vector2 moveDir = moveAction.ReadValue<Vector2>();
-        playerMovement.Move(new Vector3( moveDir.x, 0, moveDir.y));
+        Vector3 hPlane = new Vector3( moveDir.x, 0, moveDir.y);
+        playerMovement.Move(hPlane);
         // Handle Rotation input
         playerMovement.Look(
             lookAction.ReadValue<Vector2>() * lookSensitivity
@@ -41,7 +42,7 @@ public class PlayerControls : MonoBehaviour
         }
         if(dash != null && dashAction.WasPerformedThisFrame())
         {
-            dash.StartDash(moveDir);
+            dash.StartDash(hPlane);
         }
     }
 }

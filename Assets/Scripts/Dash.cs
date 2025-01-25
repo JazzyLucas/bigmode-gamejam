@@ -5,11 +5,13 @@ using UnityEngine;
 /// Implementation of dash ability for electric character
 /// </summary>
 [RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(Rigidbody))]
 public class Dash : MonoBehaviour
 {
-    private PlayerMovement movement;
     public float dashSpeed = 20;
     public float dashDistance = 5;
+    private PlayerMovement movement;
+    private new Rigidbody rigidbody;
     private bool dashing;
 
     public void StartDash(Vector3 dir)
@@ -17,19 +19,21 @@ public class Dash : MonoBehaviour
         if(!enabled || dashing) return;
         float period = dashDistance / dashSpeed;
         movement.Stun(period);
+        dir = dir.normalized;
         dir = transform.TransformDirection(dir);
         StartCoroutine(DashCoroutine(dir, period));
     }
 
     private IEnumerator DashCoroutine(Vector3 dir, float period)
     {
+        Debug.Log(dir);
         float time = 0;
         dashing = true;
         while(time < period)
         {
-            transform.position += dir * dashSpeed * Time.deltaTime;
+            rigidbody.linearVelocity = dir * dashSpeed;
             yield return new WaitForEndOfFrame();
-            time = Time.deltaTime;
+            time += Time.deltaTime;
         }
         dashing = false;
     }
@@ -37,6 +41,7 @@ public class Dash : MonoBehaviour
     private void Awake()
     {
         movement = GetComponent<PlayerMovement>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnDisable()
