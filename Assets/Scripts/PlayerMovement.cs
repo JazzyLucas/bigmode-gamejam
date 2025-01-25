@@ -114,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
+        if(IsGrounded()) return;
         rigidbody.linearVelocity += Vector3.down * gravity * Time.deltaTime;
     }
 
