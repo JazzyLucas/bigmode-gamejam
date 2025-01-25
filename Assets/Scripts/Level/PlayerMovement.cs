@@ -13,9 +13,9 @@ namespace BigModeGameJam.Level.Controls
     public class PlayerMovement : MonoBehaviour
     {
         /// <summary>
-        /// Extra distance added to IsGrounded() raycast to allow for imprecision.
+        /// Multiplier to collider extents to detect ground.
         /// </summary>
-        private const float GROUND_LENIENCE = 0.001f;
+        private const float GROUND_LENIENCE = 1.25f;
 
         /// <summary>
         /// Movement attributes for human character
@@ -64,12 +64,13 @@ namespace BigModeGameJam.Level.Controls
 
         /// <summary>
         /// Checks if entity is touching (or close to) ground using raycasts.
+        /// Also handles ramps and dash cooldowns.
         /// </summary>
         /// <returns>True if entity is grounded. False otherwise.</returns>
         public bool IsGrounded()
         {
-            float distToBottom = collider.bounds.extents.y;
-            if (Physics.Raycast(transform.position, -Vector3.up, distToBottom + GROUND_LENIENCE))
+            float distToBottom = collider.bounds.extents.y * GROUND_LENIENCE;
+            if (Physics.Raycast(transform.position, -Vector3.up, distToBottom))
             {
                 if(dash != null) dash.Replenish();
                 return true;
