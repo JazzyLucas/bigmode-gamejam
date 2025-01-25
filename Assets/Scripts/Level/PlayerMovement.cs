@@ -9,27 +9,25 @@ namespace BigModeGameJam.Level.Controls
     /// NOTE: Rigidbody must be attached with no friction, no gravity and frozen rotation.
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(CapsuleCollider))]
     public class PlayerMovement : MonoBehaviour
     {
         /// <summary>
         /// Multiplier to collider extents to detect ground.
         /// </summary>
-        private const float GROUND_LENIENCE = 1.1f;
-
+        private const float GROUND_LENIENCE = 1.25f;
         /// <summary>
         /// Movement attributes for human character
         /// </summary>
         private const float HUMAN_ACC = 8, HUMAN_SPD = 12, HUMAN_JUMP = 10, HUMAN_AIR_FRIC = 10,
         HUMAN_GRND_FRIC = 35, HUMAN_GRAV = 25;
-
         /// <summary>
         /// Movement attributes for electricity character
         /// </summary>
         private const float ELEC_ACC = 120, ELECT_SPD = 40, ELEC_JUMP = 35, ELEC_AIR_FRIC = 15,
         ELEC_GRND_FRIC = 95, ELEC_GRAV = 50;
-
         private const float LOOK_RANGE = 89.5f; // Going to the fll 90deg causes issues in third person
+        private const float CROUCH_ANIMATION_PERIOD = 0.25f, CROUCH_SPEED_MULTIPLIER = 0.4f;
 
         public enum PlayerType : int
         {
@@ -43,7 +41,7 @@ namespace BigModeGameJam.Level.Controls
         public float acceleration = 10, maxSpeed = 10, jumpVelocity = 5, airFriction = 1,
         groundFriction = 10, gravity = 9.8f;
         new private Rigidbody rigidbody;
-        new private Collider collider;
+        new private CapsuleCollider collider;
         private Dash dash;
         [SerializeField] new private Camera camera;
         // Referencing camera's rotation causes issues for some reason. keep track of it here instead.
@@ -56,9 +54,38 @@ namespace BigModeGameJam.Level.Controls
         private Coroutine stunCoroutine;
         private bool grounded;
 
+        private bool crouched = false;
+        private float initColliderHeight = 2;
+        private float crouchColliderHeight = 1;
+        private float initCameraHeight = 0.65f;
+        private float crouchCameraHeight = 0.325f;
+        private Coroutine crouchAnimation;
+
+        public void Crouch()
+        {
+            if (crouched) return;
+            if (crouchAnimation != null)
+            {
+                StopCoroutine(crouchAnimation);
+            }
+            crouched = true;
+            crouchAnimation = StartCoroutine(CrouchAnimation(crouchColliderHeight, crouchCameraHeight, CROUCH_ANIMATION_PERIOD));
+        }
+
+        public void Uncrouch()
+        {
+            if (!crouched) return;
+            if (crouchAnimation != null)
+            {
+                StopCoroutine(crouchAnimation);
+            }
+            crouched = false;
+            crouchAnimation = StartCoroutine(CrouchAnimation(initColliderHeight, initCameraHeight, CROUCH_ANIMATION_PERIOD));
+        }
+
         public void Dash(Vector3 dir)
         {
-            if(playerType == PlayerType.Human || dash == null) return;
+            if (playerType == PlayerType.Human || dash == null) return;
             dash.StartDash(dir);
         }
 
@@ -72,7 +99,7 @@ namespace BigModeGameJam.Level.Controls
             float distToBottom = collider.bounds.extents.y * GROUND_LENIENCE;
             if (Physics.Raycast(transform.position, -Vector3.up, distToBottom))
             {
-                if(dash != null) dash.Replenish();
+                if (dash != null) dash.Replenish();
                 return true;
             }
             return false;
@@ -122,8 +149,13 @@ namespace BigModeGameJam.Level.Controls
             );
 
             // Handle max speed
+            float targetSpeed = maxSpeed;
+            if (crouched)
+            {
+                targetSpeed *= CROUCH_SPEED_MULTIPLIER;
+            }
             hVel = Vector2.MoveTowards(hVel,
-                Vector2.ClampMagnitude(hVel, maxSpeed),
+                Vector2.ClampMagnitude(hVel, targetSpeed),
                 totalAcc * Time.deltaTime
             );
 
@@ -194,7 +226,9 @@ namespace BigModeGameJam.Level.Controls
         private void Awake()
         {
             rigidbody = GetComponent<Rigidbody>();
-            collider = GetComponent<Collider>();
+            collider = GetComponent<CapsuleCollider>();
+            initColliderHeight = collider.height;
+            initCameraHeight = camera.transform.localPosition.y;
             dash = GetComponent<Dash>();
         }
 
@@ -204,6 +238,41 @@ namespace BigModeGameJam.Level.Controls
             yield return new WaitForSeconds(stunTime);
             stunned = false;
             stunCoroutine = null;
+        }
+
+        private IEnumerator CrouchAnimation(float targetHeight, float targetCameraHeight, float period)
+        {
+            float time = 0;
+            float colliderRate = Mathf.Abs((targetHeight - collider.height) / period);
+            float cameraRate = Mathf.Abs((targetCameraHeight - camera.transform.localPosition.y) / period);
+            while (time < period)
+            {
+                collider.height = Mathf.MoveTowards(collider.height, targetHeight, colliderRate * Time.deltaTime);
+                camera.transform.localPosition = new Vector3(
+                    camera.transform.localPosition.x,
+                    Mathf.MoveTowards(camera.transform.localPosition.y, targetCameraHeight, cameraRate * Time.deltaTime),
+                    camera.transform.localPosition.z
+                );
+                // Correct gap
+                if (grounded)
+                {
+                    Vector3 translate = Vector3.up * colliderRate * Time.deltaTime;
+                    if (crouched)
+                    {
+                        translate *= -1;
+                    }
+                    transform.Translate(translate);
+                }
+                yield return new WaitForEndOfFrame();
+                time += Time.deltaTime;
+            }
+            collider.height = targetHeight;
+            camera.transform.localPosition = new Vector3(
+                    camera.transform.localPosition.x,
+                    targetCameraHeight,
+                    camera.transform.localPosition.z
+                );
+            crouchAnimation = null;
         }
 
         private void Update()
