@@ -8,18 +8,21 @@ public class PlayerControls : MonoBehaviour
 {
     public static PlayerControls instance;
     public PlayerMovement playerMovement;
+    public Dash dash;
     public float lookSensitivity = 1;
 
 
     private InputAction lookAction;
     private InputAction moveAction;
     private InputAction jumpAction;
+    private InputAction dashAction;
 
     private void Awake()
     {
         lookAction = InputSystem.actions.FindAction("Look");
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
+        dashAction = InputSystem.actions.FindAction("Sprint");
     }
 
     private void Update()
@@ -35,6 +38,10 @@ public class PlayerControls : MonoBehaviour
         if(jumpAction.IsPressed())
         {
             playerMovement.Jump();
+        }
+        if(dash != null && dashAction.WasPerformedThisFrame())
+        {
+            dash.StartDash(moveDir);
         }
     }
 }

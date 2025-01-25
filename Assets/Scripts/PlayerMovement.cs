@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq.Expressions;
 using UnityEngine;
 
@@ -12,11 +13,30 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Extra distance added to IsGrounded() raycast to allow for imprecision.
     /// </summary>
-    private const float GROUND_LENIENCE = 0.1f;
+    private const float GROUND_LENIENCE = 0.001f;
+
     /// <summary>
-    /// Vertical velocity must be less than this in order to jump.
+    /// Movement attributes for human character
     /// </summary>
-    private const float JUMP_VEL_THRESH = 3;
+    private const float HUMAN_ACC = 3, HUMAN_SPD = 5, HUMAN_JUMP = 3, HUMAN_AIR_FRIC = 10,
+    HUMAN_GRND_FRIC = 15, HUMAN_GRAV = 9.8f;
+
+    /// <summary>
+    /// Movement attributes for electricity character
+    /// </summary>
+    private const float ELEC_ACC = 15, ELECT_SPD = 10, ELEC_JUMP = 8, ELEC_AIR_FRIC = 10,
+    ELEC_GRND_FRIC = 30, ELEC_GRAV = 13;
+
+    private const float LOOK_RANGE = 89.5f; // Going to the fll 90deg causes issues in third person
+
+    public enum PlayerType : int
+    {
+        Human = 1,
+        Electric = 2,
+        Custom = 3
+    }
+
+    public PlayerType playerType = PlayerType.Custom;
 
     public float acceleration = 10, maxSpeed = 10, jumpVelocity = 5, airFriction = 1, 
     groundFriction = 10, gravity = 9.8f;
@@ -25,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] new private Camera camera;
     // Referencing camera's rotation causes issues for some reason. keep track of it here instead.
     private float camX;
+    /// <summary>
+    /// Prevents movement while true. Should only be touced by Stun() and its coroutine.
+    /// Also affects gravity.
+    /// </summary>
+    private bool stunned;
+    private Coroutine stunCoroutine;
 
     /// <summary>
     /// Checks if entity is touching (or close to) ground using raycasts.
@@ -40,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if(!IsGrounded() || rigidbody.linearVelocity.y > JUMP_VEL_THRESH) return;
+        if(!IsGrounded()) return;
         rigidbody.linearVelocity += new Vector3(0, jumpVelocity, 0);
     }
 
@@ -93,6 +119,39 @@ public class PlayerMovement : MonoBehaviour
         );
     }
 
+    public void Stun(float stunTime)
+    {
+        // prevent stun overlap
+        if(stunCoroutine != null)
+        {
+            StopCoroutine(stunCoroutine);
+        }
+        stunCoroutine = StartCoroutine(StunCoroutine(stunTime));
+    }
+
+    private void ApplyAttributes()
+    {
+        switch(playerType)
+        {
+            case PlayerType.Human:
+                acceleration = HUMAN_ACC;
+                maxSpeed = HUMAN_SPD;
+                jumpVelocity = HUMAN_JUMP;
+                airFriction = HUMAN_AIR_FRIC;
+                groundFriction = HUMAN_GRND_FRIC;
+                gravity = HUMAN_GRAV;
+                return;
+            case PlayerType.Electric:
+                acceleration = ELEC_ACC;
+                maxSpeed = ELECT_SPD;
+                jumpVelocity = ELEC_JUMP;
+                airFriction = ELEC_AIR_FRIC;
+                groundFriction = ELEC_GRND_FRIC;
+                gravity = ELEC_GRAV;
+                return;
+        }
+    }
+
     private void ApplyFriction()
     {
         float delta = Time.deltaTime;
@@ -114,8 +173,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (!IsGrounded())
-            rigidbody.linearVelocity += Vector3.down * gravity * Time.deltaTime;
+        if (IsGrounded() || stunned) return;
+        rigidbody.linearVelocity += Vector3.down * gravity * Time.deltaTime;
     }
 
     private void Awake()
@@ -124,9 +183,18 @@ public class PlayerMovement : MonoBehaviour
         collider = GetComponent<Collider>();
     }
 
+    private IEnumerator StunCoroutine(float stunTime)
+    {
+        stunned = true;
+        yield return new WaitForSeconds(stunTime);
+        stunned = false;
+        stunCoroutine = null;
+    }
+
     private void Update()
     {
         ApplyFriction();
         ApplyGravity();
+        ApplyAttributes();
     }
 }
