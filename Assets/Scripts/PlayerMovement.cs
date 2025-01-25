@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Linq.Expressions;
 using UnityEngine;
 
@@ -13,43 +12,19 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Extra distance added to IsGrounded() raycast to allow for imprecision.
     /// </summary>
-    private const float GROUND_LENIENCE = 0.001f;
-
+    private const float GROUND_LENIENCE = 0.1f;
     /// <summary>
-    /// Movement attributes for human character
+    /// Vertical velocity must be less than this in order to jump.
     /// </summary>
-    private const float HUMAN_ACC = 3, HUMAN_SPD = 5, HUMAN_JUMP = 3, HUMAN_AIR_FRIC = 10,
-    HUMAN_GRND_FRIC = 15, HUMAN_GRAV = 9.8f;
+    private const float JUMP_VEL_THRESH = 3;
 
-    /// <summary>
-    /// Movement attributes for electricity character
-    /// </summary>
-    private const float ELEC_ACC = 15, ELECT_SPD = 10, ELEC_JUMP = 8, ELEC_AIR_FRIC = 10,
-    ELEC_GRND_FRIC = 30, ELEC_GRAV = 13;
-
-    private const float LOOK_RANGE = 89.5f; // Going to the fll 90deg causes issues in third person
-
-    public enum PlayerType : int
-    {
-        Human = 1,
-        Electric = 2,
-        Custom = 3
-    }
-
-    public PlayerType playerType = PlayerType.Custom;
-
-    public float acceleration = 10, maxSpeed = 10, jumpVelocity = 5, airFriction = 1,
+    public float acceleration = 10, maxSpeed = 10, jumpVelocity = 5, airFriction = 1, 
     groundFriction = 10, gravity = 9.8f;
     new private Rigidbody rigidbody;
     new private Collider collider;
     [SerializeField] new private Camera camera;
     // Referencing camera's rotation causes issues for some reason. keep track of it here instead.
     private float camX;
-    /// <summary>
-    /// Prevents movement while true. Should only be touced by Stun() and its coroutine
-    /// </summary>
-    private bool stunned;
-    private Coroutine stunCoroutine;
 
     /// <summary>
     /// Checks if entity is touching (or close to) ground using raycasts.
@@ -65,10 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (!IsGrounded()) return;
-        rigidbody.linearVelocity = new Vector3(
-            rigidbody.linearVelocity.x, jumpVelocity, rigidbody.linearVelocity.z
-        );
+        if(!IsGrounded() || rigidbody.linearVelocity.y > JUMP_VEL_THRESH) return;
+        rigidbody.linearVelocity += new Vector3(0, jumpVelocity, 0);
     }
 
     /// <summary>
@@ -81,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(0, delta.x, 0);
         // Look up and down
         camX -= delta.y;
-        camX = Mathf.Clamp(camX, -LOOK_RANGE, LOOK_RANGE);
+        camX = Mathf.Clamp(camX, -90, 90);
         camera.transform.localRotation = Quaternion.Euler(
             camX, 0, 0
         );
@@ -93,8 +66,6 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="dir">Direction to move relative to forward</param>
     public void Move(Vector3 dir)
     {
-        if(stunned) return;
-
         dir = dir.normalized;
         dir = transform.TransformDirection(dir);
 
@@ -102,8 +73,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Add friction to movement acceleration for tighter controls
         float totalAcc = acceleration;
-        totalAcc += grounded ? groundFriction : airFriction;
-
+        totalAcc += grounded ?  groundFriction : airFriction;
+        
         // new vector needed in order to ignore y axis
         Vector2 hVel = new Vector2(
             rigidbody.linearVelocity.x + (dir.x * totalAcc * Time.deltaTime),
@@ -120,39 +91,6 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.linearVelocity = new Vector3(
             hVel.x, rigidbody.linearVelocity.y, hVel.y
         );
-    }
-
-    public void Stun(float stunTime)
-    {
-        // prevent stun overlap
-        if(stunCoroutine != null)
-        {
-            StopCoroutine(stunCoroutine);
-        }
-        stunCoroutine = StartCoroutine(StunCoroutine(stunTime));
-    }
-
-    private void ApplyAttributes()
-    {
-        switch(playerType)
-        {
-            case PlayerType.Human:
-                acceleration = HUMAN_ACC;
-                maxSpeed = HUMAN_SPD;
-                jumpVelocity = HUMAN_JUMP;
-                airFriction = HUMAN_AIR_FRIC;
-                groundFriction = HUMAN_GRND_FRIC;
-                gravity = HUMAN_GRAV;
-                return;
-            case PlayerType.Electric:
-                acceleration = ELEC_ACC;
-                maxSpeed = ELECT_SPD;
-                jumpVelocity = ELEC_JUMP;
-                airFriction = ELEC_AIR_FRIC;
-                groundFriction = ELEC_GRND_FRIC;
-                gravity = ELEC_GRAV;
-                return;
-        }
     }
 
     private void ApplyFriction()
@@ -176,8 +114,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (IsGrounded()) return;
-        rigidbody.linearVelocity += Vector3.down * gravity * Time.deltaTime;
+        if (!IsGrounded())
+            rigidbody.linearVelocity += Vector3.down * gravity * Time.deltaTime;
     }
 
     private void Awake()
@@ -186,18 +124,9 @@ public class PlayerMovement : MonoBehaviour
         collider = GetComponent<Collider>();
     }
 
-    private IEnumerator StunCoroutine(float stunTime)
-    {
-        stunned = true;
-        yield return new WaitForSeconds(stunTime);
-        stunned = false;
-        stunCoroutine = null;
-    }
-
     private void Update()
     {
         ApplyFriction();
         ApplyGravity();
-        ApplyAttributes();
     }
 }
