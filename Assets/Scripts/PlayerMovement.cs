@@ -12,13 +12,9 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Extra distance added to IsGrounded() raycast to allow for imprecision.
     /// </summary>
-    private const float GROUND_LENIENCE = 0.1f;
-    /// <summary>
-    /// Vertical velocity must be less than this in order to jump.
-    /// </summary>
-    private const float JUMP_VEL_THRESH = 3;
+    private const float GROUND_LENIENCE = 0.001f;
 
-    public float acceleration = 10, maxSpeed = 10, jumpVelocity = 5, airFriction = 1, 
+    public float acceleration = 10, maxSpeed = 10, jumpVelocity = 5, airFriction = 1,
     groundFriction = 10, gravity = 9.8f;
     new private Rigidbody rigidbody;
     new private Collider collider;
@@ -40,8 +36,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if(!IsGrounded() || rigidbody.linearVelocity.y > JUMP_VEL_THRESH) return;
-        rigidbody.linearVelocity += new Vector3(0, jumpVelocity, 0);
+        if (!IsGrounded()) return;
+        rigidbody.linearVelocity = new Vector3(
+            rigidbody.linearVelocity.x, jumpVelocity, rigidbody.linearVelocity.z
+        );
     }
 
     /// <summary>
@@ -73,8 +71,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Add friction to movement acceleration for tighter controls
         float totalAcc = acceleration;
-        totalAcc += grounded ?  groundFriction : airFriction;
-        
+        totalAcc += grounded ? groundFriction : airFriction;
+
         // new vector needed in order to ignore y axis
         Vector2 hVel = new Vector2(
             rigidbody.linearVelocity.x + (dir.x * totalAcc * Time.deltaTime),
@@ -114,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if(IsGrounded()) return;
+        if (IsGrounded()) return;
         rigidbody.linearVelocity += Vector3.down * gravity * Time.deltaTime;
     }
 
