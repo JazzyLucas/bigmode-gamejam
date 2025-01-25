@@ -11,8 +11,8 @@ namespace BigModeGameJam.Level.Controls
     [RequireComponent(typeof(Rigidbody))]
     public class Dash : MonoBehaviour
     {
-        public float dashSpeed = 20;
-        public float dashDistance = 5;
+        public float dashSpeed = 55;
+        public float dashDistance = 15;
         /// <summary>
         /// The time between the end of a dash and when you can start another dash.
         /// </summary>

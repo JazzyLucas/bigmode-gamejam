@@ -15,19 +15,19 @@ namespace BigModeGameJam.Level.Controls
         /// <summary>
         /// Multiplier to collider extents to detect ground.
         /// </summary>
-        private const float GROUND_LENIENCE = 1.25f;
+        private const float GROUND_LENIENCE = 1.1f;
 
         /// <summary>
         /// Movement attributes for human character
         /// </summary>
-        private const float HUMAN_ACC = 3, HUMAN_SPD = 5, HUMAN_JUMP = 3, HUMAN_AIR_FRIC = 10,
-        HUMAN_GRND_FRIC = 15, HUMAN_GRAV = 9.8f;
+        private const float HUMAN_ACC = 8, HUMAN_SPD = 12, HUMAN_JUMP = 10, HUMAN_AIR_FRIC = 10,
+        HUMAN_GRND_FRIC = 35, HUMAN_GRAV = 25;
 
         /// <summary>
         /// Movement attributes for electricity character
         /// </summary>
-        private const float ELEC_ACC = 15, ELECT_SPD = 10, ELEC_JUMP = 8, ELEC_AIR_FRIC = 10,
-        ELEC_GRND_FRIC = 30, ELEC_GRAV = 13;
+        private const float ELEC_ACC = 120, ELECT_SPD = 40, ELEC_JUMP = 35, ELEC_AIR_FRIC = 15,
+        ELEC_GRND_FRIC = 95, ELEC_GRAV = 50;
 
         private const float LOOK_RANGE = 89.5f; // Going to the fll 90deg causes issues in third person
 
