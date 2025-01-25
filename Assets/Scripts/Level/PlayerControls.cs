@@ -1,0 +1,49 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace BigModeGameJam.Level.Controls
+{
+    /// <summary>
+    /// Allows for player input to interact with other features.
+    /// </summary>
+    public class PlayerControls : MonoBehaviour
+    {
+        public static PlayerControls instance;
+        public PlayerMovement playerMovement;
+        public float lookSensitivity = 1;
+        private InputAction lookAction;
+        private InputAction moveAction;
+        private InputAction jumpAction;
+        private InputAction dashAction;
+
+        private void Awake()
+        {
+            lookAction = InputSystem.actions.FindAction("Look");
+            moveAction = InputSystem.actions.FindAction("Move");
+            jumpAction = InputSystem.actions.FindAction("Jump");
+            dashAction = InputSystem.actions.FindAction("Sprint");
+        }
+
+        private void Update()
+        {
+            // Handle movement input
+            Vector2 moveDir = moveAction.ReadValue<Vector2>();
+            Vector3 hDir = new Vector3(moveDir.x, 0, moveDir.y);
+            playerMovement.Move(hDir);
+            // Handle Rotation input
+            playerMovement.Look(
+                lookAction.ReadValue<Vector2>() * lookSensitivity
+            );
+            // Handle jump input
+            if (jumpAction.IsPressed())
+            {
+                playerMovement.Jump();
+            }
+            if (dashAction.WasPerformedThisFrame())
+            {
+                playerMovement.Dash(hDir);
+            }
+        }
+    }
+
+}
