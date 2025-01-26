@@ -1,6 +1,6 @@
 {
-    "name": "ShopOBJs",
-    "rootNamespace": "Shop",
+    "name": "BigModeGameJam.Shop",
+    "rootNamespace": "BigModeGameJam.Shop",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

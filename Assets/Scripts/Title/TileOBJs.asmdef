@@ -1,6 +1,6 @@
 {
-    "name": "TileOBJs",
-    "rootNamespace": "Title",
+    "name": "BigModeGameJam.Tile",
+    "rootNamespace": "BigModeGameJam.Title",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
