@@ -90,8 +90,27 @@ crashlytics-build.properties
 # Log files can be ignored.
 fmod_editor.log
 
-# Ignore all .meta files
+# Unity meta files - ignore specific types but keep important ones
+# Ignore meta files for deleted/moved/renamed assets
 *.meta
+# Don't ignore meta files for existing assets (this ensures Unity asset references work)
+!*.cs.meta
+!*.anim.meta
+!*.prefab.meta
+!*.mat.meta
+!*.asset.meta
+!*.unity.meta
+!*.physicMaterial.meta
+!*.physicsMaterial2D.meta
+!*.shader.meta
+!*.controller.meta
+!*.spriteatlas.meta
+!*.ttf.meta
+!*.fontsettings.meta
+!*.renderTexture.meta
+!*.mixer.meta
+!*.shadervariants.meta
+!*.preset.meta
 
 # Ignore all .csproj files (already partially covered but making it explicit)
 *.csproj
