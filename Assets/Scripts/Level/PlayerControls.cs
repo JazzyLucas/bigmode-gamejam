@@ -11,10 +11,14 @@ namespace BigModeGameJam.Level.Controls
         public static PlayerControls instance;
         public PlayerMovement playerMovement;
         public float lookSensitivity = 1;
+        public Camera fpCamera;
+        public Camera tpCamera;
         private InputAction lookAction;
         private InputAction moveAction;
         private InputAction jumpAction;
         private InputAction dashAction;
+        private InputAction crouchAction;
+        private InputAction toggleCamAction;
 
         private void Awake()
         {
@@ -22,6 +26,22 @@ namespace BigModeGameJam.Level.Controls
             moveAction = InputSystem.actions.FindAction("Move");
             jumpAction = InputSystem.actions.FindAction("Jump");
             dashAction = InputSystem.actions.FindAction("Sprint");
+            crouchAction = InputSystem.actions.FindAction("Crouch");
+            toggleCamAction = InputSystem.actions.FindAction("ToggleView");
+        }
+
+        private void ToggleCam()
+        {
+            if(fpCamera.isActiveAndEnabled)
+            {
+                fpCamera.gameObject.SetActive(false);
+                tpCamera.gameObject.SetActive(true);
+            }
+            else
+            {
+                fpCamera.gameObject.SetActive(true);
+                tpCamera.gameObject.SetActive(false);
+            }
         }
 
         private void Update()
@@ -42,6 +62,20 @@ namespace BigModeGameJam.Level.Controls
             if (dashAction.WasPerformedThisFrame())
             {
                 playerMovement.Dash(hDir);
+            }
+
+            if(crouchAction.WasPerformedThisFrame())
+            {
+                playerMovement.Crouch();
+            }
+            else if(crouchAction.WasReleasedThisFrame())
+            {
+                playerMovement.Uncrouch();
+            }
+
+            if(toggleCamAction.WasPerformedThisFrame())
+            {
+                ToggleCam();
             }
         }
     }

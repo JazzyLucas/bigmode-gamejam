@@ -1,6 +1,6 @@
 {
-    "name": "CoreOBJs",
-    "rootNamespace": "Core",
+    "name": "BigModeGameJam.Core",
+    "rootNamespace": "BigModeGameJam.Core",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

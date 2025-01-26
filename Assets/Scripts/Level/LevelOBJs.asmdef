@@ -1,8 +1,9 @@
 {
-    "name": "LevelOBJs",
-    "rootNamespace": "Level",
+    "name": "BigModeGameJam.Level",
+    "rootNamespace": "BigModeGameJam.Level",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:ea57b44935ac65044974255fe077e7cc"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

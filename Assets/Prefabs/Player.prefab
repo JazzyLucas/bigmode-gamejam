@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 6978733804139532470}
   - component: {fileID: 619723010962558654}
   - component: {fileID: 3203859292892936917}
+  - component: {fileID: 3006526947118253452}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -169,7 +170,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.49, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8266671243918499874}
@@ -262,7 +263,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3826957089057645189}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2dd7a31f209af354e9c2034d514b1994, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -312,3 +313,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 619723010962558654}
   lookSensitivity: 0.5
+--- !u!114 &3006526947118253452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826957089057645189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2926c2c5ae1dc4f97bc7c450f89510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 55
+  dashDistance: 15
+  cooldown: 0.5
+  maxDashCharges: 1
