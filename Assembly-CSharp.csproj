@@ -63,14 +63,11 @@
   <ItemGroup>
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
-    <Compile Include="Assets\Scripts\PlayerControls.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\FirstPersonController.cs" />
-    <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\BasicRigidBodyPush.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
   </ItemGroup>
@@ -1273,6 +1270,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="LevelOBJs.csproj">
+      <Project>{B808DB40-D4B1-51C7-BC8D-E38A6A4FDBD1}</Project>
+      <Name>LevelOBJs</Name>
+    </ProjectReference>
+    <ProjectReference Include="ShopOBJs.csproj">
+      <Project>{618631B3-2DC5-8E1F-F495-69FC8DD02A36}</Project>
+      <Name>ShopOBJs</Name>
+    </ProjectReference>
+    <ProjectReference Include="CoreOBJs.csproj">
+      <Project>{3F56BB4F-26FE-7823-DE33-A88F756D1860}</Project>
+      <Name>CoreOBJs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
