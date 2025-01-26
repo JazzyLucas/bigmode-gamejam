@@ -9,7 +9,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>BigModeGameJam</RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{48D01BDC-E482-B467-9204-884F1CFD6C95}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -1120,12 +1120,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.AI.Navigation">
-      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AI.Navigation">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
@@ -1334,6 +1334,10 @@
       <Project>{521DD114-6561-1C00-FE2E-11ADBBD1387B}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="FMODUnityResonance.csproj">
+      <Project>{F2C4D9F0-8647-2B0A-641B-7B826D3F065B}</Project>
+      <Name>FMODUnityResonance</Name>
+    </ProjectReference>
     <ProjectReference Include="BigModeGameJam.Level.csproj">
       <Project>{D677F0A7-ADFF-9E53-0054-1FFA4BEE4505}</Project>
       <Name>BigModeGameJam.Level</Name>
@@ -1341,6 +1345,18 @@
     <ProjectReference Include="BigModeGameJam.Shop.csproj">
       <Project>{72E066C9-E4A5-1BB6-217C-BD4F8A2E968C}</Project>
       <Name>BigModeGameJam.Shop</Name>
+    </ProjectReference>
+    <ProjectReference Include="FMODUnityEditor.csproj">
+      <Project>{4707F20D-98C5-2B9C-05DE-1EA3BD39A115}</Project>
+      <Name>FMODUnityEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="FMODUnityResonanceEditor.csproj">
+      <Project>{96BF215B-E8C5-286E-3FCF-D81078572EC3}</Project>
+      <Name>FMODUnityResonanceEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="FMODUnity.csproj">
+      <Project>{2E7AE6A2-F9CA-BF77-C212-7BCF2F809B0F}</Project>
+      <Name>FMODUnity</Name>
     </ProjectReference>
     <ProjectReference Include="BigModeGameJam.Core.csproj">
       <Project>{789379D0-D50E-3757-5FD3-01D94263328E}</Project>
