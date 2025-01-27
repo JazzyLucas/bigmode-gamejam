@@ -10,11 +10,14 @@ namespace BigModeGameJam.Level.Controls
     public class PlayerControls : MonoBehaviour
     {
         public static PlayerControls instance;
+        [Header("References")]
         public PlayerMovement playerMovement;
         public LookToInteract lookToInteract;
-        public float lookSensitivity = 1;
         public Camera fpCamera;
         public Camera tpCamera;
+        [Header("Settings")]
+        public float lookSensitivity = 1;
+        
         private InputAction lookAction, moveAction, jumpAction, dashAction, crouchAction, toggleCamAction, interactAction;
 
         private void Awake()

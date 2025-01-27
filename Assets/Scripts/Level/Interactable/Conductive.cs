@@ -11,11 +11,11 @@ namespace BigModeGameJam.Level.Interactables
             {
                 if(p.enabled)
                 {
-                    p.Enter(this);
+                    p.Exit();
                 }
                 else
                 {
-                    p.Exit();
+                    p.Enter(this);
                 }
             }
             else

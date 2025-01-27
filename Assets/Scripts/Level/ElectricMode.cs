@@ -4,11 +4,10 @@ using UnityEngine;
 namespace BigModeGameJam.Level.Controls
 {
     /// <summary>
-    /// Handles mode of electric character when conducting through metal
+    /// Handles mode of electric character when conducting through metal.
+    /// Disabled when not inside conductive material
     /// </summary>
-    [RequireComponent(typeof(Collider))]
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(PlayerMovement))]
+    [RequireComponent(typeof(Collider)), RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(PlayerMovement))]
     public class ElectricMode : MonoBehaviour
     {
         public Camera fpCam;
@@ -61,7 +60,7 @@ namespace BigModeGameJam.Level.Controls
         private void HandleCamera()
         {
             fpCam.transform.forward = transform.forward * -1;
-            fpCam.transform.Translate(Vector3.back * camDist);
+            fpCam.transform.Translate(Vector3.forward * -camDist);
         }
         private void Update()
         {
