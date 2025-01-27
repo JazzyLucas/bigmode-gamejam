@@ -10,7 +10,7 @@ namespace BigModeGameJam.Level.Interactables
     /// Base class for interactable objects.
     /// To interact with an Interactable, look at it and press the interact key.
     /// </summary>
-    [RequireComponent(typeof(MeshRenderer)), RequireComponent(typeof(BoxCollider))]
+    [RequireComponent(typeof(MeshRenderer))]
     public class Interactable : MonoBehaviour
     {
         private MeshRenderer mesh;
