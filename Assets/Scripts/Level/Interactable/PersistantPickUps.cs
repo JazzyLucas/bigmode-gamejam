@@ -30,7 +30,7 @@ namespace BigModeGameJam.Level.Interactables
             GameManager.GameData.Money += moneyValue;
             Debug.Log("Money: " + moneyValue.ToString());
             Debug.Log("Collectable : " + uid + " has been collected"); 
-            player.CurrentInteractable = null;
+            //player.CurrentInteractable = null;
             Destroy(gameObject);
         }
 

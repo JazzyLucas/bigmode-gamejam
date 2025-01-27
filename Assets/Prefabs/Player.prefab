@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 619723010962558654}
   - component: {fileID: 3203859292892936917}
   - component: {fileID: 3006526947118253452}
+  - component: {fileID: 1494161179466764201}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -319,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 619723010962558654}
+  lookToInteract: {fileID: 1494161179466764201}
   lookSensitivity: 0.5
   fpCamera: {fileID: 6962534114365846614}
   tpCamera: {fileID: 738395210271233528}
@@ -338,6 +340,20 @@ MonoBehaviour:
   dashDistance: 15
   cooldown: 0.5
   maxDashCharges: 1
+--- !u!114 &1494161179466764201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826957089057645189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401271bed2f8527429e5c055d6a19fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 150
+  cam: {fileID: 8266671243918499874}
 --- !u!1 &9220719817410118237
 GameObject:
   m_ObjectHideFlags: 0

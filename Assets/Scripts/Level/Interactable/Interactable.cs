@@ -33,7 +33,7 @@ namespace BigModeGameJam.Level.Interactables
             Debug.Log($"{gameObject.name} is using an unimplemented interaction script!!!");
         }
 
-        void OnTriggerEnter(Collider other) //Sets to the player what interactable is being interacted with
+        /*void OnTriggerEnter(Collider other) //Sets to the player what interactable is being interacted with
         {
             if (!other.GetComponent<PlayerControls>())
                 return;
@@ -47,7 +47,7 @@ namespace BigModeGameJam.Level.Interactables
                 return;
 
             other.GetComponent<PlayerControls>().CurrentInteractable = null;
-        }
+        }*/
 
         private void Awake()
         {

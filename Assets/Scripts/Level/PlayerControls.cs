@@ -11,28 +11,22 @@ namespace BigModeGameJam.Level.Controls
     {
         public static PlayerControls instance;
         public PlayerMovement playerMovement;
+        public LookToInteract lookToInteract;
         public float lookSensitivity = 1;
         public Camera fpCamera;
         public Camera tpCamera;
-        private InputAction lookAction;
-        private InputAction moveAction;
-        private InputAction jumpAction;
-        private InputAction dashAction;
-        private InputAction crouchAction;
-        private InputAction toggleCamAction;
-        private InputAction interactAction;
-
-        public Interactable CurrentInteractable { get; set; } //Stores what interactable is going to be interacted with (Do not set it's value in this script, let Interactable set value)
+        private InputAction lookAction, moveAction, jumpAction, dashAction, crouchAction, toggleCamAction, interactAction;
 
         private void Awake()
         {
-            lookAction = InputSystem.actions.FindAction("Look");
-            moveAction = InputSystem.actions.FindAction("Move");
-            jumpAction = InputSystem.actions.FindAction("Jump");
-            dashAction = InputSystem.actions.FindAction("Sprint");
-            crouchAction = InputSystem.actions.FindAction("Crouch");
-            toggleCamAction = InputSystem.actions.FindAction("ToggleView");
-            interactAction = InputSystem.actions.FindAction("Interact");
+            InputActionAsset actions = InputSystem.actions;
+            lookAction = actions.FindAction("Look");
+            moveAction = actions.FindAction("Move");
+            jumpAction = actions.FindAction("Jump");
+            dashAction = actions.FindAction("Sprint");
+            crouchAction = actions.FindAction("Crouch");
+            toggleCamAction = actions.FindAction("ToggleView");
+            interactAction = actions.FindAction("Interact");
         }
 
         private void ToggleCam()
@@ -78,14 +72,19 @@ namespace BigModeGameJam.Level.Controls
                 playerMovement.Uncrouch();
             }
 
+            if(interactAction.WasPressedThisFrame())
+            {
+                lookToInteract.Interact();
+            }
+
             if(toggleCamAction.WasPerformedThisFrame())
             {
                 ToggleCam();
             }
 
             //Calls the interactable to perform it's interaction
-            if (interactAction.IsPressed() && CurrentInteractable)
-                CurrentInteractable.Interact(gameObject);
+            if (interactAction.IsPressed())
+                lookToInteract.Interact();
         }
     }
 

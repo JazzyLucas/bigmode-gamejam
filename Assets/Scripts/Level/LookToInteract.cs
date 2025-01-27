@@ -13,6 +13,12 @@ namespace BigModeGameJam.Level.Controls
         public Transform cam;
         private Interactable lookingAt;
 
+        public void Interact()
+        {
+            if(lookingAt == null) return;
+            lookingAt.Interact(gameObject);
+        }
+
         /// <summary>
         /// Assigns object that player is looking at.
         /// </summary>
