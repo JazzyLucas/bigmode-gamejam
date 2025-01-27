@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BigModeGameJam.Level.Interactables
 {
-    public class PersistantPickUps : MonoBehaviour, IPersistentOBJ
+    public class PersistentPickUps : Interactable, IPersistentOBJ
     {
         [SerializeField, ReadOnly] string uid;
         [SerializeField] int moneyValue;
@@ -14,6 +14,11 @@ namespace BigModeGameJam.Level.Interactables
         {
             if (data.PickedUpCollectableUIDS.Contains(uid) && GameManager.CurrentSceneType == SceneType.Level) //If this object has already been picked up by the player once and has come back to this level, he can't pick it up again
                 Destroy(gameObject);
+        }
+
+        public override void Interact(GameObject interacter)
+        {
+            Pickup();
         }
 
         public void Pickup()
