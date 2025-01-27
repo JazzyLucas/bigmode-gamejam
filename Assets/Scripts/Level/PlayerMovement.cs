@@ -37,6 +37,7 @@ namespace BigModeGameJam.Level.Controls
         }
 
         public PlayerType playerType = PlayerType.Custom;
+        [Header("Movement Attributes")]
 
         public float acceleration = 10, maxSpeed = 10, jumpVelocity = 5, airFriction = 1,
         groundFriction = 10, gravity = 9.8f;
@@ -135,6 +136,7 @@ namespace BigModeGameJam.Level.Controls
         /// <param name="dir">Direction to move relative to forward</param>
         public void Move(Vector3 dir)
         {
+            if(stunned || !enabled) return;
             dir = dir.normalized;
             dir = transform.TransformDirection(dir);
 
