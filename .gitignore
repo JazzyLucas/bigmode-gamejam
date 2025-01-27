@@ -111,6 +111,7 @@ fmod_editor.log
 !*.mixer.meta
 !*.shadervariants.meta
 !*.preset.meta
+!*.png.meta
 
 # Ignore all .csproj files (already partially covered but making it explicit)
 *.csproj
