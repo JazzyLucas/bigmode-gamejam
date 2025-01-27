@@ -6,9 +6,15 @@ namespace BigModeGameJam.Core.Manager
     {
         public static GameData GameData { get; private set; }
 
-        public static void PersistGame()
+        internal static void PersistGame(GameData gameData)
         {
+            if (gameData == null)
+            {
+                GameData = new GameData();
+                return;
+            }
 
+            GameData = gameData;
         }
     }
 }
