@@ -8,14 +8,17 @@ namespace BigModeGameJam.Level.Controls
     /// </summary>
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(PlayerMovement))]
     public class ElectricMode : MonoBehaviour
     {
         public Camera fpCam;
         public ThirdPersonCamera tpCam;
         public float exitDist = 10;
+        public float camDist = 25;
         
         new private Collider collider; 
         new private Rigidbody rigidbody;
+        private PlayerMovement playerMovement;
 
         /// <summary>
         /// Enters conduction mode
@@ -29,29 +32,47 @@ namespace BigModeGameJam.Level.Controls
             enabled = true;
             rigidbody.isKinematic = true;
             transform.position = hit.point;
+            playerMovement.enabled = false;
             // Face away from surface
             transform.forward = hit.normal;
-            // We handle the camera differently
-            fpCam.enabled = false;
+            // We handle the third person camera locally
+            fpCam.gameObject.SetActive(false);
             tpCam.enabled = false;
             tpCam.gameObject.SetActive(true);
             collider.enabled = false;
         }
 
         // Exits conductive mode
-        public void Exit()
+        public void Exit(bool jump = false)
         {
             enabled = false;
             rigidbody.isKinematic = false;
+            transform.Translate(Vector3.forward * exitDist);
+            playerMovement.enabled = true;
+            // Go back to first person
+            tpCam.gameObject.SetActive(false);
+            tpCam.enabled = true;
+            fpCam.gameObject.SetActive(true);
+            if(jump)
+                playerMovement.Jump();
 
-            // NOT COMPLETE YET
-            //transform.Translate(Vector3.forward)
         }
 
+        private void HandleCamera()
+        {
+            fpCam.transform.forward = transform.forward * -1;
+            fpCam.transform.Translate(Vector3.back * camDist);
+        }
+        private void Update()
+        {
+            HandleCamera();
+        }
         private void Awake()
         {
+            enabled = false; // In case we forget to disable in editor
             collider = GetComponent<Collider>();
             rigidbody = GetComponent<Rigidbody>();
+            playerMovement = GetComponent<PlayerMovement>();
         }
     }
 }
