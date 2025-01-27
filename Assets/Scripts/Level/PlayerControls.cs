@@ -53,38 +53,21 @@ namespace BigModeGameJam.Level.Controls
             playerMovement.Look(
                 lookAction.ReadValue<Vector2>() * lookSensitivity
             );
-            // Handle jump input
+            // Movement
             if (jumpAction.IsPressed())
-            {
                 playerMovement.Jump();
-            }
             if (dashAction.WasPerformedThisFrame())
-            {
                 playerMovement.Dash(hDir);
-            }
-
             if(crouchAction.WasPerformedThisFrame())
-            {
                 playerMovement.Crouch();
-            }
             else if(crouchAction.WasReleasedThisFrame())
-            {
                 playerMovement.Uncrouch();
-            }
 
             if(interactAction.WasPressedThisFrame())
-            {
                 lookToInteract.Interact();
-            }
 
             if(toggleCamAction.WasPerformedThisFrame())
-            {
                 ToggleCam();
-            }
-
-            //Calls the interactable to perform it's interaction
-            if (interactAction.IsPressed())
-                lookToInteract.Interact();
         }
     }
 
