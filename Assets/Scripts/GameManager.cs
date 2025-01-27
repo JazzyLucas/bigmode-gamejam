@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace BigModeGameJam.Core.Manager
 {
     public static class GameManager
