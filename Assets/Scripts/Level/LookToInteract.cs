@@ -11,7 +11,7 @@ namespace BigModeGameJam.Level.Controls
         /// </summary>
         public float minDistance = 15;
         public Transform cam;
-        private Interactable lookingAt;
+        public Interactable lookingAt;
 
         public void Interact()
         {
