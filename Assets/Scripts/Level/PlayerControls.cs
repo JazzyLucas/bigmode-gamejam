@@ -1,3 +1,4 @@
+using BigModeGameJam.Level.Interactables;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,9 @@ namespace BigModeGameJam.Level.Controls
         private InputAction dashAction;
         private InputAction crouchAction;
         private InputAction toggleCamAction;
+        private InputAction interactAction;
+
+        public Interactable CurrentInteractable { get; set; } //Stores what interactable is going to be interacted with (Do not set it's value in this script, let Interactable set value)
 
         private void Awake()
         {
@@ -28,6 +32,7 @@ namespace BigModeGameJam.Level.Controls
             dashAction = InputSystem.actions.FindAction("Sprint");
             crouchAction = InputSystem.actions.FindAction("Crouch");
             toggleCamAction = InputSystem.actions.FindAction("ToggleView");
+            interactAction = InputSystem.actions.FindAction("Interact");
         }
 
         private void ToggleCam()
@@ -77,6 +82,10 @@ namespace BigModeGameJam.Level.Controls
             {
                 ToggleCam();
             }
+
+            //Calls the interactable to perform it's interaction
+            if (interactAction.IsPressed() && CurrentInteractable)
+                CurrentInteractable.Interact(gameObject);
         }
     }
 

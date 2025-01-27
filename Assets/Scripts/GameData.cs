@@ -8,7 +8,6 @@ namespace BigModeGameJam.Core
     /// </summary>
     [Serializable] public class GameData
     {
-
         public int Money;
 
         public List<string> PickedUpCollectableUIDS = new List<string>();
