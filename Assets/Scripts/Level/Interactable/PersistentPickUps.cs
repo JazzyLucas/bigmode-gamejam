@@ -1,7 +1,5 @@
 using BigModeGameJam.Core;
 using BigModeGameJam.Core.Manager;
-using BigModeGameJam.Level.Controls;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BigModeGameJam.Level.Interactables
@@ -33,13 +31,14 @@ namespace BigModeGameJam.Level.Interactables
             }
         }
 #endif
+
         protected override void OnPickUp()
         {
             GameManager.GameData.PickedUpCollectableUIDS.Add(uid);
             GameManager.GameData.Money += moneyValue;
             Debug.Log("Money: " + moneyValue.ToString());
             Debug.Log("Collectable : " + uid + " has been collected"); ;
-            Destroy(gameObject);
+            base.OnPickUp();
         }
 
         protected override void OnTriggerEnter(Collider collider)

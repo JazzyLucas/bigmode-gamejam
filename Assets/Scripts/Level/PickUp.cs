@@ -1,17 +1,16 @@
 using BigModeGameJam.Level.Controls;
-using BigModeGameJam.Level.Manager;
+using BigModeGameJam.Level.Interactables;
 using UnityEngine;
 
 namespace BigModeGameJam.Level
 {
-    public class PickUp : MonoBehaviour
+    public class PickUp : ObjectiveObject
     {
-        [SerializeField] Objective objective;
-
         protected virtual void OnPickUp()
         {
-            LevelManager.CompleteedObjectives.Add(objective);
-            Debug.Log("Objective object: " + name + " has been picked up");
+            SendToLevelManger();
+            Debug.Log("Objective object: " + gameObject.name + " has been picked up");
+            Destroy(gameObject);
         }
 
 
