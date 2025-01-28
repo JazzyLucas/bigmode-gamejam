@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: playerType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 738395210271233528, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: field of view
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -68,14 +72,14 @@ PrefabInstance:
       propertyPath: electricMode
       value: 
       objectReference: {fileID: 8421250346479534148}
-    - target: {fileID: 4966040649130501922, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
-      propertyPath: thirdPersonCam
-      value: 
-      objectReference: {fileID: 5401217534668968537}
     - target: {fileID: 5109917915484047980, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: af5aa46c13873b1eea2e1d083eceb229, type: 2}
+    - target: {fileID: 6962534114365846614, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: field of view
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -123,14 +127,3 @@ MonoBehaviour:
   exitDist: 10
   camDist: 25
   moveSpeed: 5
---- !u!114 &5401217534668968537 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4492631902986378717, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
-  m_PrefabInstance: {fileID: 8407642516334645124}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 309e2c00193e039408fd56490755e6de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
