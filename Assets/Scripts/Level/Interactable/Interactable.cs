@@ -1,8 +1,6 @@
+using BigModeGameJam.Core;
 using BigModeGameJam.Level.Controls;
-using System;
-using System.Linq;
 using UnityEngine;
-
 
 namespace BigModeGameJam.Level.Interactables
 {
@@ -11,10 +9,13 @@ namespace BigModeGameJam.Level.Interactables
     /// To interact with an Interactable, look at it and press the interact key.
     /// </summary>
     [RequireComponent(typeof(MeshRenderer))]
-    public class Interactable : MonoBehaviour
+    public class Interactable : ObjectiveObject
     {
         private MeshRenderer mesh;
+        [Header("Interactable Configs")]
         public Material highlightMaterial;
+        [SerializeField] bool canInteractMultipleTimes;
+        [SerializeField, ReadOnly] int timesInteracted;
         public void Hover()
         {
             mesh.materials = new Material[] {mesh.material, highlightMaterial};
@@ -31,7 +32,12 @@ namespace BigModeGameJam.Level.Interactables
         /// <param name="interacter">The player object that is interacting with this object</param>
         public virtual void Interact(GameObject interacter)
         {
-            Debug.Log($"{gameObject.name} is using an unimplemented interaction script!!!");
+            if (!canInteractMultipleTimes && timesInteracted ==1)
+                return;
+
+            timesInteracted++;
+            SendToLevelManger();
+            Debug.Log($"{gameObject.name} interaction has happened");
         }
 
         private void Awake()

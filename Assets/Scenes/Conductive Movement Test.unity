@@ -162,7 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d15c6ae01409348999fe7f0e523d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMessage: 
   highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
+  canInteractMultipleTimes: 1
+  timesInteracted: 0
   connected:
   - {fileID: 147834057}
 --- !u!136 &300632105
@@ -396,7 +399,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d15c6ae01409348999fe7f0e523d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMessage: 
   highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
+  canInteractMultipleTimes: 1
+  timesInteracted: 0
   connected:
   - {fileID: 147834057}
 --- !u!136 &473640238
@@ -1112,7 +1118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d15c6ae01409348999fe7f0e523d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMessage: 
   highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
+  canInteractMultipleTimes: 1
+  timesInteracted: 0
   connected:
   - {fileID: 2112769112}
 --- !u!136 &1932298465
@@ -1340,7 +1349,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d15c6ae01409348999fe7f0e523d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMessage: 
   highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
+  canInteractMultipleTimes: 1
+  timesInteracted: 0
   connected:
   - {fileID: 1932298464}
 --- !u!135 &2112769113
@@ -1452,6 +1464,10 @@ PrefabInstance:
       propertyPath: 'connected.Array.data[1]'
       value: 
       objectReference: {fileID: 300632104}
+    - target: {fileID: 1340766072714905305, guid: b10d169451e81256b824b141183c2d4f, type: 3}
+      propertyPath: canInteractMultipleTimes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7974897559747468705, guid: b10d169451e81256b824b141183c2d4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.26

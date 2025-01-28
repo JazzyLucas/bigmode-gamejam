@@ -36,6 +36,8 @@ namespace BigModeGameJam.Level.Interactables
                 {
                     p.Enter(this);
                 }
+
+                base.Interact(interacter);
             }
             else
             {

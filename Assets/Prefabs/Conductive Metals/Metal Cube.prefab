@@ -121,5 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d15c6ae01409348999fe7f0e523d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMessage: 
   highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
+  canInteractMultipleTimes: 1
+  timesInteracted: 0
   connected: []
