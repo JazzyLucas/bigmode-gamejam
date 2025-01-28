@@ -3,7 +3,8 @@
     "rootNamespace": "BigModeGameJam.Level",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:ea57b44935ac65044974255fe077e7cc"
+        "GUID:ea57b44935ac65044974255fe077e7cc",
+        "GUID:0c752da273b17c547ae705acf0f2adf2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

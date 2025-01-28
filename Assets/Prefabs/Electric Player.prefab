@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 619723010962558654, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: playerType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -68,6 +72,10 @@ PrefabInstance:
       propertyPath: thirdPersonCam
       value: 
       objectReference: {fileID: 5401217534668968537}
+    - target: {fileID: 5109917915484047980, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: af5aa46c13873b1eea2e1d083eceb229, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

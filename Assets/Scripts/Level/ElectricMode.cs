@@ -13,7 +13,11 @@ namespace BigModeGameJam.Level.Controls
         /// <summary>
         /// Used to detect an object even if the player is percisely on the surface of it.
         /// </summary>
-        private const float RAYCAST_PADDING = 0.25f;
+        private const float RAYCAST_PADDING = 1.75f;
+        /// <summary>
+        /// Maximum distance that the player can "zip" to in a single frame when traversing a concave shape.
+        /// </summary>
+        private const float MAX_ZIP_DIST = 100;
 
         public float exitDist = 10;
         public float camDist = 25;
@@ -39,6 +43,7 @@ namespace BigModeGameJam.Level.Controls
             // Ensure that the correct conductive material is hit
             if(!Physics.Raycast(fpCam.transform.position, fpCam.transform.forward, out hit, Mathf.Infinity)
                 || hit.collider.gameObject != con.gameObject) return;
+            con.Unhover();
             targetConductor = con;
             enabled = true;
             rigidbody.isKinematic = true;
@@ -69,18 +74,17 @@ namespace BigModeGameJam.Level.Controls
             lookToInteract.lookingAt = null;
             lookToInteract.enabled = true;
             playerRefs.dash.Replenish();
-            if(jump)
-                playerMovement.Jump();
+            playerMovement.Jump(jump);
         }
 
         public void Move(Vector3 dir)
         {
             transform.position += moveSpeed * Time.deltaTime * 
                 Vector3.ProjectOnPlane(CamRelativeDirection(dir), hit.normal);
-            if(!Physics.Raycast(transform.position + transform.up * RAYCAST_PADDING, -transform.up, out hit, Mathf.Infinity)
-                || hit.collider.gameObject != targetConductor.gameObject) 
+            if(LeftConductive()) 
             {
                 Exit();
+                return;
             }
             LockToPlane();
         }
@@ -105,6 +109,35 @@ namespace BigModeGameJam.Level.Controls
         private Vector3 CamRelativeDirection(Vector3 dir)
         {
             return tpCam.transform.right * dir.x + tpCam.transform.up * dir.z;
+        }
+
+        /// <summary>
+        /// Returns true if the player has left the conductive material and it's connected objects
+        /// </summary>
+        /// <returns></returns>
+        private bool LeftConductive()
+        {
+            // There is no material under player. They have definitely left
+            if(!Physics.Raycast(transform.position + transform.up * RAYCAST_PADDING, -transform.up, out hit, Mathf.Infinity))
+            {
+                return true;
+            }
+            // The player is still connected to the same Conductive object
+            if(hit.collider.gameObject == targetConductor.gameObject)
+            {
+                return false;
+            }
+            // If the player has left the target object but hit a new object
+            // see if new object is connected
+            Conductive newTarget = hit.collider.gameObject.GetComponent<Conductive>();
+            if(targetConductor.IsConnected(newTarget))
+            {
+                targetConductor = newTarget;
+                return false;
+            }
+            // Player has hit a conductor that is not a part of the intended group. Leave.
+            return true;
+
         }
 
         private void HandleCamera()
