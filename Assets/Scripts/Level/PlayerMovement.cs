@@ -39,7 +39,8 @@ namespace BigModeGameJam.Level.Controls
         public PlayerType playerType = PlayerType.Custom;
         [Header("Movement Attributes")]
 
-        public float acceleration = 10, maxSpeed = 10, jumpVelocity = 5, airFriction = 1,
+        public float acceleration = 10;
+        public float maxSpeed = 10, jumpVelocity = 5, airFriction = 1,
         groundFriction = 10, gravity = 9.8f;
         new private Rigidbody rigidbody;
         new private CapsuleCollider collider;
@@ -120,6 +121,7 @@ namespace BigModeGameJam.Level.Controls
         /// <param name="delta">Difference in rotation.</param>
         public void Look(Vector2 delta)
         {
+            if(!enabled) return;
             // Look left and right
             transform.Rotate(0, delta.x, 0);
             // Look up and down

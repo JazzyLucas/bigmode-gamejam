@@ -156,12 +156,13 @@ GameObject:
   - component: {fileID: 5109917915484047980}
   - component: {fileID: 1297992820958635218}
   - component: {fileID: 6978733804139532470}
+  - component: {fileID: 8813424768355147359}
   - component: {fileID: 619723010962558654}
   - component: {fileID: 3203859292892936917}
   - component: {fileID: 3006526947118253452}
   - component: {fileID: 1494161179466764201}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Human Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,6 +288,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8813424768355147359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826957089057645189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!114 &619723010962558654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,9 +336,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 619723010962558654}
   lookToInteract: {fileID: 1494161179466764201}
-  lookSensitivity: 0.5
   fpCamera: {fileID: 6962534114365846614}
   tpCamera: {fileID: 738395210271233528}
+  lookSensitivity: 0.5
 --- !u!114 &3006526947118253452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 150
   cam: {fileID: 8266671243918499874}
+  lookingAt: {fileID: 0}
 --- !u!1 &9220719817410118237
 GameObject:
   m_ObjectHideFlags: 0

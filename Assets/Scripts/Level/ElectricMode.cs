@@ -18,6 +18,7 @@ namespace BigModeGameJam.Level.Controls
         new private Collider collider; 
         new private Rigidbody rigidbody;
         private PlayerMovement playerMovement;
+        public LookToInteract lookToInteract;
 
         /// <summary>
         /// Enters conduction mode
@@ -59,8 +60,9 @@ namespace BigModeGameJam.Level.Controls
 
         private void HandleCamera()
         {
-            fpCam.transform.forward = transform.forward * -1;
-            fpCam.transform.Translate(Vector3.forward * -camDist);
+            tpCam.transform.forward = transform.forward * -1;
+            tpCam.transform.localPosition = Vector3.zero;
+            tpCam.transform.Translate(Vector3.forward * -camDist);
         }
         private void Update()
         {
