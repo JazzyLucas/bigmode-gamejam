@@ -56,7 +56,12 @@ namespace BigModeGameJam.Level.Controls
             );
             // Movement
             if (jumpAction.IsPressed())
-                playerRefs.playerMovement.Jump();
+            {
+                if(playerRefs.electricMode == null || !playerRefs.electricMode.enabled)
+                    playerRefs.playerMovement.Jump();
+                else
+                    playerRefs.electricMode.Exit(true); // Jump exit
+            }
             if (dashAction.WasPerformedThisFrame())
                 playerRefs.playerMovement.Dash(hDir);
             if(crouchAction.WasPerformedThisFrame())

@@ -109,7 +109,7 @@ namespace BigModeGameJam.Level.Controls
 
         public void Jump(bool force = false)
         {
-            if (!force && !IsGrounded()) return;
+            if (!IsGrounded() && !force) return;
             rigidbody.linearVelocity = new Vector3(
                 rigidbody.linearVelocity.x, jumpVelocity, rigidbody.linearVelocity.z
             );
