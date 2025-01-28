@@ -13,8 +13,14 @@ namespace BigModeGameJam.Level.Interactables
         /// </summary>
         protected void SendToLevelManger()
         {
-            if (LevelManager.AllObjectives.Contains(this))
+            if (LevelManager.ObjectiveIsIncluded(this))
+            {
                 LevelManager.CompleteObjective(this);
+                return;
+            }
+
+            if (GetType() == typeof(PickUp) && GetType() != typeof(PersistentPickUps))
+                Debug.LogWarning("Non Persistance Pick Up not set to a Objective Listener. Please assign: " + gameObject.name + " to a Objective Listener");
         }
     }
 }

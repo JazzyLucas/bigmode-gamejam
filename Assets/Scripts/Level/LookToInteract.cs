@@ -47,21 +47,30 @@ namespace BigModeGameJam.Level.Controls
             return false;
         }
 
+        bool crossHairPresent() => Crosshair.instance ? true : false;
+
         private void OnDisable()
         {
             if(lookingAt != null) lookingAt.Unhover();
-            Crosshair.instance.SetHover(false);
-            Crosshair.instance.gameObject.SetActive(false);
+
+            if (crossHairPresent())
+            {
+                Crosshair.instance.SetHover(false);
+                Crosshair.instance.gameObject.SetActive(false);
+            }
+
         }
 
         private void OnEnable()
         {
-            Crosshair.instance.gameObject.SetActive(true);
+            if (Crosshair.instance)
+                Crosshair.instance.gameObject.SetActive(true);
         }
 
         private void Update()
         {
-            Crosshair.instance.SetHover(LookingAtObject());
+            if (crossHairPresent())
+                Crosshair.instance.SetHover(LookingAtObject());
         }
     }
 }

@@ -6,6 +6,7 @@ namespace BigModeGameJam.Level.Interactables
 {
     [ExecuteInEditMode] public class PersistentPickUps : PickUp, IPersistentOBJ
     {
+        [Header("Persistant Pick Up Configs")]
         [SerializeField, ReadOnly] string uid;
         [SerializeField] int moneyValue;
 
@@ -20,7 +21,7 @@ namespace BigModeGameJam.Level.Interactables
 #if UNITY_EDITOR
         void Awake() //Make sure every UID is unique
         {
-            if (!Application.isEditor)
+            if (Application.isPlaying)
                 return;
 
             PersistentPickUps[] persistentPickUps = FindObjectsByType<PersistentPickUps>(FindObjectsSortMode.None);
@@ -43,7 +44,7 @@ namespace BigModeGameJam.Level.Interactables
 
         protected override void OnTriggerEnter(Collider collider)
         {
-            if (!Application.isEditor)
+            if (Application.isPlaying)
                 base.OnTriggerEnter(collider);
         }
     }

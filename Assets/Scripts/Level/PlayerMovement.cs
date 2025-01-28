@@ -187,7 +187,8 @@ namespace BigModeGameJam.Level.Controls
         private EventInstance FootstepNormal;
         private void Start()
         {
-            FootstepNormal = AudioManager.instance.CreateEventInstance(FMODEvents.instance.FootstepNormal);
+            if (AudioManager.instance)
+                FootstepNormal = AudioManager.instance.CreateEventInstance(FMODEvents.instance.FootstepNormal);
         }
 
         public void Stun(float stunTime)
