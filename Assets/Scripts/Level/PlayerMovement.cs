@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using FMOD.Studio;
+using BigModeGameJam.Core;
 
 
 namespace BigModeGameJam.Level.Controls
@@ -121,7 +123,7 @@ namespace BigModeGameJam.Level.Controls
         /// <param name="delta">Difference in rotation.</param>
         public void Look(Vector2 delta)
         {
-            if(!enabled) return;
+            if (!enabled) return;
             // Look left and right
             transform.Rotate(0, delta.x, 0);
             // Look up and down
@@ -138,10 +140,10 @@ namespace BigModeGameJam.Level.Controls
         /// <param name="dir">Direction to move relative to forward</param>
         public void Move(Vector3 dir)
         {
-            if(stunned) return;
-            if(!enabled)
+            if (stunned) return;
+            if (!enabled)
             {
-                if(playerRefs.electricMode != null && playerRefs.electricMode.enabled)
+                if (playerRefs.electricMode != null && playerRefs.electricMode.enabled)
                 {
                     playerRefs.electricMode.Move(dir);
                 }
@@ -175,6 +177,14 @@ namespace BigModeGameJam.Level.Controls
             rigidbody.linearVelocity = new Vector3(
                 hVel.x, rigidbody.linearVelocity.y, hVel.y
             );
+        }
+
+        //movement audio
+
+        private EventInstance FootstepNormal;
+        private void Start()
+        {
+            FootstepNormal = AudioManager.instance.CreateEventInstance(FMODEvents.instance.FootstepNormal);
         }
 
         public void Stun(float stunTime)
@@ -294,6 +304,26 @@ namespace BigModeGameJam.Level.Controls
             ApplyFriction();
             ApplyGravity();
             ApplyAttributes();
+            UpdateSound();
+        }
+        private void UpdateSound()
+        {
+            //start footsteps event if player has an x velocity and is on the ground
+            if (grounded && rigidbody)
+            {
+                //get playback state
+                PLAYBACK_STATE playbackState;
+                FootstepNormal.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    FootstepNormal.start();
+                }
+            }
+            //otherwise, stop the footsteps event
+            else
+            {
+                FootstepNormal.stop(STOP_MODE.ALLOWFADEOUT);
+            }
         }
     }
 }
