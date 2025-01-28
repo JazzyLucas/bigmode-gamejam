@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using FMOD.Studio;
+using BigModeGameJam.Core;
 
 
 namespace BigModeGameJam.Level.Controls
@@ -27,6 +29,9 @@ namespace BigModeGameJam.Level.Controls
         ELEC_GRND_FRIC = 95, ELEC_GRAV = 50;
         private const float LOOK_RANGE = 89.5f; // Going to the fll 90deg causes issues in third person
         private const float CROUCH_ANIMATION_PERIOD = 0.25f, CROUCH_SPEED_MULTIPLIER = 0.4f;
+
+        // SOUND CONSTANTS
+        private const float FOOTSTEP_SPEED_THRESH = 2;
 
         public enum PlayerType : int
         {
@@ -121,7 +126,7 @@ namespace BigModeGameJam.Level.Controls
         /// <param name="delta">Difference in rotation.</param>
         public void Look(Vector2 delta)
         {
-            if(!enabled) return;
+            if (!enabled) return;
             // Look left and right
             transform.Rotate(0, delta.x, 0);
             // Look up and down
@@ -138,10 +143,10 @@ namespace BigModeGameJam.Level.Controls
         /// <param name="dir">Direction to move relative to forward</param>
         public void Move(Vector3 dir)
         {
-            if(stunned) return;
-            if(!enabled)
+            if (stunned) return;
+            if (!enabled)
             {
-                if(playerRefs.electricMode != null && playerRefs.electricMode.enabled)
+                if (playerRefs.electricMode != null && playerRefs.electricMode.enabled)
                 {
                     playerRefs.electricMode.Move(dir);
                 }
@@ -175,6 +180,14 @@ namespace BigModeGameJam.Level.Controls
             rigidbody.linearVelocity = new Vector3(
                 hVel.x, rigidbody.linearVelocity.y, hVel.y
             );
+        }
+
+        //movement audio
+
+        private EventInstance FootstepNormal;
+        private void Start()
+        {
+            FootstepNormal = AudioManager.instance.CreateEventInstance(FMODEvents.instance.FootstepNormal);
         }
 
         public void Stun(float stunTime)
@@ -294,6 +307,26 @@ namespace BigModeGameJam.Level.Controls
             ApplyFriction();
             ApplyGravity();
             ApplyAttributes();
+            UpdateSound();
+        }
+        private void UpdateSound()
+        {
+            //start footsteps event if player has an x velocity and is on the ground
+            if (grounded && new Vector2(rigidbody.linearVelocity.x, rigidbody.linearVelocity.z).magnitude >= FOOTSTEP_SPEED_THRESH)
+            {
+                //get playback state
+                PLAYBACK_STATE playbackState;
+                FootstepNormal.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    FootstepNormal.start();
+                }
+            }
+            //otherwise, stop the footsteps event
+            else
+            {
+                FootstepNormal.stop(STOP_MODE.ALLOWFADEOUT);
+            }
         }
     }
 }
