@@ -30,6 +30,9 @@ namespace BigModeGameJam.Level.Controls
         private const float LOOK_RANGE = 89.5f; // Going to the fll 90deg causes issues in third person
         private const float CROUCH_ANIMATION_PERIOD = 0.25f, CROUCH_SPEED_MULTIPLIER = 0.4f;
 
+        // SOUND CONSTANTS
+        private const float FOOTSTEP_SPEED_THRESH = 2;
+
         public enum PlayerType : int
         {
             Human = 1,
@@ -309,7 +312,7 @@ namespace BigModeGameJam.Level.Controls
         private void UpdateSound()
         {
             //start footsteps event if player has an x velocity and is on the ground
-            if (grounded && rigidbody.linearVelocity.x != 0)
+            if (grounded && new Vector2(rigidbody.linearVelocity.x, rigidbody.linearVelocity.z).magnitude >= FOOTSTEP_SPEED_THRESH)
             {
                 //get playback state
                 PLAYBACK_STATE playbackState;
