@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BigModeGameJam.Level.Interactables
 {
-    [ExecuteInEditMode] public class PersistentPickUps : MonoBehaviour, IPersistentOBJ
+    [ExecuteInEditMode] public class PersistentPickUps : PickUp, IPersistentOBJ
     {
         [SerializeField, ReadOnly] string uid;
         [SerializeField] int moneyValue;
@@ -20,7 +20,7 @@ namespace BigModeGameJam.Level.Interactables
         }
 
 #if UNITY_EDITOR
-        private void Awake() //Make sure every UID is unique
+        void Awake() //Make sure every UID is unique
         {
             if (!Application.isEditor)
                 return;
@@ -33,8 +33,7 @@ namespace BigModeGameJam.Level.Interactables
             }
         }
 #endif
-
-        void Pickup()
+        protected override void OnPickUp()
         {
             GameManager.GameData.PickedUpCollectableUIDS.Add(uid);
             GameManager.GameData.Money += moneyValue;
@@ -42,12 +41,11 @@ namespace BigModeGameJam.Level.Interactables
             Debug.Log("Collectable : " + uid + " has been collected"); ;
             Destroy(gameObject);
         }
-        
 
-        public void OnTriggerEnter(Collider collider)
+        protected override void OnTriggerEnter(Collider collider)
         {
-            if(collider.GetComponent<PlayerMovement>() && !Application.isEditor)
-                Pickup();
+            if (!Application.isEditor)
+                base.OnTriggerEnter(collider);
         }
     }
 }
