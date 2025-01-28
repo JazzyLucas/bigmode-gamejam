@@ -30,6 +30,10 @@ namespace BigModeGameJam.Level.Controls
             {
                 if(hit.collider.gameObject.TryGetComponent<Interactable>(out Interactable l))
                 {
+                    if(lookingAt != null && lookingAt != l)
+                    {
+                        lookingAt.Unhover();
+                    }
                     lookingAt = l;
                     l.Hover();
                     return true;
@@ -41,6 +45,18 @@ namespace BigModeGameJam.Level.Controls
                 lookingAt = null;
             }
             return false;
+        }
+
+        private void OnDisable()
+        {
+            if(lookingAt != null) lookingAt.Unhover();
+            Crosshair.instance.SetHover(false);
+            Crosshair.instance.gameObject.SetActive(false);
+        }
+
+        private void OnEnable()
+        {
+            Crosshair.instance.gameObject.SetActive(true);
         }
 
         private void Update()
