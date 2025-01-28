@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8407642516334645124
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3826957089057645189, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: m_Name
+      value: Electric Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966040649130501922, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: dash
+      value: 
+      objectReference: {fileID: 8749906530303787379}
+    - target: {fileID: 4966040649130501922, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: playerType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966040649130501922, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: electricMode
+      value: 
+      objectReference: {fileID: 8421250346479534148}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3826957089057645189, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8749906530303787379}
+    - targetCorrespondingSourceObject: {fileID: 3826957089057645189, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8421250346479534148}
+  m_SourcePrefab: {fileID: 100100000, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+--- !u!1 &4733819086996811009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3826957089057645189, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+  m_PrefabInstance: {fileID: 8407642516334645124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8749906530303787379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733819086996811009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2926c2c5ae1dc4f97bc7c450f89510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 55
+  dashDistance: 15
+  cooldown: 0.5
+  maxDashCharges: 1
+--- !u!114 &8421250346479534148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733819086996811009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a347151e5582d2b478a047822fdc8654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpCam: {fileID: 0}
+  tpCam: {fileID: 0}
+  exitDist: 10
+  camDist: 25
+  lookToInteract: {fileID: 0}

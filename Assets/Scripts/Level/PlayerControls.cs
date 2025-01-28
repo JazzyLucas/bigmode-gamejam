@@ -7,21 +7,19 @@ namespace BigModeGameJam.Level.Controls
     /// <summary>
     /// Allows for player input to interact with other features.
     /// </summary>
+    [RequireComponent(typeof(PlayerRefs))]
     public class PlayerControls : MonoBehaviour
     {
-        public static PlayerControls instance;
-        [Header("References")]
-        public PlayerMovement playerMovement;
-        public LookToInteract lookToInteract;
-        public Camera fpCamera;
-        public Camera tpCamera;
+        
         [Header("Settings")]
         public float lookSensitivity = 1;
-        
+
         private InputAction lookAction, moveAction, jumpAction, dashAction, crouchAction, toggleCamAction, interactAction;
+        private PlayerRefs playerRefs;
 
         private void Awake()
         {
+            playerRefs = GetComponent<PlayerRefs>();
             InputActionAsset actions = InputSystem.actions;
             lookAction = actions.FindAction("Look");
             moveAction = actions.FindAction("Move");
@@ -34,15 +32,15 @@ namespace BigModeGameJam.Level.Controls
 
         private void ToggleCam()
         {
-            if(fpCamera.isActiveAndEnabled)
+            if(playerRefs.firstPersonCam.isActiveAndEnabled)
             {
-                fpCamera.gameObject.SetActive(false);
-                tpCamera.gameObject.SetActive(true);
+                playerRefs.firstPersonCam.gameObject.SetActive(false);
+                playerRefs.thirdPersonCamera.gameObject.SetActive(true);
             }
             else
             {
-                fpCamera.gameObject.SetActive(true);
-                tpCamera.gameObject.SetActive(false);
+                playerRefs.firstPersonCam.gameObject.SetActive(true);
+                playerRefs.thirdPersonCamera.gameObject.SetActive(false);
             }
         }
 
@@ -51,23 +49,23 @@ namespace BigModeGameJam.Level.Controls
             // Handle movement input
             Vector2 moveDir = moveAction.ReadValue<Vector2>();
             Vector3 hDir = new Vector3(moveDir.x, 0, moveDir.y);
-            playerMovement.Move(hDir);
+            playerRefs.playerMovement.Move(hDir);
             // Handle Rotation input
-            playerMovement.Look(
+            playerRefs.playerMovement.Look(
                 lookAction.ReadValue<Vector2>() * lookSensitivity
             );
             // Movement
             if (jumpAction.IsPressed())
-                playerMovement.Jump();
+                playerRefs.playerMovement.Jump();
             if (dashAction.WasPerformedThisFrame())
-                playerMovement.Dash(hDir);
+                playerRefs.playerMovement.Dash(hDir);
             if(crouchAction.WasPerformedThisFrame())
-                playerMovement.Crouch();
+                playerRefs.playerMovement.Crouch();
             else if(crouchAction.WasReleasedThisFrame())
-                playerMovement.Uncrouch();
+                playerRefs.playerMovement.Uncrouch();
 
             if(interactAction.WasPressedThisFrame())
-                lookToInteract.Interact();
+                playerRefs.lookToInteract.Interact();
 
             if(toggleCamAction.WasPerformedThisFrame())
                 ToggleCam();

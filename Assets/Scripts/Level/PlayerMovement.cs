@@ -8,8 +8,7 @@ namespace BigModeGameJam.Level.Controls
     /// Handles basic player movement using rigidbody.
     /// NOTE: Rigidbody must be attached with no friction, no gravity and frozen rotation.
     /// </summary>
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(CapsuleCollider))]
+    [RequireComponent(typeof(PlayerRefs))]
     public class PlayerMovement : MonoBehaviour
     {
         /// <summary>
@@ -45,6 +44,7 @@ namespace BigModeGameJam.Level.Controls
         new private Rigidbody rigidbody;
         new private CapsuleCollider collider;
         private Dash dash;
+        private PlayerRefs playerRefs;
         [SerializeField] new private Camera camera;
         // Referencing camera's rotation causes issues for some reason. keep track of it here instead.
         private float camX;
@@ -107,9 +107,9 @@ namespace BigModeGameJam.Level.Controls
             return false;
         }
 
-        public void Jump()
+        public void Jump(bool force = false)
         {
-            if (!IsGrounded()) return;
+            if (!force && !IsGrounded()) return;
             rigidbody.linearVelocity = new Vector3(
                 rigidbody.linearVelocity.x, jumpVelocity, rigidbody.linearVelocity.z
             );
@@ -229,11 +229,12 @@ namespace BigModeGameJam.Level.Controls
 
         private void Awake()
         {
-            rigidbody = GetComponent<Rigidbody>();
-            collider = GetComponent<CapsuleCollider>();
+            playerRefs = GetComponent<PlayerRefs>();
+            rigidbody = playerRefs.rigidbody;
+            collider = playerRefs.collider;
             initColliderHeight = collider.height;
             initCameraHeight = camera.transform.localPosition.y;
-            dash = GetComponent<Dash>();
+            dash = playerRefs.dash;
         }
 
         private IEnumerator StunCoroutine(float stunTime)

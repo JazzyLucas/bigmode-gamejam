@@ -14,16 +14,16 @@ namespace BigModeGameJam.Level
         [SerializeField] PlayerMovement.PlayerType playerType = PlayerMovement.PlayerType.Human;
 
         [Header("For both player types")]
-        [SerializeField] new readonly CapsuleCollider collider;
-        [SerializeField] new readonly Rigidbody rigidbody;
-        [SerializeField] readonly Camera firstPersonCam;
-        [SerializeField] readonly ThirdPersonCamera thirdPersonCamera;
-        [SerializeField] readonly PlayerMovement playerMovement;
-        [SerializeField] readonly LookToInteract lookToInteract;
+        [SerializeField] new public CapsuleCollider collider;
+        [SerializeField] new public Rigidbody rigidbody;
+        [SerializeField] public Camera firstPersonCam;
+        [SerializeField] public ThirdPersonCamera thirdPersonCamera;
+        [SerializeField] public PlayerMovement playerMovement;
+        [SerializeField] public LookToInteract lookToInteract;
 
         [Header("For electric character only")]
-        [SerializeField] readonly ElectricMode electricMode;
-        [SerializeField] readonly Dash dash;
+        [SerializeField] public ElectricMode electricMode;
+        [SerializeField] public Dash dash;
 
         private void Awake()
         {

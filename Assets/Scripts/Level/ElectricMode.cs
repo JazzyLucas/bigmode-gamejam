@@ -7,7 +7,7 @@ namespace BigModeGameJam.Level.Controls
     /// Handles mode of electric character when conducting through metal.
     /// Disabled when not inside conductive material
     /// </summary>
-    [RequireComponent(typeof(Collider)), RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(PlayerMovement))]
+    [RequireComponent(typeof(PlayerRefs))]
     public class ElectricMode : MonoBehaviour
     {
         public Camera fpCam;
@@ -15,10 +15,11 @@ namespace BigModeGameJam.Level.Controls
         public float exitDist = 10;
         public float camDist = 25;
         
+        private PlayerRefs playerRefs;
         new private Collider collider; 
         new private Rigidbody rigidbody;
         private PlayerMovement playerMovement;
-        public LookToInteract lookToInteract;
+        private LookToInteract lookToInteract;
 
         /// <summary>
         /// Enters conduction mode
@@ -40,6 +41,8 @@ namespace BigModeGameJam.Level.Controls
             tpCam.enabled = false;
             tpCam.gameObject.SetActive(true);
             collider.enabled = false;
+            lookToInteract.lookingAt = con;
+            lookToInteract.enabled = false;
         }
 
         // Exits conductive mode
@@ -53,9 +56,11 @@ namespace BigModeGameJam.Level.Controls
             tpCam.gameObject.SetActive(false);
             tpCam.enabled = true;
             fpCam.gameObject.SetActive(true);
+            lookToInteract.lookingAt = null;
+            lookToInteract.enabled = true;
+            playerRefs.dash.Replenish();
             if(jump)
                 playerMovement.Jump();
-
         }
 
         private void HandleCamera()
@@ -71,9 +76,11 @@ namespace BigModeGameJam.Level.Controls
         private void Awake()
         {
             enabled = false; // In case we forget to disable in editor
-            collider = GetComponent<Collider>();
-            rigidbody = GetComponent<Rigidbody>();
-            playerMovement = GetComponent<PlayerMovement>();
+            playerRefs = GetComponent<PlayerRefs>();
+            collider = playerRefs.collider;
+            rigidbody = playerRefs.rigidbody;
+            playerMovement = playerRefs.playerMovement;
+            lookToInteract = playerRefs.lookToInteract;
         }
     }
 }
