@@ -318,7 +318,7 @@ MonoBehaviour:
   collider: {fileID: 6978733804139532470}
   rigidbody: {fileID: 1297992820958635218}
   firstPersonCam: {fileID: 6962534114365846614}
-  thirdPersonCamera: {fileID: 4492631902986378717}
+  thirdPersonCam: {fileID: 4492631902986378717}
   playerMovement: {fileID: 619723010962558654}
   lookToInteract: {fileID: 1494161179466764201}
   electricMode: {fileID: 0}
@@ -355,10 +355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e321c7af522a61701a83e44c3da8d787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 619723010962558654}
-  lookToInteract: {fileID: 1494161179466764201}
-  fpCamera: {fileID: 6962534114365846614}
-  tpCamera: {fileID: 738395210271233528}
   lookSensitivity: 0.5
 --- !u!114 &1494161179466764201
 MonoBehaviour:

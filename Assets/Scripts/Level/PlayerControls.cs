@@ -35,12 +35,12 @@ namespace BigModeGameJam.Level.Controls
             if(playerRefs.firstPersonCam.isActiveAndEnabled)
             {
                 playerRefs.firstPersonCam.gameObject.SetActive(false);
-                playerRefs.thirdPersonCamera.gameObject.SetActive(true);
+                playerRefs.thirdPersonCam.gameObject.SetActive(true);
             }
             else
             {
                 playerRefs.firstPersonCam.gameObject.SetActive(true);
-                playerRefs.thirdPersonCamera.gameObject.SetActive(false);
+                playerRefs.thirdPersonCam.gameObject.SetActive(false);
             }
         }
 

@@ -138,7 +138,15 @@ namespace BigModeGameJam.Level.Controls
         /// <param name="dir">Direction to move relative to forward</param>
         public void Move(Vector3 dir)
         {
-            if(stunned || !enabled) return;
+            if(stunned) return;
+            if(!enabled)
+            {
+                if(playerRefs.electricMode != null && playerRefs.electricMode.enabled)
+                {
+                    playerRefs.electricMode.Move(dir);
+                }
+                return;
+            }
             dir = dir.normalized;
             dir = transform.TransformDirection(dir);
 

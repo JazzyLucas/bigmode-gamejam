@@ -10,23 +10,27 @@ namespace BigModeGameJam.Level.Controls
     [RequireComponent(typeof(PlayerRefs))]
     public class ElectricMode : MonoBehaviour
     {
-        public Camera fpCam;
-        public ThirdPersonCamera tpCam;
+        
         public float exitDist = 10;
         public float camDist = 25;
+        public float moveSpeed = 5;
         
         private PlayerRefs playerRefs;
         new private Collider collider; 
         new private Rigidbody rigidbody;
         private PlayerMovement playerMovement;
         private LookToInteract lookToInteract;
+        private Camera fpCam;
+        private ThirdPersonCamera tpCam;
+
+        private RaycastHit hit;
+
 
         /// <summary>
         /// Enters conduction mode
         /// </summary>
         public void Enter(Conductive con)
         {
-            RaycastHit hit;
             // Ensure that the correct conductive material is hit
             if(!Physics.Raycast(fpCam.transform.position, fpCam.transform.forward, out hit, Mathf.Infinity)
                 || hit.collider.gameObject != con.gameObject) return;
@@ -35,7 +39,7 @@ namespace BigModeGameJam.Level.Controls
             transform.position = hit.point;
             playerMovement.enabled = false;
             // Face away from surface
-            transform.forward = hit.normal;
+            transform.up = hit.normal;
             // We handle the third person camera locally
             fpCam.gameObject.SetActive(false);
             tpCam.enabled = false;
@@ -50,7 +54,8 @@ namespace BigModeGameJam.Level.Controls
         {
             enabled = false;
             rigidbody.isKinematic = false;
-            transform.Translate(Vector3.forward * exitDist);
+            transform.Translate(Vector3.up * exitDist);
+            transform.up = Vector3.up;
             playerMovement.enabled = true;
             // Go back to first person
             tpCam.gameObject.SetActive(false);
@@ -63,9 +68,14 @@ namespace BigModeGameJam.Level.Controls
                 playerMovement.Jump();
         }
 
+        public void Move(Vector3 dir)
+        {
+            transform.Translate(dir * moveSpeed * Time.deltaTime);
+        }
+
         private void HandleCamera()
         {
-            tpCam.transform.forward = transform.forward * -1;
+            tpCam.transform.forward = transform.up * -1;
             tpCam.transform.localPosition = Vector3.zero;
             tpCam.transform.Translate(Vector3.forward * -camDist);
         }
@@ -81,6 +91,8 @@ namespace BigModeGameJam.Level.Controls
             rigidbody = playerRefs.rigidbody;
             playerMovement = playerRefs.playerMovement;
             lookToInteract = playerRefs.lookToInteract;
+            fpCam = playerRefs.firstPersonCam;
+            tpCam = playerRefs.thirdPersonCam;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace BigModeGameJam.Level
         [SerializeField] new public CapsuleCollider collider;
         [SerializeField] new public Rigidbody rigidbody;
         [SerializeField] public Camera firstPersonCam;
-        [SerializeField] public ThirdPersonCamera thirdPersonCamera;
+        [SerializeField] public ThirdPersonCamera thirdPersonCam;
         [SerializeField] public PlayerMovement playerMovement;
         [SerializeField] public LookToInteract lookToInteract;
 
