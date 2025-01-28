@@ -309,7 +309,7 @@ namespace BigModeGameJam.Level.Controls
         private void UpdateSound()
         {
             //start footsteps event if player has an x velocity and is on the ground
-            if (grounded && rigidbody)
+            if (grounded && rigidbody.linearVelocity.x != 0)
             {
                 //get playback state
                 PLAYBACK_STATE playbackState;
