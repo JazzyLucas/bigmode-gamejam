@@ -10,12 +10,10 @@ namespace BigModeGameJam.Core
 
         [field: SerializeField] public EventReference FootstepNormal {  get; private set; }
 
-        [field: Header("Jump")]
-
-        [field: SerializeField] public EventReference Jump { get; private set; }
+        [field: Header("JumpSound")]
+        [field: SerializeField] public EventReference JumpSound { get; private set; }
 
         [field: Header("FootstepElectric")]
-
         [field: SerializeField] public EventReference FootstepElectric { get; private set; }
         public static FMODEvents instance { get; private set; }
 

@@ -25,6 +25,11 @@ namespace BigModeGameJam
             eventEmitters = new System.Collections.Generic.List<StudioEventEmitter>();
 
         }
+
+        public void PlayOneShot(EventReference sound)
+        { 
+            RuntimeManager.PlayOneShot(sound);
+        }
         public EventInstance CreateEventInstance(EventReference eventReference)
         {
             EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);

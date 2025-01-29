@@ -118,6 +118,8 @@ namespace BigModeGameJam.Level.Controls
             rigidbody.linearVelocity = new Vector3(
                 rigidbody.linearVelocity.x, jumpVelocity, rigidbody.linearVelocity.z
             );
+            if(AudioManager.instance && jumpVelocity > 0)
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.JumpSound);
         }
 
         /// <summary>
