@@ -191,14 +191,7 @@ namespace BigModeGameJam.Level.Controls
             );
         }
 
-        //movement audio
-
-        private EventInstance FootstepNormal;
-        private void Start()
-        {
-            if (AudioManager.instance)
-                FootstepNormal = AudioManager.instance.CreateEventInstance(FMODEvents.instance.FootstepNormal);
-        }
+        
 
         public void Stun(float stunTime)
         {
@@ -231,6 +224,17 @@ namespace BigModeGameJam.Level.Controls
                     gravity = ELEC_GRAV;
                     return;
             }
+        }
+
+        //movement audio
+
+        private EventInstance Footstep;
+        private void Start()
+        {
+            if (AudioManager.instance && playerType == PlayerType.Human)
+                Footstep = AudioManager.instance.CreateEventInstance(FMODEvents.instance.FootstepNormal);
+            else if (AudioManager.instance && playerType == PlayerType.Electric)
+                Footstep = AudioManager.instance.CreateEventInstance(FMODEvents.instance.FootstepElectric);
         }
 
         private void ApplyFriction()
@@ -326,16 +330,18 @@ namespace BigModeGameJam.Level.Controls
             {
                 //get playback state
                 PLAYBACK_STATE playbackState;
-                FootstepNormal.getPlaybackState(out playbackState);
+                Footstep.getPlaybackState(out playbackState);
                 if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
                 {
-                    FootstepNormal.start();
+                    Footstep.start();
                 }
+                
             }
             //otherwise, stop the footsteps event
             else
             {
-                FootstepNormal.stop(STOP_MODE.ALLOWFADEOUT);
+                Footstep.stop(STOP_MODE.ALLOWFADEOUT);
+                
             }
         }
     }

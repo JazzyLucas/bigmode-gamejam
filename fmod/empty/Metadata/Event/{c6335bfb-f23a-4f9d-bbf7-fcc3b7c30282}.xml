@@ -102,6 +102,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{c7de4d7f-01ef-45c4-a252-dbe99ab9cda3}">
+		<property name="volume">
+			<value>-6.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -161,7 +164,7 @@
 	<object class="MixerBusPanner" id="{46538e78-571f-4e70-9f86-6543e544ffd1}" />
 	<object class="FlangerEffect" id="{58b18231-39b3-4a6a-af06-10c416ca8d36}">
 		<property name="rate">
-			<value>7</value>
+			<value>10</value>
 		</property>
 		<property name="delay">
 			<value>0.729999959</value>
