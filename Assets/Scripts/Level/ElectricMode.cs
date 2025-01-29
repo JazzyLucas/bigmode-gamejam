@@ -65,7 +65,9 @@ namespace BigModeGameJam.Level.Controls
             rigidbody.isKinematic = false;
             collider.enabled = true;
             transform.Translate(Vector3.up * exitDist);
+            Vector3 tempUp = transform.up;
             transform.up = Vector3.up;
+            transform.forward = new Vector3(tempUp.x, 0, tempUp.z); // Look away from surface
             playerMovement.enabled = true;
             // Go back to first person
             tpCam.gameObject.SetActive(false);
