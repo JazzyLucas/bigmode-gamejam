@@ -144,6 +144,12 @@ namespace BigModeGameJam.Level.Controls
         {
             tpCam.transform.forward = transform.up * -1;
             tpCam.transform.localPosition = Vector3.zero;
+            if (Physics.Raycast(transform.position, transform.up, out hit, camDist))
+            {
+                // "collide" with surface
+                tpCam.transform.position = hit.point;
+                return;
+            }
             tpCam.transform.Translate(Vector3.forward * -camDist);
         }
 
