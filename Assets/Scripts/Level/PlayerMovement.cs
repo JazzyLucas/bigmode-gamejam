@@ -114,12 +114,13 @@ namespace BigModeGameJam.Level.Controls
 
         public void Jump(bool force = false)
         {
-            if (!IsGrounded() && !force) return;
+            if (!grounded && !force) return;
             rigidbody.linearVelocity = new Vector3(
                 rigidbody.linearVelocity.x, jumpVelocity, rigidbody.linearVelocity.z
             );
             if(AudioManager.instance && jumpVelocity > 0)
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.JumpSound);
+            grounded = false;
         }
 
         /// <summary>
@@ -233,7 +234,7 @@ namespace BigModeGameJam.Level.Controls
         private void ApplyFriction()
         {
             float delta = Time.deltaTime;
-            if (IsGrounded())
+            if (grounded)
             {
                 delta *= groundFriction;
             }
@@ -251,7 +252,7 @@ namespace BigModeGameJam.Level.Controls
 
         private void ApplyGravity()
         {
-            if (IsGrounded() || stunned) return;
+            if (grounded || stunned) return;
             rigidbody.linearVelocity += Vector3.down * gravity * Time.deltaTime;
         }
 
@@ -310,12 +311,24 @@ namespace BigModeGameJam.Level.Controls
 
         private void Update()
         {
-            grounded = IsGrounded();
             ApplyFriction();
             ApplyGravity();
             ApplyAttributes();
             UpdateSound();
         }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            grounded = IsGrounded();
+        }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            // Only check for ground when leaving ground to avoid false positives
+            if(grounded)
+                grounded = IsGrounded();
+        }
+
         private void UpdateSound()
         {
             //start footsteps event if player has an x velocity and is on the ground
