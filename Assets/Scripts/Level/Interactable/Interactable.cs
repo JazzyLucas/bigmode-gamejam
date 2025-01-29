@@ -14,7 +14,7 @@ namespace BigModeGameJam.Level.Interactables
         private MeshRenderer mesh;
         [Header("Interactable Configs")]
         public Material highlightMaterial;
-        [SerializeField] bool canInteractMultipleTimes;
+        [SerializeField] protected bool canInteractMultipleTimes;
         [SerializeField, ReadOnly] int timesInteracted;
         public void Hover()
         {

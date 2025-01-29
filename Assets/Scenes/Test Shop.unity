@@ -739,7 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMessage: 
-  highlightMaterial: {fileID: 2100000, guid: f8118d08a5e52db4eb428ee7267f5183, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: a2ba14dfae825474391d01a673085e5d, type: 2}
   canInteractMultipleTimes: 0
   timesInteracted: 0
 --- !u!135 &1023730163
