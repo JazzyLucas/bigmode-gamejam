@@ -29,6 +29,7 @@ namespace BigModeGameJam.Level.Controls
         public void Replenish()
         {
             dashCharges = maxDashCharges;
+            ElectricHUD.UpdateDashStatus(!dashing);
         }
         public void StartDash(Vector3 dir)
         {
@@ -39,6 +40,7 @@ namespace BigModeGameJam.Level.Controls
             dir = dir.normalized;
             dir = transform.TransformDirection(dir);
             StartCoroutine(DashCoroutine(dir, period));
+            ElectricHUD.UpdateDashStatus(false);
         }
 
         private IEnumerator DashCoroutine(Vector3 dir, float period)
@@ -53,6 +55,7 @@ namespace BigModeGameJam.Level.Controls
             }
             yield return new WaitForSeconds(cooldown);
             dashing = false;
+            ElectricHUD.UpdateDashStatus(dashCharges > 0);
         }
 
         private void Awake()
@@ -64,6 +67,12 @@ namespace BigModeGameJam.Level.Controls
         private void OnDisable()
         {
             dashing = false;
+            ElectricHUD.UpdateDashStatus(false);
+        }
+
+        private void OnEnable()
+        {
+            ElectricHUD.UpdateDashStatus(dashCharges > 0);
         }
     }
 }

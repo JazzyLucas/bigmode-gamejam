@@ -130,4 +130,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitDist: 10
   camDist: 25
-  moveSpeed: 20
+  moveSpeed: 45

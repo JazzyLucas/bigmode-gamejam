@@ -48,6 +48,7 @@ namespace BigModeGameJam.Level.Controls
             enabled = true;
             rigidbody.isKinematic = true;
             playerMovement.enabled = false;
+            playerRefs.dash.enabled = false;
             LockToPlane();
             // We handle the third person camera locally
             fpCam.gameObject.SetActive(false);
@@ -77,6 +78,7 @@ namespace BigModeGameJam.Level.Controls
             lookToInteract.enabled = true;
             playerRefs.dash.Replenish();
             playerMovement.Jump(jump);
+            playerRefs.dash.enabled = true;
         }
 
         public void Move(Vector3 dir)

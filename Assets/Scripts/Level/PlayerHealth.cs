@@ -15,7 +15,7 @@ namespace BigModeGameJam.Level
         /// <summary>
         /// Health as a percentage
         /// </summary>
-        private float health = MAX_HEALTH;
+        [SerializeField] private float health = MAX_HEALTH;
         /// <summary>
         /// Percentage of health regenerated per second
         /// </summary>
@@ -24,6 +24,7 @@ namespace BigModeGameJam.Level
         /// Prevents damage from being taken
         /// </summary>
         private bool invulnerable = false;
+        private PlayerMovement.PlayerType playerType = PlayerMovement.PlayerType.Human;
 
         /// <summary>
         /// Causes the attached player to refrain from being alive.
@@ -33,6 +34,7 @@ namespace BigModeGameJam.Level
             // TODO: actual implementation
             Debug.Log("Died");
             transform.position = Vector3.zero;
+            health = MAX_HEALTH;
         }
 
         /// <summary>
@@ -42,6 +44,8 @@ namespace BigModeGameJam.Level
         {
             if(delta < 0 && invulnerable) return;
             health = Mathf.Clamp(health + delta, 0, MAX_HEALTH);
+            if(playerType == PlayerMovement.PlayerType.Electric)
+                ElectricHUD.UpdateHealthbar(health);
             if(health == 0) Die();
         }
 
@@ -52,9 +56,10 @@ namespace BigModeGameJam.Level
 
         private void Awake()
         {
-            if(TryGetComponent<PlayerMovement>(out PlayerMovement p) && 
+            if(TryGetComponent<PlayerRefs>(out PlayerRefs p) && 
                 p.playerType == PlayerMovement.PlayerType.Electric)
             {
+                playerType = p.playerType;
                 regen = ELEC_REGEN;
             }
         }

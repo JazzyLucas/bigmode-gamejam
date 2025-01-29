@@ -11,7 +11,7 @@ namespace BigModeGameJam.Level
     {
         public static PlayerRefs humanPlayer, electricPlayer;
         
-        [SerializeField] PlayerMovement.PlayerType playerType = PlayerMovement.PlayerType.Human;
+        [SerializeField] public PlayerMovement.PlayerType playerType = PlayerMovement.PlayerType.Human;
 
         [Header("For both player types")]
         [SerializeField] new public CapsuleCollider collider;
