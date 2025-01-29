@@ -97,15 +97,6 @@ namespace BigModeGameJam.Level.Controls
         }
 
         /// <summary>
-        /// Causes the attached player to refrain from being alive.
-        /// </summary>
-        public void Die()
-        {
-            Debug.Log("Died");
-            transform.position = Vector3.zero;
-        }
-
-        /// <summary>
         /// Checks if entity is touching (or close to) ground using raycasts.
         /// Also handles ramps and dash cooldowns.
         /// </summary>

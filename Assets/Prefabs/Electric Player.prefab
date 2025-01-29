@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: field of view
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 1494161179466764201, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: minDistance
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

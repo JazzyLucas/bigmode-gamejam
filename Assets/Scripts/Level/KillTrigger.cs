@@ -7,7 +7,7 @@ namespace BigModeGameJam.Level
     {
         private void OnTriggerEnter(Collider collider)
         {
-            if(collider.TryGetComponent<PlayerMovement>(out PlayerMovement player))
+            if(collider.TryGetComponent<PlayerHealth>(out PlayerHealth player))
             {
                 player.Die();
             }
