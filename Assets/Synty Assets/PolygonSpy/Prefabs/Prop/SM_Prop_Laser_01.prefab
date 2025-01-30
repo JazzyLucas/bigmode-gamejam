@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33059364433400128}
   - component: {fileID: 23940652660784118}
   - component: {fileID: 2480256465712236620}
+  - component: {fileID: 3733195716317276547}
   m_Layer: 0
   m_Name: SM_Prop_Laser_Beam_01
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 1280314639518864}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000000027539592, y: 0.04099427, z: 0.000000001374766}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0, y: 0.037, z: 0}
+  m_LocalScale: {x: 1, y: 0.85917, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4493625395827838}
@@ -108,6 +109,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.009916992, y: 2.5356085, z: 0.009916994}
   m_Center: {x: -0.000000048894435, y: 1.2678043, z: -0.00000023841858}
+--- !u!114 &3733195716317276547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280314639518864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3dc1d2eadb37a3ca95bdee0ca107b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1807987735331236
 GameObject:
   m_ObjectHideFlags: 0
