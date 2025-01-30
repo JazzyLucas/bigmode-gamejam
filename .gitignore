@@ -106,13 +106,13 @@ fmod_editor.log
 !*.controller.meta
 !*.spriteatlas.meta
 !*.ttf.meta
+!*.ttc.meta
 !*.fontsettings.meta
 !*.renderTexture.meta
 !*.mixer.meta
 !*.shadervariants.meta
 !*.preset.meta
 !*.png.meta
-!*.jpg.meta
 
 # Ignore all .csproj files (already partially covered but making it explicit)
 *.csproj
