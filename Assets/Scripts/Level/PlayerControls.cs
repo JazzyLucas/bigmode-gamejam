@@ -1,4 +1,5 @@
 using BigModeGameJam.Level.Interactables;
+using BigModeGameJam.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,13 +35,17 @@ namespace BigModeGameJam.Level.Controls
         {
             if(playerRefs.firstPersonCam.isActiveAndEnabled)
             {
+                // FP -> TP
                 playerRefs.firstPersonCam.gameObject.SetActive(false);
                 playerRefs.thirdPersonCam.gameObject.SetActive(true);
+                Crosshair.instance.gameObject.SetActive(false);
             }
             else
             {
+                // TP -> FP
                 playerRefs.firstPersonCam.gameObject.SetActive(true);
                 playerRefs.thirdPersonCam.gameObject.SetActive(false);
+                Crosshair.instance.gameObject.SetActive(true);
             }
         }
 
@@ -72,7 +77,8 @@ namespace BigModeGameJam.Level.Controls
             if(interactAction.WasPressedThisFrame())
                 playerRefs.lookToInteract.Interact();
 
-            if(toggleCamAction.WasPerformedThisFrame())
+            // Hold to change perspective
+            if(toggleCamAction.WasPerformedThisFrame() || toggleCamAction.WasReleasedThisFrame())
                 ToggleCam();
         }
     }

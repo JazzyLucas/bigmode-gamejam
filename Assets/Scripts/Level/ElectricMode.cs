@@ -52,6 +52,7 @@ namespace BigModeGameJam.Level.Controls
             LockToPlane();
             // We handle the third person camera locally
             fpCam.gameObject.SetActive(false);
+            // Look up for first person
             tpCam.enabled = false;
             tpCam.gameObject.SetActive(true);
             collider.enabled = false;
@@ -73,6 +74,7 @@ namespace BigModeGameJam.Level.Controls
             // Go back to first person
             tpCam.gameObject.SetActive(false);
             tpCam.enabled = true;
+            fpCam.transform.localRotation = Quaternion.Euler(Vector3.zero); // Look straight ahead
             fpCam.gameObject.SetActive(true);
             lookToInteract.lookingAt = null;
             lookToInteract.enabled = true;
@@ -156,6 +158,7 @@ namespace BigModeGameJam.Level.Controls
                 return;
             }
             tpCam.transform.Translate(Vector3.forward * -camDist);
+            fpCam.transform.LookAt(tpCam.transform);
         }
 
         private void LockToPlane()
