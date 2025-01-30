@@ -59,6 +59,9 @@ namespace BigModeGameJam.Level.Controls
             // Lock interactable so that "E" will exit
             lookToInteract.SetInteractable(con);
             lookToInteract.lockInteractable = true;
+            // Be the ball
+            playerRefs.orb.SetActive(true);
+            playerRefs.playerModel.SetActive(false);
             con.Unhover();
         }
 
@@ -68,7 +71,6 @@ namespace BigModeGameJam.Level.Controls
             enabled = false;
             rigidbody.isKinematic = false;
             rigidbody.linearVelocity += transform.up * exitImpulse;
-            Debug.Log(rigidbody.linearVelocity);
             collider.enabled = true;
             transform.Translate(Vector3.up * exitDist);
             Vector3 tempUp = transform.up;
@@ -87,6 +89,9 @@ namespace BigModeGameJam.Level.Controls
             if(jump)
                 playerMovement.Jump(jump);
             playerRefs.dash.enabled = true;
+            // (don't) Be the ball
+            playerRefs.orb.SetActive(false);
+            playerRefs.playerModel.SetActive(true);
             targetConductor.Unhover();
         }
 
