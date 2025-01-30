@@ -8,7 +8,7 @@ namespace BigModeGameJam.Level
         [SerializeField] public bool isOn { get ; private set;} = false;
         public override void Interact(GameObject interacter)
         {
-            if(!canInteractMultipleTimes)
+            if(!canInteractMultipleTimes && timesInteracted > 0)
             {
                 Unhover();
                 return;
@@ -16,10 +16,12 @@ namespace BigModeGameJam.Level
             // Toggle switch
             isOn = !isOn;
             UpdateVisual();
+            timesInteracted++;
         }
 
         private void Awake()
         {
+            mesh = GetComponent<MeshRenderer>();
             UpdateVisual();
         }
 
@@ -27,11 +29,11 @@ namespace BigModeGameJam.Level
         {
             if(isOn)
             {
-                transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 180);
+                transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 180);
             }
             else
             {
-                transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
+                transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
             }
         }
     }
