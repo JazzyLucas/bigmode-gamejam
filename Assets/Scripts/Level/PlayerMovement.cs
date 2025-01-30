@@ -252,7 +252,8 @@ namespace BigModeGameJam.Level.Controls
 
         private void ApplyGravity()
         {
-            if (grounded || stunned) return;
+            // Continue to use IsGrounded method here to prevent floating
+            if (IsGrounded() || stunned) return;
             rigidbody.linearVelocity += Vector3.down * gravity * Time.deltaTime;
         }
 
