@@ -112,6 +112,7 @@ fmod_editor.log
 !*.shadervariants.meta
 !*.preset.meta
 !*.png.meta
+!*.jpg.meta
 
 # Ignore all .csproj files (already partially covered but making it explicit)
 *.csproj
