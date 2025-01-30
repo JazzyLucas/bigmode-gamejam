@@ -1,4 +1,5 @@
 using BigModeGameJam.Level.Interactables;
+using BigModeGameJam.UI;
 using UnityEngine;
 
 namespace BigModeGameJam.Level.Controls
@@ -51,15 +52,14 @@ namespace BigModeGameJam.Level.Controls
             playerMovement.enabled = false;
             playerRefs.dash.enabled = false;
             LockToPlane();
+            playerRefs.ThirdPerson();
             // We handle the third person camera locally
-            fpCam.gameObject.SetActive(false);
-            // Look up for first person
             tpCam.enabled = false;
-            tpCam.gameObject.SetActive(true);
-            PlayerRefs.curCam = tpCam.gameObject;
             collider.enabled = false;
+            // Lock interactable so that "E" will exit
             lookToInteract.SetInteractable(con);
             lookToInteract.lockInteractable = true;
+            con.Unhover();
         }
 
         // Exits conductive mode
@@ -75,12 +75,11 @@ namespace BigModeGameJam.Level.Controls
             transform.up = Vector3.up;
             transform.forward = new Vector3(tempUp.x, 0, tempUp.z); // Look away from surface
             playerMovement.enabled = true;
-            // Go back to first person
-            tpCam.gameObject.SetActive(false);
+            // Go back to first person, re-enable third person camera logic
+            playerRefs.FirstPerson();
             tpCam.enabled = true;
             fpCam.transform.localRotation = Quaternion.Euler(Vector3.zero); // Look straight ahead
-            fpCam.gameObject.SetActive(true);
-            PlayerRefs.curCam = fpCam.gameObject;
+            // Unlock interactable - back to normal
             lookToInteract.lockInteractable = false;
             lookToInteract.SetInteractable(null);
             lookToInteract.enabled = true;
@@ -88,6 +87,7 @@ namespace BigModeGameJam.Level.Controls
             if(jump)
                 playerMovement.Jump(jump);
             playerRefs.dash.enabled = true;
+            targetConductor.Unhover();
         }
 
         public void Move(Vector3 dir)

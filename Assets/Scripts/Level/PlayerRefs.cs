@@ -1,4 +1,5 @@
 using BigModeGameJam.Level.Controls;
+using BigModeGameJam.UI;
 using UnityEngine;
 
 namespace BigModeGameJam.Level
@@ -28,6 +29,29 @@ namespace BigModeGameJam.Level
         [Header("For electric character only")]
         [SerializeField] public ElectricMode electricMode;
         [SerializeField] public Dash dash;
+
+
+        /// <summary>
+        /// Transition from first person to third person
+        /// </summary>
+        public void ThirdPerson()
+        {
+            firstPersonCam.gameObject.SetActive(false);
+            thirdPersonCam.gameObject.SetActive(true);
+            Crosshair.instance.gameObject.SetActive(false);
+            curCam = thirdPersonCam.gameObject;
+        }
+
+        /// <summary>
+        /// Transition from third person to first person
+        /// </summary>
+        public void FirstPerson()
+        {
+            firstPersonCam.gameObject.SetActive(true);
+            thirdPersonCam.gameObject.SetActive(false);
+            Crosshair.instance.gameObject.SetActive(true);
+            curCam = firstPersonCam.gameObject;
+        }
 
         private void Awake()
         {

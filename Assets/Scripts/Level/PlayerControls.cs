@@ -18,6 +18,8 @@ namespace BigModeGameJam.Level.Controls
         private InputAction lookAction, moveAction, jumpAction, dashAction, crouchAction, toggleCamAction, interactAction;
         private PlayerRefs playerRefs;
 
+        
+
         private void Awake()
         {
             playerRefs = GetComponent<PlayerRefs>();
@@ -35,21 +37,15 @@ namespace BigModeGameJam.Level.Controls
         {
             if(playerRefs.firstPersonCam.isActiveAndEnabled)
             {
-                // FP -> TP
-                playerRefs.firstPersonCam.gameObject.SetActive(false);
-                playerRefs.thirdPersonCam.gameObject.SetActive(true);
-                Crosshair.instance.gameObject.SetActive(false);
-                PlayerRefs.curCam = playerRefs.thirdPersonCam.gameObject;
+                playerRefs.ThirdPerson();
             }
             else
             {
-                // TP -> FP
-                playerRefs.firstPersonCam.gameObject.SetActive(true);
-                playerRefs.thirdPersonCam.gameObject.SetActive(false);
-                Crosshair.instance.gameObject.SetActive(true);
-                PlayerRefs.curCam = playerRefs.firstPersonCam.gameObject;
+                playerRefs.FirstPerson();
             }
         }
+
+        
 
         private void Update()
         {
