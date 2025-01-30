@@ -77,7 +77,8 @@ namespace BigModeGameJam.Level.Controls
             lookToInteract.lookingAt = null;
             lookToInteract.enabled = true;
             playerRefs.dash.Replenish();
-            playerMovement.Jump(jump);
+            if(jump)
+                playerMovement.Jump(jump);
             playerRefs.dash.enabled = true;
         }
 

@@ -330,6 +330,11 @@ namespace BigModeGameJam.Level.Controls
                 grounded = IsGrounded();
         }
 
+        private void OnDisable()
+        {
+            Footstep.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+
         private void UpdateSound()
         {
             //start footsteps event if player has an x velocity and is on the ground
