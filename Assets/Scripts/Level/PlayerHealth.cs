@@ -11,6 +11,7 @@ namespace BigModeGameJam.Level
         private const float MAX_HEALTH = 100;
         private const float HUMAN_REGEN = 10;
         private const float ELEC_REGEN = -0.83f; // 2 minutes to deplete naturally
+        public bool isDead = false;
 
         /// <summary>
         /// Health as a percentage
@@ -35,6 +36,7 @@ namespace BigModeGameJam.Level
             Debug.Log("Died");
             transform.position = Vector3.zero;
             health = MAX_HEALTH;
+            isDead = true;
         }
 
         /// <summary>

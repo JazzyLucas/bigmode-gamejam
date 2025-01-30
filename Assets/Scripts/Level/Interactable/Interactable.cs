@@ -11,11 +11,11 @@ namespace BigModeGameJam.Level.Interactables
     [RequireComponent(typeof(MeshRenderer))]
     public class Interactable : ObjectiveObject
     {
-        private MeshRenderer mesh;
+        protected MeshRenderer mesh;
         [Header("Interactable Configs")]
         public Material highlightMaterial;
         [SerializeField] protected bool canInteractMultipleTimes;
-        [SerializeField, ReadOnly] int timesInteracted;
+        [SerializeField, ReadOnly] protected int timesInteracted;
         public void Hover()
         {
             mesh.materials = new Material[] {mesh.material, highlightMaterial};
@@ -32,7 +32,7 @@ namespace BigModeGameJam.Level.Interactables
         /// <param name="interacter">The player object that is interacting with this object</param>
         public virtual void Interact(GameObject interacter)
         {
-            if (!canInteractMultipleTimes && timesInteracted ==1)
+            if (!canInteractMultipleTimes && timesInteracted > 0)
                 return;
 
             timesInteracted++;

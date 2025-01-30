@@ -6,12 +6,19 @@ namespace BigModeGameJam.Level
     {
         private void OnTriggerEnter(Collider collider)
         {
-            if(collider.TryGetComponent<PlayerHealth>(out PlayerHealth player))
+            if(collider.CompareTag("Player"))
             {
-                gameObject.transform.GetChild(0).gameObject.SetActive(false);
-                gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                PlayerHealth player = collider.GetComponent<PlayerHealth>();
+                gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = false;
+                GameObject dynamite = gameObject.transform.GetChild(1).gameObject;
+                dynamite.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                dynamite.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+                dynamite.transform.GetChild(1).GetComponent<Light>().enabled = false;
                 gameObject.transform.GetChild(2).gameObject.SetActive(true);
-                player.Die();
+                if (player != null && !player.isDead)
+                {
+                    player.Die();
+                }
             }
         }
     }
