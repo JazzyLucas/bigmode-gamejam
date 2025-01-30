@@ -10,6 +10,10 @@ namespace BigModeGameJam.Level
     public class PlayerRefs : MonoBehaviour
     {
         public static PlayerRefs humanPlayer, electricPlayer;
+        // Should be assigned whenever player switches
+        public static PlayerRefs curPlayer;
+        // Assigned whenever player or view switches
+        public static GameObject curCam;
         
         [SerializeField] public PlayerMovement.PlayerType playerType = PlayerMovement.PlayerType.Human;
 
@@ -36,6 +40,12 @@ namespace BigModeGameJam.Level
                     electricPlayer = this;
                     return;
             }
+        }
+
+        private void OnEnabled()
+        {
+            curPlayer = this;
+            curCam = firstPersonCam.gameObject;
         }
     }
 }

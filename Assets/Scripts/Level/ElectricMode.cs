@@ -19,7 +19,8 @@ namespace BigModeGameJam.Level.Controls
         /// </summary>
         private const float MAX_ZIP_DIST = 100;
 
-        public float exitDist = 10;
+        public float exitDist = 5;
+        public float exitImpulse = 10;
         public float camDist = 25;
         public float moveSpeed = 5;
         
@@ -55,9 +56,10 @@ namespace BigModeGameJam.Level.Controls
             // Look up for first person
             tpCam.enabled = false;
             tpCam.gameObject.SetActive(true);
+            PlayerRefs.curCam = tpCam.gameObject;
             collider.enabled = false;
-            lookToInteract.lookingAt = con;
-            lookToInteract.enabled = false;
+            lookToInteract.SetInteractable(con);
+            lookToInteract.lockInteractable = true;
         }
 
         // Exits conductive mode
@@ -65,6 +67,8 @@ namespace BigModeGameJam.Level.Controls
         {
             enabled = false;
             rigidbody.isKinematic = false;
+            rigidbody.linearVelocity += transform.up * exitImpulse;
+            Debug.Log(rigidbody.linearVelocity);
             collider.enabled = true;
             transform.Translate(Vector3.up * exitDist);
             Vector3 tempUp = transform.up;
@@ -76,7 +80,9 @@ namespace BigModeGameJam.Level.Controls
             tpCam.enabled = true;
             fpCam.transform.localRotation = Quaternion.Euler(Vector3.zero); // Look straight ahead
             fpCam.gameObject.SetActive(true);
-            lookToInteract.lookingAt = null;
+            PlayerRefs.curCam = fpCam.gameObject;
+            lookToInteract.lockInteractable = false;
+            lookToInteract.SetInteractable(null);
             lookToInteract.enabled = true;
             playerRefs.dash.Replenish();
             if(jump)

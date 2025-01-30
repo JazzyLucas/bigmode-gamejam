@@ -114,7 +114,7 @@ namespace BigModeGameJam.Level.Controls
 
         public void Jump(bool force = false)
         {
-            if (!grounded && !force) return;
+            if ((!grounded && !force) || rigidbody.linearVelocity.y > jumpVelocity) return;
             rigidbody.linearVelocity = new Vector3(
                 rigidbody.linearVelocity.x, jumpVelocity, rigidbody.linearVelocity.z
             );

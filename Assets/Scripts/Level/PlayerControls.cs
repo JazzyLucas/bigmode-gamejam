@@ -39,6 +39,7 @@ namespace BigModeGameJam.Level.Controls
                 playerRefs.firstPersonCam.gameObject.SetActive(false);
                 playerRefs.thirdPersonCam.gameObject.SetActive(true);
                 Crosshair.instance.gameObject.SetActive(false);
+                PlayerRefs.curCam = playerRefs.thirdPersonCam.gameObject;
             }
             else
             {
@@ -46,6 +47,7 @@ namespace BigModeGameJam.Level.Controls
                 playerRefs.firstPersonCam.gameObject.SetActive(true);
                 playerRefs.thirdPersonCam.gameObject.SetActive(false);
                 Crosshair.instance.gameObject.SetActive(true);
+                PlayerRefs.curCam = playerRefs.firstPersonCam.gameObject;
             }
         }
 
