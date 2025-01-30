@@ -33,14 +33,14 @@ namespace BigModeGameJam.Level.Interactables
         }
 #endif
 
-        protected override void OnPickUp()
+        protected override void OnCustomPickUpCode()
         {
             GameManager.GameData.PickedUpCollectableUIDS.Add(uid);
             GameManager.GameData.Money += moneyValue;
             Debug.Log("Money: " + moneyValue.ToString());
             Debug.Log("Collectable : " + uid + " has been collected"); ;
-            base.OnPickUp();
         }
+
 
         protected override void OnTriggerEnter(Collider collider)
         {

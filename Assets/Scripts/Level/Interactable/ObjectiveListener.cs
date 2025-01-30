@@ -1,7 +1,7 @@
-using UnityEngine;
+using BigModeGameJam.Core;
 using BigModeGameJam.Level.Manager;
 using System.Linq;
-using BigModeGameJam.Core;
+using UnityEngine;
 
 namespace BigModeGameJam.Level.Interactables
 {
@@ -10,10 +10,17 @@ namespace BigModeGameJam.Level.Interactables
     /// </summary>
     abstract public class ObjectiveListener : MonoBehaviour
     {
+        [Header("Objective Object Config: (Only set if set in UI Objective Manager)")]
+        [SerializeField] protected string uiMessage; //Currently not used
+
+        internal string UIMessage { get { return uiMessage; } }
+
         [Header("Objective Config")]
         [SerializeField, ReadOnly] int completedObjectiveCount;
 
         [SerializeField] ObjectiveObject[] objectiveObjects;
+
+        internal ObjectiveObject[] ObjectiveObjects { get { return objectiveObjects; } }
 
         void Awake()
         {
@@ -50,7 +57,7 @@ namespace BigModeGameJam.Level.Interactables
         {
             if (objectiveObjects.Contains(objectiveFromManager))
                 completedObjectiveCount++;
-            
+
             if (completedObjectiveCount == objectiveObjects.Length)
             {
                 FinishAllObjectives();
