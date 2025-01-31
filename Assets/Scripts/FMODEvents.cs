@@ -20,6 +20,21 @@ namespace BigModeGameJam.Core
 
         [field: Header("SpecialItem")]
         [field: SerializeField] public EventReference SpecialItem { get; private set; }
+
+        [field: Header("Boom")]
+        [field: SerializeField] public EventReference Boom { get; private set; }
+
+        [field: Header("LevelOne")]
+        [field: SerializeField] public EventReference LevelOne { get; private set; }
+
+        [field: Header("LevelTwo")]
+        [field: SerializeField] public EventReference LevelTwo { get; private set; }
+
+        [field: Header("Title")]
+        [field: SerializeField] public EventReference Title { get; private set; }
+
+        [field: Header("LevelComplete")]
+        [field: SerializeField] public EventReference LevelComplete { get; private set; }
         public static FMODEvents instance { get; private set; }
 
         private void Awake()

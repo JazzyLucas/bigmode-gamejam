@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{2d3aacb7-f724-49dd-afa5-da9324d8e31c}">
+		<property name="name">
+			<value>ElectricTrans</value>
+		</property>
+		<relationship name="folder">
+			<destination>{ebb3aff6-2e5f-406f-b42c-98e0aea5408c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e121b101-0940-4a04-9c2b-70b6769bba83}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e121b101-0940-4a04-9c2b-70b6769bba83}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>NonElectric</value>
+			<value>Electric</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

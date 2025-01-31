@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f1af9bd4-bd6b-419d-8d51-cf3f12759b6e}">
+		<property name="assetPath">
+			<value>level one electric.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>96</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b956b97d-01e3-4e23-9077-c572b1eaa790}</destination>
+		</relationship>
+	</object>
+</objects>

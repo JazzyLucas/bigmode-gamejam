@@ -119,7 +119,7 @@ namespace BigModeGameJam.Level.Controls
                 rigidbody.linearVelocity.x, jumpVelocity, rigidbody.linearVelocity.z
             );
             if(AudioManager.instance && jumpVelocity > 0)
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.JumpSound);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.JumpSound, this.transform.position);
             grounded = false;
         }
 
