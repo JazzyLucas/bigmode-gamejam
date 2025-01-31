@@ -16,7 +16,7 @@ namespace BigModeGameJam.Level.Interactables
         internal string UIMessage { get { return uiMessage; } }
 
         [Header("Objective Config")]
-        [SerializeField, ReadOnly] int completedObjectiveCount;
+        [SerializeField] int completedObjectiveCount;
 
         [SerializeField] ObjectiveObject[] objectiveObjects;
 

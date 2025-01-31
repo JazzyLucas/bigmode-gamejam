@@ -1,4 +1,4 @@
-using UnityEditor;
+/*using UnityEditor;
 using UnityEngine;
 
 namespace BigModeGameJam.Core
@@ -16,3 +16,4 @@ namespace BigModeGameJam.Core
 
     public class ReadOnlyAttribute : PropertyAttribute { }
 }
+*/

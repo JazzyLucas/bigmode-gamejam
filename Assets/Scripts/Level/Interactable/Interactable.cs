@@ -15,7 +15,7 @@ namespace BigModeGameJam.Level.Interactables
         [Header("Interactable Configs")]
         public Material highlightMaterial;
         [SerializeField] protected bool canInteractMultipleTimes;
-        [SerializeField, ReadOnly] protected int timesInteracted;
+        [SerializeField] protected int timesInteracted;
         public void Hover()
         {
             mesh.materials = new Material[] {mesh.material, highlightMaterial};
