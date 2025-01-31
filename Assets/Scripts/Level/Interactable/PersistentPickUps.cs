@@ -7,7 +7,7 @@ namespace BigModeGameJam.Level.Interactables
     [ExecuteInEditMode] public class PersistentPickUps : PickUp, IPersistentOBJ
     {
         [Header("Persistant Pick Up Configs")]
-        [SerializeField, ReadOnly] string uid;
+        [SerializeField] string uid;
         [SerializeField] int moneyValue;
 
         internal string UID { get { return uid; } }

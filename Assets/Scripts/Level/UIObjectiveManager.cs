@@ -7,10 +7,10 @@ namespace BigModeGameJam.Level
 {
     public class UIObjectiveManager : MonoBehaviour
     {
-        [SerializeField, ReadOnly] GameObject background;
-        [SerializeField, ReadOnly] GameObject listenerText;
-        [SerializeField, ReadOnly] GameObject objectiveText;
-        [SerializeField, ReadOnly] Transform objectiveTextStartTransform;
+        [SerializeField] GameObject background;
+        [SerializeField] GameObject listenerText;
+        [SerializeField] GameObject objectiveText;
+        [SerializeField] Transform objectiveTextStartTransform;
 
         List<TextMeshProUGUI> objectiveMessagesRefs = new List<TextMeshProUGUI>();
 

@@ -7,6 +7,7 @@ namespace BigModeGameJam.Level.Interactables
         public override void Interact(GameObject interacter)
         {
             base.Interact(interacter);
+            
             Destroy(gameObject);
         }
     }
