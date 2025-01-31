@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401271bed2f8527429e5c055d6a19fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 150
+  minDistance: 5
   cam: {fileID: 8266671243918499874}
   lockInteractable: 0
 --- !u!114 &3115576070251829243
