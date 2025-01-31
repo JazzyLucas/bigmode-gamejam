@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4297901865116352}
   - component: {fileID: 33596451763055932}
   - component: {fileID: 23384162312328196}
-  - component: {fileID: 2049132681259116895}
+  - component: {fileID: 7687191093071381247}
+  - component: {fileID: 457192553203929754}
   m_Layer: 0
   m_Name: SM_Prop_Cash_01
   m_TagString: Untagged
@@ -87,7 +88,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2049132681259116895
+--- !u!114 &7687191093071381247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,9 +97,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 1036583126604146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb513aee4d2d5149b164761394a9876, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c3263a847669a74591038eb7bcce979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   uiMessage: 
+  highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
+  canInteractMultipleTimes: 0
+  timesInteracted: 0
   uid: 
   moneyValue: 1000
+--- !u!64 &457192553203929754
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036583126604146}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 6b76575aa077897448803aaf525494d6, type: 3}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1825386936626154645}
   - component: {fileID: 5434551290665202464}
   - component: {fileID: 2761841660485393228}
-  - component: {fileID: 8234782642781199871}
+  - component: {fileID: 1743367463166309819}
   m_Layer: 0
   m_Name: SM_Icon_Coin_Silver
   m_TagString: Untagged
@@ -110,7 +110,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: af2731104de304b4598a99e9f79e44f1, type: 3}
---- !u!114 &8234782642781199871
+--- !u!114 &1743367463166309819
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,9 +119,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 137441694722241058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb513aee4d2d5149b164761394a9876, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c3263a847669a74591038eb7bcce979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   uiMessage: 
+  highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
+  canInteractMultipleTimes: 0
+  timesInteracted: 0
   uid: 
   moneyValue: 25

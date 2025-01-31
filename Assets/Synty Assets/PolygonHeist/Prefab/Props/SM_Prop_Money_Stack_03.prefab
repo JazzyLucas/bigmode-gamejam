@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3389940}
   - component: {fileID: 2364976}
   - component: {fileID: 64685126467053654}
-  - component: {fileID: 5043788843026047623}
+  - component: {fileID: 7629720984365193580}
   m_Layer: 0
   m_Name: SM_Prop_Money_Stack_03
   m_TagString: Untagged
@@ -110,7 +110,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43688634190974962, guid: 50ebf0a5af8f27a409283988cf9dbd49, type: 2}
---- !u!114 &5043788843026047623
+--- !u!114 &7629720984365193580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,9 +119,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 162988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb513aee4d2d5149b164761394a9876, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c3263a847669a74591038eb7bcce979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   uiMessage: 
-  uid: f9432532-b8b1-4aec-b498-bfa7325692fb
+  highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
+  canInteractMultipleTimes: 0
+  timesInteracted: 0
+  uid: 
   moneyValue: 500

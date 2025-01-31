@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3397882}
   - component: {fileID: 2354406}
   - component: {fileID: 64162962832749460}
-  - component: {fileID: 816311614826045332}
+  - component: {fileID: 8402866263602713510}
   m_Layer: 0
   m_Name: SM_Prop_Money_Roll_01
   m_TagString: Untagged
@@ -110,7 +110,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43378923886825348, guid: ed412acdeedaa8d40a04632e79064b37, type: 2}
---- !u!114 &816311614826045332
+--- !u!114 &8402866263602713510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,9 +119,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 188464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb513aee4d2d5149b164761394a9876, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c3263a847669a74591038eb7bcce979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   uiMessage: 
-  uid: b66bb027-4211-4214-ab22-4f5f397965ca
+  highlightMaterial: {fileID: 0}
+  canInteractMultipleTimes: 0
+  timesInteracted: 0
+  uid: 
   moneyValue: 250
