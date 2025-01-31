@@ -31,6 +31,7 @@ namespace BigModeGameJam.UI
                 Debug.LogError("Fade Effect is missing, but has been called");
                 return;
             }
+            instance.StopAllCoroutines();
 
             if(p < 0)
             {

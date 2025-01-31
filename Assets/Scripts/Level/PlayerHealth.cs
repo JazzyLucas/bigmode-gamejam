@@ -15,6 +15,7 @@ namespace BigModeGameJam.Level
         private const float ELEC_REGEN = -0.83f; // 2 minutes to deplete naturally
         private const float RESPAWN_PERIOD = 2; // The time it takes to run the full respawn animation
         public bool isDead = false;
+        public static int deathCount = 0;
 
         /// <summary>
         /// Health as a percentage
@@ -36,13 +37,20 @@ namespace BigModeGameJam.Level
         /// </summary>
         public void Die()
         {
-            FadeEffect.StartAnimation(FadeEffect.Animation.Transition, Color.black, RESPAWN_PERIOD);
             health = MAX_HEALTH;
             isDead = true;
+            deathCount++;
             playerRefs.playerMovement.enabled = false;
             playerRefs.lookToInteract.enabled = false;
             playerRefs.rigidbody.linearVelocity = Vector3.zero;
-            if(playerRefs.electricMode) playerRefs.electricMode.Exit();
+            if(playerRefs.electricMode && playerRefs.electricMode.enabled) playerRefs.electricMode.Exit();
+            // Transition to human player if you can
+            if(playerRefs.playerType == PlayerMovement.PlayerType.Electric && PlayerRefs.humanPlayer)
+            {
+                PlayerRefs.PlayerTransition(PlayerMovement.PlayerType.Human);
+                return;
+            }
+            FadeEffect.StartAnimation(FadeEffect.Animation.Transition, Color.black, RESPAWN_PERIOD);
             StartCoroutine(DieCoroutine());
 
             IEnumerator DieCoroutine()

@@ -3,18 +3,18 @@ using UnityEngine.SceneManagement;
 
 namespace BigModeGameJam.Core
 {
-    public class SceneChange : MonoBehaviour
+    public static class SceneChange
     {
-        public void LoadNewScene(string sceneToLaod)
+        public static void LoadNewScene(string sceneToLoad)
         {
-            if (sceneToLaod == "Exit")
+            if (sceneToLoad == "Exit")
             {
                 Application.Quit();
                 Debug.Log("Game Has ended");
                 return;
             }
 
-            SceneManager.LoadScene(sceneToLaod);
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
 }

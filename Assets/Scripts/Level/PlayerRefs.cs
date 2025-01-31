@@ -1,3 +1,4 @@
+using System.Collections;
 using BigModeGameJam.Level.Controls;
 using BigModeGameJam.UI;
 using UnityEngine;
@@ -17,8 +18,8 @@ namespace BigModeGameJam.Level
         public static GameObject curCam;
         
         [SerializeField] public PlayerMovement.PlayerType playerType = PlayerMovement.PlayerType.Human;
-
         [Header("For both player types")]
+        
         [SerializeField] new public CapsuleCollider collider;
         [SerializeField] new public Rigidbody rigidbody;
         [SerializeField] public Camera firstPersonCam;
@@ -57,16 +58,60 @@ namespace BigModeGameJam.Level
             curCam = firstPersonCam.gameObject;
         }
 
+        /// <summary>
+        /// Transition to the specified player
+        /// </summary>
+        /// <param name="playerType">The player you would like to set to be active</param>
+        /// <param name="playerTo">The transform of the position to send the activated player to</param>
+        public static void PlayerTransition(PlayerMovement.PlayerType playerType, Transform playerTo = null)
+        {
+            FadeEffect.StartAnimation(FadeEffect.Animation.Transition, Color.white, 3);
+            curPlayer.StartCoroutine(PlayerTransitionCoroutine());
+            IEnumerator PlayerTransitionCoroutine()
+            {
+                yield return new WaitForSeconds(1.5f);
+                switch(playerType)
+                {
+                    case PlayerMovement.PlayerType.Human:
+                        if(playerTo)
+                            humanPlayer.transform.position = playerTo.position;
+                        humanPlayer.gameObject.SetActive(true);
+                        electricPlayer.gameObject.SetActive(false);
+                        break;
+                    case PlayerMovement.PlayerType.Electric:
+                        if(playerTo)
+                            electricPlayer.transform.position = playerTo.position;
+                        electricPlayer.gameObject.SetActive(true);
+                        humanPlayer.gameObject.SetActive(false);
+                        break;
+                }
+            }
+            
+        }
+
         private void Awake()
         {
             switch(playerType)
             {
                 case PlayerMovement.PlayerType.Human:
                     humanPlayer = this;
-                    return;
+                    break;
                 case PlayerMovement.PlayerType.Electric:
                     electricPlayer = this;
-                    return;
+                    break;
+            }
+            CheckMultipleInstances();
+        }
+
+        /// <summary>
+        /// Disables non-primary player (electric) if both players are active
+        /// </summary>
+        private static void CheckMultipleInstances()
+        {
+            if(humanPlayer && humanPlayer.gameObject.activeInHierarchy && 
+                electricPlayer && electricPlayer.gameObject.activeInHierarchy)
+            {
+                electricPlayer.gameObject.SetActive(false);
             }
         }
 

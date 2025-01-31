@@ -12,7 +12,7 @@ namespace BigModeGameJam.Level
 
         void Awake()
         {
-            allObjects.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         void Start()
@@ -23,14 +23,14 @@ namespace BigModeGameJam.Level
         internal void PauseGame()
         {
             Time.timeScale = 0.0f;
-            allObjects.SetActive(true);
+            gameObject.SetActive(true);
             moneyText.GetComponent<TextMeshProUGUI>().text = GameManager.GameData.Money.ToString();
         }
 
         internal void UnpauseGame()
         {
             Time.timeScale = 1.0f;
-            allObjects.SetActive(false);
+            gameObject.SetActive(false);
         } 
     }
 }
