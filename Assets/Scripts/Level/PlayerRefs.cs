@@ -25,7 +25,9 @@ namespace BigModeGameJam.Level
         [SerializeField] public ThirdPersonCamera thirdPersonCam;
         [SerializeField] public PlayerMovement playerMovement;
         [SerializeField] public LookToInteract lookToInteract;
+        [SerializeField] public PlayerHealth playerHealth;
         [SerializeField] public GameObject playerModel; // We can change the type of this when we start integrating animation
+        [SerializeField] public Transform checkpoint;
 
         [Header("For electric character only")]
         [SerializeField] public ElectricMode electricMode;

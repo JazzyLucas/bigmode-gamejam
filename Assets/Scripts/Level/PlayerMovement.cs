@@ -265,6 +265,7 @@ namespace BigModeGameJam.Level.Controls
             initColliderHeight = collider.height;
             initCameraHeight = camera.transform.localPosition.y;
             dash = playerRefs.dash;
+            ApplyAttributes();
         }
 
         private IEnumerator StunCoroutine(float stunTime)
@@ -314,7 +315,6 @@ namespace BigModeGameJam.Level.Controls
         {
             ApplyFriction();
             ApplyGravity();
-            ApplyAttributes();
             UpdateSound();
         }
 

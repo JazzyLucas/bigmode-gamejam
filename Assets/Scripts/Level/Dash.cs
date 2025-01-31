@@ -7,8 +7,7 @@ namespace BigModeGameJam.Level.Controls
     /// <summary>
     /// Implementation of dash ability for electric character
     /// </summary>
-    [RequireComponent(typeof(PlayerMovement))]
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(PlayerRefs))]
     public class Dash : MonoBehaviour
     {
         public float dashSpeed = 55;
@@ -21,6 +20,8 @@ namespace BigModeGameJam.Level.Controls
         /// The number of times that a player can dash in the air.
         /// </summary>
         public int maxDashCharges = 1;
+        public float depleteHealth = 8.5f;
+        private PlayerRefs playerRefs;
         private PlayerMovement movement;
         private new Rigidbody rigidbody;
         private bool dashing;
@@ -39,6 +40,7 @@ namespace BigModeGameJam.Level.Controls
             dashCharges--;
             dir = dir.normalized;
             dir = transform.TransformDirection(dir);
+            playerRefs.playerHealth.RegenHealth(-depleteHealth);
             StartCoroutine(DashCoroutine(dir, period));
             ElectricHUD.UpdateDashStatus(false);
         }
@@ -60,8 +62,9 @@ namespace BigModeGameJam.Level.Controls
 
         private void Awake()
         {
-            movement = GetComponent<PlayerMovement>();
-            rigidbody = GetComponent<Rigidbody>();
+            playerRefs = GetComponent<PlayerRefs>();
+            movement = playerRefs.playerMovement;
+            rigidbody = playerRefs.rigidbody;
         }
 
         private void OnDisable()
