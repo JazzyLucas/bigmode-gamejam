@@ -270,6 +270,7 @@ MonoBehaviour:
   lookToInteract: {fileID: 1494161179466764201}
   playerHealth: {fileID: 3115576070251829243}
   playerModel: {fileID: 6557786027610204982}
+  checkpoint: {fileID: 0}
   electricMode: {fileID: 0}
   dash: {fileID: 0}
   orb: {fileID: 0}
@@ -305,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e321c7af522a61701a83e44c3da8d787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSensitivity: 0.1
+  lookSensitivity: 0.09
 --- !u!114 &1494161179466764201
 MonoBehaviour:
   m_ObjectHideFlags: 0
