@@ -21,7 +21,7 @@ namespace BigModeGameJam.Level
             SendToLevelManger();
         }
 
-        private void Awake()
+        new private void Awake()
         {
             mesh = GetComponent<MeshRenderer>();
             UpdateVisual();

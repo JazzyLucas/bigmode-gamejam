@@ -40,7 +40,7 @@ namespace BigModeGameJam.Level.Interactables
             Debug.Log($"{gameObject.name} interaction has happened");
         }
 
-        private void Awake()
+        protected void Awake()
         {
             mesh = GetComponent<MeshRenderer>();
         }

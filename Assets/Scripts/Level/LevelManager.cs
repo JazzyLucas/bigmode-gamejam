@@ -13,6 +13,7 @@ namespace BigModeGameJam.Level.Manager
         static List<ObjectiveListener> objectiveListeners = new List<ObjectiveListener>();
 
         public static UIObjectiveManager UIObjectiveManager { get; set; }
+        public static PauseMenu PauseMenu { private get; set; }
 
         public static bool UIInUse { get; private set; }
 
@@ -22,6 +23,28 @@ namespace BigModeGameJam.Level.Manager
         /// <param name="objectiveObjectToCheck"> Objective Object to check in list  </param> 
         /// <returns></returns>
         public static bool ObjectiveIsIncluded(ObjectiveObject objectiveObjectToCheck) => allObjectives.Contains(objectiveObjectToCheck);
+
+        /// <summary>
+        /// Pauses game and turns on Pause Menu
+        /// </summary>
+        public static void PauseGame()
+        {
+            if (!PauseMenu)
+                return;
+
+            PauseMenu.PauseGame();
+        }
+
+        /// <summary>
+        /// Unpauses game and turns off Pause Menu
+        /// </summary>
+        public static void UnpauseGame()
+        {
+            if (!PauseMenu)
+                return;
+
+            PauseMenu.UnpauseGame();
+        }
 
         /// <summary>
         /// Give Level manager reference to the Objectives Object and Listener Text on the UI

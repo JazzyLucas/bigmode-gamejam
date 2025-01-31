@@ -121,6 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb513aee4d2d5149b164761394a9876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightMaterial: {fileID: 2100000, guid: b6ba26ff7634a8d46be6ec7d7d1c5409, type: 2}
-  uid: b397e549-0126-41a4-820c-51b35cee366e
+  uiMessage: 
+  uid: b397e549-0126-41a4-820c-51b35cee3677
   moneyValue: 1

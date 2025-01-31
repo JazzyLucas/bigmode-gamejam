@@ -1,7 +1,6 @@
 using BigModeGameJam.Level.Manager;
 using System.Collections.Generic;
 using UnityEngine;
-using BigModeGameJam.Core;
 using TMPro;
 
 namespace BigModeGameJam.Level

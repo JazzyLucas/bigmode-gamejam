@@ -1,4 +1,5 @@
 using BigModeGameJam.Level.Interactables;
+using BigModeGameJam.Level.Manager;
 using BigModeGameJam.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,10 +16,10 @@ namespace BigModeGameJam.Level.Controls
         [Header("Settings")]
         public float lookSensitivity = 1;
 
-        private InputAction lookAction, moveAction, jumpAction, dashAction, crouchAction, toggleCamAction, interactAction;
+        private InputAction lookAction, moveAction, jumpAction, dashAction, crouchAction, toggleCamAction, interactAction, pauseAction;
         private PlayerRefs playerRefs;
 
-        
+        static bool menuIsUp;
 
         private void Awake()
         {
@@ -31,6 +32,7 @@ namespace BigModeGameJam.Level.Controls
             crouchAction = actions.FindAction("Crouch");
             toggleCamAction = actions.FindAction("ToggleView");
             interactAction = actions.FindAction("Interact");
+            pauseAction = actions.FindAction("Pause");
         }
 
         private void ToggleCam()
@@ -49,6 +51,26 @@ namespace BigModeGameJam.Level.Controls
 
         private void Update()
         {
+            /*
+            //Checks when the player presses esc
+            if (pauseAction.WasPressedThisFrame())
+            {
+                menuIsUp = !menuIsUp;
+
+                if (menuIsUp)
+                {
+                    LevelManager.PauseGame();
+                    return;
+                }
+
+                LevelManager.UnpauseGame();
+            }
+
+            if (menuIsUp) //Makes sure the player can't do anything during pause
+                return;
+            */
+            
+
             // Handle movement input
             Vector2 moveDir = moveAction.ReadValue<Vector2>();
             Vector3 hDir = new Vector3(moveDir.x, 0, moveDir.y);

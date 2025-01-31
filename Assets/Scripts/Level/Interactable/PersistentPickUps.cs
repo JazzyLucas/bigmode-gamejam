@@ -1,5 +1,6 @@
 using BigModeGameJam.Core;
 using BigModeGameJam.Core.Manager;
+using System.Linq;
 using UnityEngine;
 
 namespace BigModeGameJam.Level.Interactables
@@ -10,12 +11,19 @@ namespace BigModeGameJam.Level.Interactables
         [SerializeField] string uid;
         [SerializeField] int moneyValue;
 
-        internal string UID { get { return uid; } }
+        public string UID { get { return uid; } }
+
+        public int MoneyValue { get { return moneyValue; } }
 
         public void LoadData(GameData data)
         {
-            if (data.PickedUpCollectableUIDS.Contains(uid) && GameManager.CurrentSceneType == SceneType.Level) //If this object has already been picked up by the player once and has come back to this level, he can't pick it up again
-                Destroy(gameObject);
+            if (data.PickedUpCollectableUIDS.Contains(uid)) 
+                OnLoadCustomCode();
+        }
+
+        protected void OnLoadCustomCode() //If this object has already been picked up by the player once and has come back to this level, he can't pick it up again
+        {
+            Destroy(gameObject);
         }
 
 #if UNITY_EDITOR
@@ -24,10 +32,10 @@ namespace BigModeGameJam.Level.Interactables
             if (Application.isPlaying)
                 return;
 
-            PersistentPickUps[] persistentPickUps = FindObjectsByType<PersistentPickUps>(FindObjectsSortMode.None);
-            foreach (PersistentPickUps pickUps in persistentPickUps)
+            IPersistentOBJ[] persistentPickUps = FindObjectsByType<ObjectiveObject>(FindObjectsSortMode.None).OfType<IPersistentOBJ>().ToArray();
+            foreach (ObjectiveObject persistant in persistentPickUps)
             {
-                if (pickUps != this && pickUps.UID == uid)
+                if (persistant != this && persistant.GetComponent<IPersistentOBJ>().UID == uid)
                     uid = System.Guid.NewGuid().ToString();
             }
         }
