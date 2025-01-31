@@ -12,12 +12,8 @@ namespace BigModeGameJam.Level
 
         void Awake()
         {
-            gameObject.SetActive(false);
-        }
-
-        void Start()
-        {
             LevelManager.PauseMenu = this;
+            gameObject.SetActive(false);
         }
 
         internal void PauseGame()
