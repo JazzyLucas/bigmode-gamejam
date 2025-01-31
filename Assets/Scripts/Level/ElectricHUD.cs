@@ -19,6 +19,7 @@ namespace BigModeGameJam.Level
         /// <param name="status"></param>
         public static void UpdateDashStatus(bool status)
         {
+            if(!instance) return;
             instance.dashStatus.SetActive(status);
         }
 
