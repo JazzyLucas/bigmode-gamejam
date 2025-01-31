@@ -26,7 +26,7 @@ namespace BigModeGameJam
 
         }
 
-        public void PlayOneShot(EventReference sound)
+        public void PlayOneShot(EventReference sound, Vector3 position)
         { 
             RuntimeManager.PlayOneShot(sound);
         }

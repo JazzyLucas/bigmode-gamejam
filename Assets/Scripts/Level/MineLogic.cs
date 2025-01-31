@@ -1,3 +1,4 @@
+using BigModeGameJam.Core;
 using UnityEngine;
 
 namespace BigModeGameJam.Level
@@ -6,6 +7,7 @@ namespace BigModeGameJam.Level
     {
         private void OnTriggerEnter(Collider collider)
         {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Boom, this.transform.position);
             if(collider.CompareTag("Player"))
             {
                 PlayerHealth player = collider.GetComponent<PlayerHealth>();
