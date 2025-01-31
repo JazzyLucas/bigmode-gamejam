@@ -9,13 +9,13 @@ namespace BigModeGameJam.Core.Manager
         [Header("File Configs")]
         [SerializeField] string fileName = "GameSave.json"; //Change this to the name of the game 
 
-        SaveFileWriter fileWriter;
+        static SaveFileWriter fileWriter;
         static bool firstStartUp = true; //Tracks if this was the first time the game was opened
         List<IPersistentOBJ> dataPersistanceOBJs;
 
         void Start()
         {
-            //Do singleton pattern here
+            DontDestroyOnLoad(gameObject);
             dataPersistanceOBJs = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IPersistentOBJ>().ToList();
             LoadGame();
         }

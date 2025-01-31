@@ -51,6 +51,7 @@ namespace BigModeGameJam.Level.Controls
 
         private void Update()
         {
+            /*
             //Checks when the player presses esc
             if (pauseAction.WasPressedThisFrame())
             {
@@ -67,6 +68,8 @@ namespace BigModeGameJam.Level.Controls
 
             if (menuIsUp) //Makes sure the player can't do anything during pause
                 return;
+            */
+            
 
             // Handle movement input
             Vector2 moveDir = moveAction.ReadValue<Vector2>();

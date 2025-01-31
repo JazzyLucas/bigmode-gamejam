@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace BigModeGameJam.Level.Interactables
 {
-    [ExecuteInEditMode] public class PersistentPickUps : PickUp, IPersistentOBJ
+    [ExecuteInEditMode]
+    public class PersistentInteractable : Interactable, IPersistentOBJ
     {
         [Header("Persistant Pick Up Configs")]
         [SerializeField] string uid;
@@ -17,7 +18,7 @@ namespace BigModeGameJam.Level.Interactables
 
         public void LoadData(GameData data)
         {
-            if (data.PickedUpCollectableUIDS.Contains(uid)) 
+            if (data.PickedUpCollectableUIDS.Contains(uid))
                 OnLoadCustomCode();
         }
 
@@ -27,10 +28,13 @@ namespace BigModeGameJam.Level.Interactables
         }
 
 #if UNITY_EDITOR
-        void Awake() //Make sure every UID is unique
+        new void Awake() //Make sure every UID is unique
         {
             if (Application.isPlaying)
+            {
+                mesh = GetComponent<MeshRenderer>();
                 return;
+            }
 
             IPersistentOBJ[] persistentPickUps = FindObjectsByType<ObjectiveObject>(FindObjectsSortMode.None).OfType<IPersistentOBJ>().ToArray();
             foreach (ObjectiveObject persistant in persistentPickUps)
@@ -41,19 +45,15 @@ namespace BigModeGameJam.Level.Interactables
         }
 #endif
 
-        protected override void OnCustomPickUpCode()
+        public override void Interact(GameObject interacter)
         {
+            base.Interact(interacter);// If you are overriding this function please do not remove this base (Also make sure the base statment is above your custom code)
             GameManager.GameData.PickedUpCollectableUIDS.Add(uid);
             GameManager.GameData.Money += moneyValue;
             Debug.Log("Money: " + moneyValue.ToString());
-            Debug.Log("Collectable : " + uid + " has been collected"); ;
-        }
-
-
-        protected override void OnTriggerEnter(Collider collider)
-        {
-            if (Application.isPlaying)
-                base.OnTriggerEnter(collider);
+            Debug.Log("Collectable : " + uid + " has been collected");
+            if (!canInteractMultipleTimes) //I can't imagine a Persistent Interactable being able to be used mutiple times, but the check for it is here just in case
+                Destroy(gameObject);
         }
     }
 }
