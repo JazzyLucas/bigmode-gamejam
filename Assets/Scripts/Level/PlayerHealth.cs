@@ -65,7 +65,8 @@ namespace BigModeGameJam.Level
             health = Mathf.Clamp(health + delta, 0, MAX_HEALTH);
             if(playerType == PlayerMovement.PlayerType.Electric)
             {
-                ElectricHUD.UpdateHealthbar(health);
+                if (ElectricHUD.instance)
+                    ElectricHUD.UpdateHealthbar(health);
 
             }
             if(health == 0) Die();
