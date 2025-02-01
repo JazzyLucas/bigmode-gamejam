@@ -305,15 +305,15 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   switchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
+  HasSourceProject: 0
+  HasPlatforms: 0
   sourceProjectPath: fmod/empty/empty.fspro
-  sourceBankPath: fmod/empty/Build
+  sourceBankPath: fmod/Desktop
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
-  AutomaticEventLoading: 1
-  BankLoadType: 0
+  AutomaticEventLoading: 0
+  BankLoadType: 1
   AutomaticSampleLoading: 0
   EncryptionKey: 
   ImportType: 0
@@ -332,10 +332,13 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - Ambient Noise
   - Music
   - SFX
-  BanksToLoad: []
+  BanksToLoad:
+  - Master
+  - Master.strings
+  - Music
+  - SFX
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
   AndroidUseOBB: 0
