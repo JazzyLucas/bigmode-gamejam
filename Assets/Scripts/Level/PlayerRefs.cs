@@ -116,6 +116,7 @@ namespace BigModeGameJam.Level
                 electricPlayer && electricPlayer.gameObject.activeInHierarchy)
             {
                 electricPlayer.gameObject.SetActive(false);
+                ElectricHUD.instance.gameObject.SetActive(false);
                 curPlayer = humanPlayer;
             }
         }
