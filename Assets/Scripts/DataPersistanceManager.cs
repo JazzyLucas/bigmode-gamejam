@@ -28,6 +28,7 @@ namespace BigModeGameJam.Core.Manager
 
         void LoadGame()
         {
+            Debug.Log("loaded game");
             if (firstStartUp)
             {
                 fileWriter = new SaveFileWriter(Application.persistentDataPath, fileName);
