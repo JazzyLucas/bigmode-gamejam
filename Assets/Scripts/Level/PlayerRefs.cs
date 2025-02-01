@@ -96,6 +96,7 @@ namespace BigModeGameJam.Level
                         if(playerTo)
                         {
                             electricPlayer.transform.position = playerTo.position;
+                            electricPlayer.transform.forward = playerTo.forward;
                             electricPlayer.checkpoint = playerTo;
                         }
                         electricPlayer.gameObject.SetActive(true);

@@ -59,8 +59,15 @@ namespace BigModeGameJam.Level
             {
                 // Wait until peak of effect
                 yield return new WaitForSeconds(RESPAWN_PERIOD / 2);
-                transform.position = playerRefs.checkpoint != null
-                    ? playerRefs.checkpoint.position : Vector3.zero;
+                if(playerRefs.checkpoint)
+                {
+                    transform.position = playerRefs.checkpoint.position;
+                    transform.forward = playerRefs.checkpoint.forward;
+                }
+                else
+                {
+                    transform.position = Vector3.zero;
+                }
                 playerRefs.playerMovement.enabled = true;
                 playerRefs.lookToInteract.enabled = true;
             }
