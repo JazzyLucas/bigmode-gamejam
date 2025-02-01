@@ -6,7 +6,6 @@ namespace BigModeGameJam.Level
 {
     public class InteractablePowerBox :Interactable
     {
-        public GameObject electricBallPlayer;
         public Transform electricPlayerStart;
 
         public override void Interact(GameObject interacter)
@@ -18,7 +17,6 @@ namespace BigModeGameJam.Level
             }
 
             PlayerRefs.PlayerTransition(Controls.PlayerMovement.PlayerType.Electric, electricPlayerStart);
-            if(electricBallPlayer) electricBallPlayer.SetActive(true);
 
             timesInteracted++;
             SendToLevelManger();
