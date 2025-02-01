@@ -1,3 +1,5 @@
+using BigModeGameJam.Level;
+using BigModeGameJam.Level.Controls;
 using UnityEngine;
 
 namespace BigModeGameJam
@@ -64,7 +66,7 @@ namespace BigModeGameJam
             moveDirection = (forward * vertical + right * horizontal).normalized;
 
             // Handle mouse input for camera rotation
-            horizontalRotation += Input.GetAxis("Mouse X") * rotationSpeed;
+            horizontalRotation += Input.GetAxis("Mouse X") * PlayerControls.lookSensitivity;
         }
 
         void UpdateCamera()
@@ -98,6 +100,16 @@ namespace BigModeGameJam
         {
             Vector3 gravityDir = invertGravity ? Vector3.up : Vector3.down;
             rb.AddForce(gravityDir * gravityStrength, ForceMode.Acceleration);
+        }
+
+        private void OnEnable()
+        {
+            PlayerRefs.electricPlayer.dash.enabled = false;
+        }
+
+        private void OnDisable()
+        {
+            PlayerRefs.electricPlayer.dash.enabled = true;
         }
     }
 }

@@ -269,7 +269,8 @@ MonoBehaviour:
   playerMovement: {fileID: 619723010962558654}
   lookToInteract: {fileID: 1494161179466764201}
   playerHealth: {fileID: 3115576070251829243}
-  playerModel: {fileID: 0}
+  playerModel: {fileID: 4425874514383345567}
+  playerControls: {fileID: 3203859292892936917}
   checkpoint: {fileID: 0}
   electricMode: {fileID: 0}
   dash: {fileID: 0}
@@ -995,5 +996,10 @@ PrefabInstance:
 --- !u!4 &3900132427547692325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 48e57d35f8f4c61c89eebf5516c85f8a, type: 3}
+  m_PrefabInstance: {fileID: 3578871565096004302}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4425874514383345567 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 48e57d35f8f4c61c89eebf5516c85f8a, type: 3}
   m_PrefabInstance: {fileID: 3578871565096004302}
   m_PrefabAsset: {fileID: 0}
