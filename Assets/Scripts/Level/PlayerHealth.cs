@@ -70,6 +70,7 @@ namespace BigModeGameJam.Level
                 }
                 playerRefs.playerMovement.enabled = true;
                 playerRefs.lookToInteract.enabled = true;
+                isDead = false;
             }
         }
 
