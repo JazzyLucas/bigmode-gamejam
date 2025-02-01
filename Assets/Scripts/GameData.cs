@@ -11,5 +11,7 @@ namespace BigModeGameJam.Core
         public int Money;
 
         public List<string> PickedUpCollectableUIDS = new List<string>();
+        public float masterVolume, musicVolume, SFXVolume;
+        public float lookSensitivity;
     }
 }

@@ -2,10 +2,12 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using NUnit.Framework;
+using BigModeGameJam.Core.Manager;
+using BigModeGameJam.Core;
 
 namespace BigModeGameJam
 {
-    public class AudioManager : MonoBehaviour
+    public class AudioManager : MonoBehaviour, IPersistentOBJ
     {
         [Header("Volume")]
         [UnityEngine.Range(0, 1)]
@@ -44,8 +46,11 @@ namespace BigModeGameJam
         private void Update()
         {
             masterBus.setVolume(masterVolume);
+            GameManager.GameData.masterVolume = masterVolume;
             musicBus.setVolume(musicVolume);
+            GameManager.GameData.musicVolume = musicVolume;
             sfxBus.setVolume(SFXVolume);
+            GameManager.GameData.SFXVolume = SFXVolume;
         }
 
         public void PlayOneShot(EventReference sound, Vector3 position)
@@ -80,6 +85,19 @@ namespace BigModeGameJam
                 emitter.Stop();
             }
         }
+
+        // PERSISTENCE STUFF
+        public void LoadData(GameData data)
+        {
+            masterVolume = data.masterVolume;
+            musicVolume = data.musicVolume;
+            SFXVolume = data.SFXVolume;
+        }
+
+        // ignore these. don't know why they're in the interface.
+        public string UID { get; }
+        public int MoneyValue { get; }
+        
     }
 }
     

@@ -7,7 +7,6 @@ namespace BigModeGameJam
 {
     public class ElectricZoneObjective : MonoBehaviour
     {
-        public GameObject player;
         public GameObject electricBallPlayer;
         public GameObject particleEffects;
         public GameObject powerBox;
