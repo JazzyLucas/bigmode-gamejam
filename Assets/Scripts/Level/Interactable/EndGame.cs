@@ -1,19 +1,23 @@
+using System.Collections;
+using BigModeGameJam.Core;
+using BigModeGameJam.UI;
 using UnityEngine;
 
-namespace BigModeGameJam.Level
+namespace BigModeGameJam.Level.Interactables
 {
-    public class EndGame : MonoBehaviour
+    public class EndGame : Interactable
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        public override void Interact(GameObject interacter)
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            if(!canInteractMultipleTimes) return;
+            StartCoroutine(EndAnimation());
+            timesInteracted++;
+            IEnumerator EndAnimation()
+            {
+                FadeEffect.StartAnimation(FadeEffect.Animation.FadeOut, Color.black, 6);
+                yield return new WaitForSeconds(6);
+                SceneChange.LoadNewScene("Credits");
+            }
         }
     }
 }
