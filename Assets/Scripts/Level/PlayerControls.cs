@@ -31,6 +31,9 @@ namespace BigModeGameJam.Level.Controls
             toggleCamAction = actions.FindAction("ToggleView");
             interactAction = actions.FindAction("Interact");
             pauseAction = actions.FindAction("Pause");
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void ToggleCam()

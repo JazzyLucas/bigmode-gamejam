@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using BigModeGameJam.Level.Interactables;
+using UnityEngine;
 
 namespace BigModeGameJam.Level.Manager
 {
@@ -32,6 +33,9 @@ namespace BigModeGameJam.Level.Manager
             if (!PauseMenu)
                 return;
 
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
             PauseMenu.PauseGame();
         }
 
@@ -42,6 +46,9 @@ namespace BigModeGameJam.Level.Manager
         {
             if (!PauseMenu)
                 return;
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
 
             PauseMenu.UnpauseGame();
         }
