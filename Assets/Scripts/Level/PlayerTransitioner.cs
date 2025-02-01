@@ -2,6 +2,13 @@ using UnityEngine;
 using BigModeGameJam.Level.Controls;
 using BigModeGameJam.UI;
 using System.Collections;
+using BigModeGameJam.Core;
+using FMOD.Studio;
+using static BigModeGameJam.Level.Controls.PlayerMovement;
+using FMODUnity;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
+using Unity.VisualScripting.YamlDotNet.Core;
+using static UnityEditor.Profiling.RawFrameDataView;
 namespace BigModeGameJam.Level
 {
     public class PlayerTransitioner : MonoBehaviour
@@ -20,18 +27,19 @@ namespace BigModeGameJam.Level
             IEnumerator PlayerTransitionCoroutine()
             {
                 yield return new WaitForSeconds(TRANSITION_PERIOD / 2);
-                switch(playerType)
+                switch (playerType)
                 {
                     case PlayerMovement.PlayerType.Human:
-                        if(playerTo)
+                        if (playerTo)
                             PlayerRefs.humanPlayer.transform.position = playerTo.position;
                         PlayerRefs.humanPlayer.gameObject.SetActive(true);
                         ElectricHUD.instance.gameObject.SetActive(false);
                         PlayerRefs.curPlayer = PlayerRefs.humanPlayer;
                         PlayerRefs.electricPlayer.gameObject.SetActive(false);
+                        EventInstance.setParameterByName("ElectricTrans", 0);
                         break;
                     case PlayerMovement.PlayerType.Electric:
-                        if(playerTo)
+                        if (playerTo)
                         {
                             PlayerRefs.electricPlayer.transform.position = playerTo.position;
                             PlayerRefs.electricPlayer.transform.forward = playerTo.forward;
@@ -41,15 +49,27 @@ namespace BigModeGameJam.Level
                         ElectricHUD.instance.gameObject.SetActive(true);
                         PlayerRefs.curPlayer = PlayerRefs.electricPlayer;
                         PlayerRefs.humanPlayer.gameObject.SetActive(false);
+                        EventInstance.setParameterByName("ElectricTrans", 1);
                         break;
                 }
             }
-            
         }
-
         private void Awake()
         {
             instance = this;
+        }
+
+        FMODUnity.StudioEventEmitter emitter;
+        void OnEnable()
+        {
+            var target = GameObject.Find("Music");
+            emitter = target.GetComponent<FMODUnity.StudioEventEmitter>();
+        }
+
+        void Update()
+        {
+            float value = 1.0f; // calculate the value every frame
+            emitter.SetParameter("ParameterName", value);
         }
     }
 }
