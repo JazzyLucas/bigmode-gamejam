@@ -1,4 +1,8 @@
+using BigModeGameJam.Core;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using FMODUnity;
+using System.Data.SqlTypes;
 
 namespace BigModeGameJam.Level.Interactables
 {
