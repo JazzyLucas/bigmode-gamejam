@@ -49,7 +49,7 @@ namespace BigModeGameJam.Level
                 if(playerRefs.electricMode.enabled)
                     playerRefs.electricMode.Exit();
                 if(PlayerRefs.humanPlayer)
-                    PlayerRefs.PlayerTransition(PlayerMovement.PlayerType.Human);
+                    PlayerTransitioner.Transition(PlayerMovement.PlayerType.Human);
                 return;
             }
             FadeEffect.StartAnimation(FadeEffect.Animation.Transition, Color.black, RESPAWN_PERIOD);

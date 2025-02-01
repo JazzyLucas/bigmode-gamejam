@@ -9,7 +9,7 @@ namespace BigModeGameJam.Level
         [SerializeField] private PlayerMovement.PlayerType transitionTo = PlayerMovement.PlayerType.Human;
         protected override void OnFinishAllCustomCode()
         {
-            PlayerRefs.PlayerTransition(transitionTo);
+            PlayerTransitioner.Transition(transitionTo);
         }
     }
 }

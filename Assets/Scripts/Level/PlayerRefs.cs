@@ -70,44 +70,7 @@ namespace BigModeGameJam.Level
             }
         }
 
-        /// <summary>
-        /// Transition to the specified player
-        /// </summary>
-        /// <param name="playerType">The player you would like to set to be active</param>
-        /// <param name="playerTo">The transform of the position to send the activated player to</param>
-        public static void PlayerTransition(PlayerMovement.PlayerType playerType, Transform playerTo = null)
-        {
-            FadeEffect.StartAnimation(FadeEffect.Animation.Transition, Color.white, 3);
-            curPlayer.StartCoroutine(PlayerTransitionCoroutine());
-            IEnumerator PlayerTransitionCoroutine()
-            {
-                yield return new WaitForSeconds(1.5f);
-                switch(playerType)
-                {
-                    case PlayerMovement.PlayerType.Human:
-                        if(playerTo)
-                            humanPlayer.transform.position = playerTo.position;
-                        humanPlayer.gameObject.SetActive(true);
-                        ElectricHUD.instance.gameObject.SetActive(false);
-                        curPlayer = humanPlayer;
-                        electricPlayer.gameObject.SetActive(false);
-                        break;
-                    case PlayerMovement.PlayerType.Electric:
-                        if(playerTo)
-                        {
-                            electricPlayer.transform.position = playerTo.position;
-                            electricPlayer.transform.forward = playerTo.forward;
-                            electricPlayer.checkpoint = playerTo;
-                        }
-                        electricPlayer.gameObject.SetActive(true);
-                        ElectricHUD.instance.gameObject.SetActive(true);
-                        curPlayer = electricPlayer;
-                        humanPlayer.gameObject.SetActive(false);
-                        break;
-                }
-            }
-            
-        }
+        
 
         private void Awake()
         {
