@@ -94,7 +94,7 @@ namespace BigModeGameJam
             SFXVolume = data.SFXVolume;
         }
 
-        // ignore these. don't know why they're in the interface.
+        // ignore these. they're just in the interface
         public string UID { get; }
         public int MoneyValue { get; }
         

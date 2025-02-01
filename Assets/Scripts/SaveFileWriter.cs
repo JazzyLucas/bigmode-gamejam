@@ -58,7 +58,6 @@ namespace BigModeGameJam.Core.Manager
         /// <param name="data"></param> The Game Data to be saved
         internal void SaveData(GameData data)
         {
-            Debug.Log("saved data!");
             try
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(fullPath));

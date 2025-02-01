@@ -16,7 +16,9 @@ namespace BigModeGameJam.Core.Manager
         void Start()
         {
             DontDestroyOnLoad(gameObject);
-            dataPersistanceOBJs = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IPersistentOBJ>().ToList();
+            dataPersistanceOBJs = FindObjectsByType<MonoBehaviour>(
+                FindObjectsInactive.Include, FindObjectsSortMode.None
+                ).OfType<IPersistentOBJ>().ToList();
             LoadGame();
         }
 
@@ -28,7 +30,6 @@ namespace BigModeGameJam.Core.Manager
 
         void LoadGame()
         {
-            Debug.Log("loaded game");
             if (firstStartUp)
             {
                 fileWriter = new SaveFileWriter(Application.persistentDataPath, fileName);
