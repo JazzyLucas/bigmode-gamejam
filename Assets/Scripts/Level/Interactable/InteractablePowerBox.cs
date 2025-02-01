@@ -1,19 +1,13 @@
 using BigModeGameJam.Level.Interactables;
 using BigModeGameJam.UI;
 using UnityEngine;
-using static BigModeGameJam.UI.FadeEffect;
 
 namespace BigModeGameJam.Level
 {
     public class InteractablePowerBox :Interactable
     {
-        public GameObject player;
         public GameObject electricBallPlayer;
-
-        private void Start()
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
+        public Transform electricPlayerStart;
 
         public override void Interact(GameObject interacter)
         {
@@ -23,8 +17,8 @@ namespace BigModeGameJam.Level
                 return;
             }
 
-            player.SetActive(false);
-            electricBallPlayer.SetActive(true);
+            PlayerRefs.PlayerTransition(Controls.PlayerMovement.PlayerType.Electric, electricPlayerStart);
+            if(electricBallPlayer) electricBallPlayer.SetActive(true);
 
             timesInteracted++;
             SendToLevelManger();

@@ -66,7 +66,6 @@ namespace BigModeGameJam.Level.Controls
             if (crossHairPresent())
             {
                 Crosshair.instance.SetHover(false);
-                Crosshair.instance.gameObject.SetActive(false);
             }
 
         }

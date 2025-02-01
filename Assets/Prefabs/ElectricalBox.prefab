@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3375246424606937553}
   - component: {fileID: 3082383475733860528}
   - component: {fileID: 3467972072979312117}
-  - component: {fileID: 8082059501904724974}
   - component: {fileID: 6178640424623995005}
+  - component: {fileID: 8082059501904724974}
   m_Layer: 0
   m_Name: ElectricalBox
   m_TagString: Untagged
@@ -28,17 +28,17 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465592990627739808}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7070545, z: -0, w: 0.7071591}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -19.294, y: 16.42, z: -13.78}
-  m_LocalScale: {x: 2, y: 2, z: 1.19782}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6006308023299144789}
   - {fileID: 7495057388088949809}
   - {fileID: 3103797052928967608}
   - {fileID: 1690968190528985631}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -89.992, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &3082383475733860528
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -92,24 +92,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8082059501904724974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465592990627739808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fa5d8e08971dcd499641af6019c2ac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiMessage: 
-  highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
-  canInteractMultipleTimes: 1
-  timesInteracted: 0
-  player: {fileID: 0}
-  electricBallPlayer: {fileID: 0}
 --- !u!65 &6178640424623995005
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -129,8 +111,26 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 1.6197828}
-  m_Center: {x: 5.1603166e-13, y: 1, z: 0.3098915}
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8082059501904724974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465592990627739808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fa5d8e08971dcd499641af6019c2ac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiMessage: 
+  highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
+  canInteractMultipleTimes: 1
+  timesInteracted: 0
+  electricBallPlayer: {fileID: 0}
+  electricPlayerStart: {fileID: 0}
 --- !u!1 &4717056903287649521
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +392,8 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 8.526513e-14
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 65043533398603134, guid: f1754e7bc1938a64a987b1f5fa38743a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
