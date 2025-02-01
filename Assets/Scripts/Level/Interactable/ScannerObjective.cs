@@ -10,6 +10,7 @@ namespace BigModeGameJam.Level.Interactables
         [SerializeField] private GameObject objectToAnimate;
         [SerializeField] private Animator animator;
         [SerializeField] private MeshRenderer scannerLight;
+        public InteractablePowerBox powerBox;
 
         public override void Interact(GameObject interacter)
         {
@@ -23,7 +24,7 @@ namespace BigModeGameJam.Level.Interactables
                 return;
             }
 
-            if (!canInteractMultipleTimes && timesInteracted > 0)
+            if (!canInteractMultipleTimes && timesInteracted > 0 || !powerBox.IsComplete)
             {
                 Unhover();
                 return;
