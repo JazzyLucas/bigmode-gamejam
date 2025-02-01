@@ -7,27 +7,49 @@ namespace BigModeGameJam
 {
     public class AudioManager : MonoBehaviour
     {
-        private System.Collections.Generic.List<EventInstance> eventInstances;
+        [Header("Volume")]
+        [UnityEngine.Range(0, 1)]
+        public float masterVolume = 1;
+        [UnityEngine.Range(0, 1)]
+        public float musicVolume = 1;
+        [UnityEngine.Range(0, 1)]
+        public float SFXVolume = 1;
+        [UnityEngine.Range(0, 1)]
 
+        private Bus masterBus;
+        private Bus musicBus;
+        private Bus sfxBus;
+
+        private System.Collections.Generic.List<EventInstance> eventInstances;
         private System.Collections.Generic.List<StudioEventEmitter> eventEmitters;
-        
+
         public static AudioManager instance { get; private set; }
 
         private void Awake()
         {
             if (instance != null)
             {
-            Debug.LogError("Found more than one Audio Manager in the scene.");
+                Debug.LogError("Found more than one Audio Manager in the scene.");
             }
             instance = this;
 
             eventInstances = new System.Collections.Generic.List<EventInstance>();
             eventEmitters = new System.Collections.Generic.List<StudioEventEmitter>();
 
+            masterBus = RuntimeManager.GetBus("bus:/");
+            musicBus = RuntimeManager.GetBus("bus:/Music");
+            sfxBus = RuntimeManager.GetBus("bus:/SFX");
+        }
+
+        private void Update()
+        {
+            masterBus.setVolume(masterVolume);
+            musicBus.setVolume(musicVolume);
+            sfxBus.setVolume(SFXVolume);
         }
 
         public void PlayOneShot(EventReference sound, Vector3 position)
-        { 
+        {
             RuntimeManager.PlayOneShot(sound);
         }
         public EventInstance CreateEventInstance(EventReference eventReference)
@@ -45,7 +67,7 @@ namespace BigModeGameJam
         }
 
         private void CleanUp()
-        { 
+        {
             //stop and release any created instances
             foreach (EventInstance eventInstance in eventInstances)
             {
@@ -58,6 +80,6 @@ namespace BigModeGameJam
                 emitter.Stop();
             }
         }
-    
     }
 }
+    
