@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2201569528056341248}
   - component: {fileID: 2167311532007293052}
   - component: {fileID: 4316534850878696893}
+  - component: {fileID: 6928883300955040922}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -92,3 +93,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f8208059d932b10b89b42d95b5ba94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6928883300955040922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698672173528982304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac04b459d2ab1d41a5f2c20e6f9583c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: GameSave.json
