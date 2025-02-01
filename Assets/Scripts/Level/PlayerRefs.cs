@@ -76,12 +76,16 @@ namespace BigModeGameJam.Level
                         if(playerTo)
                             humanPlayer.transform.position = playerTo.position;
                         humanPlayer.gameObject.SetActive(true);
+                        ElectricHUD.instance.gameObject.SetActive(false);
+                        curPlayer = humanPlayer;
                         electricPlayer.gameObject.SetActive(false);
                         break;
                     case PlayerMovement.PlayerType.Electric:
                         if(playerTo)
                             electricPlayer.transform.position = playerTo.position;
                         electricPlayer.gameObject.SetActive(true);
+                        ElectricHUD.instance.gameObject.SetActive(true);
+                        curPlayer = electricPlayer;
                         humanPlayer.gameObject.SetActive(false);
                         break;
                 }
@@ -112,6 +116,7 @@ namespace BigModeGameJam.Level
                 electricPlayer && electricPlayer.gameObject.activeInHierarchy)
             {
                 electricPlayer.gameObject.SetActive(false);
+                curPlayer = humanPlayer;
             }
         }
 
