@@ -24,6 +24,7 @@ namespace BigModeGameJam.Level
         {
             FadeEffect.StartAnimation(FadeEffect.Animation.Transition, Color.white, TRANSITION_PERIOD);
             instance.StartCoroutine(PlayerTransitionCoroutine());
+            PlayerRefs.curPlayer.lookToInteract.enabled = false;
             IEnumerator PlayerTransitionCoroutine()
             {
                 yield return new WaitForSeconds(TRANSITION_PERIOD / 2);
@@ -37,6 +38,7 @@ namespace BigModeGameJam.Level
                         PlayerRefs.curPlayer = PlayerRefs.humanPlayer;
                         PlayerRefs.electricPlayer.gameObject.SetActive(false);
                         EventInstance.setParameterByName("ElectricTrans", 0);
+                        PlayerRefs.humanPlayer.lookToInteract.enabled = true;
                         break;
                     case PlayerMovement.PlayerType.Electric:
                         if (playerTo)
@@ -50,6 +52,7 @@ namespace BigModeGameJam.Level
                         PlayerRefs.curPlayer = PlayerRefs.electricPlayer;
                         PlayerRefs.humanPlayer.gameObject.SetActive(false);
                         EventInstance.setParameterByName("ElectricTrans", 1);
+                        PlayerRefs.electricPlayer.lookToInteract.enabled = true;
                         break;
                 }
             }

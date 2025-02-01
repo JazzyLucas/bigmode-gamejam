@@ -270,7 +270,6 @@ MonoBehaviour:
   lookToInteract: {fileID: 1494161179466764201}
   playerHealth: {fileID: 3115576070251829243}
   playerModel: {fileID: 4425874514383345567}
-  playerControls: {fileID: 3203859292892936917}
   checkpoint: {fileID: 0}
   electricMode: {fileID: 0}
   dash: {fileID: 0}
@@ -290,7 +289,7 @@ MonoBehaviour:
   playerType: 1
   acceleration: 3
   maxSpeed: 5
-  jumpVelocity: 3
+  jumpVelocity: 4
   airFriction: 10
   groundFriction: 15
   gravity: 9.8

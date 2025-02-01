@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 3320634}
   - component: {fileID: 2369120}
   - component: {fileID: 64583076319660614}
+  - component: {fileID: 2536369770576249257}
   m_Layer: 0
   m_Name: SM_Veh_Car_Van_01
   m_TagString: Untagged
@@ -314,6 +315,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 97982d8a36ff16f4a88f291ef2443e49, type: 3}
+--- !u!114 &2536369770576249257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30075c0f2b7d1d0597e7bebfe53f429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiMessage: 
+  highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
+  canInteractMultipleTimes: 0
+  timesInteracted: 0
+  pickupType: 2
 --- !u!1 &148594
 GameObject:
   m_ObjectHideFlags: 0
