@@ -58,6 +58,18 @@ namespace BigModeGameJam.Level
             curCam = firstPersonCam.gameObject;
         }
 
+        public void ToggleCam()
+        {
+            if(firstPersonCam.gameObject.activeInHierarchy)
+            {
+                ThirdPerson();
+            }
+            else
+            {
+                FirstPerson();
+            }
+        }
+
         /// <summary>
         /// Transition to the specified player
         /// </summary>
