@@ -14,14 +14,15 @@ namespace BigModeGameJam
 
         private void OnTriggerStay(Collider other)
         {
-            if (chargeValue != 100)
+            if (chargeValue < 100)
             {
-                chargeValue++;
+                // Made framerate independent. - Jay
+                chargeValue += Time.deltaTime * 60;
             }
             else
             {
-                player.SetActive(true);
                 electricBallPlayer.SetActive(false);
+                PlayerRefs.PlayerTransition(Level.Controls.PlayerMovement.PlayerType.Human);
 
                 InteractablePowerBox ipb = powerBox.GetComponent<InteractablePowerBox>();
                 ipb.IsComplete = true;

@@ -138,7 +138,7 @@ namespace BigModeGameJam.Level
             curPlayer = this;
         }
 
-        private void OnEnabled()
+        private void OnEnable()
         {
             curPlayer = this;
             curCam = firstPersonCam.gameObject;

@@ -10,7 +10,6 @@ namespace BigModeGameJam.Level.Interactables
         public override void Interact(GameObject interacter)
         {
             electricBall.transform.position = startPos;
-            PlayerRefs.curPlayer.gameObject.SetActive(false);
             electricBall.SetActive(true);
         }
 
