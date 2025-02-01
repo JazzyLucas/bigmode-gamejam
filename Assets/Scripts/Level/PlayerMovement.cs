@@ -18,6 +18,10 @@ namespace BigModeGameJam.Level.Controls
         /// </summary>
         private const float GROUND_LENIENCE = 1.25f;
         /// <summary>
+        /// Uncrouch animation will temporarily hold until there is this amount of clearance.
+        /// </summary>
+        private const float CROUCH_HEADROOM = 0.25f;
+        /// <summary>
         /// Movement attributes for human character
         /// </summary>
         private const float HUMAN_ACC = 8, HUMAN_SPD = 12, HUMAN_JUMP = 10, HUMAN_AIR_FRIC = 10,
@@ -103,8 +107,9 @@ namespace BigModeGameJam.Level.Controls
         /// <returns>True if entity is grounded. False otherwise.</returns>
         public bool IsGrounded()
         {
-            float distToBottom = collider.bounds.extents.y * GROUND_LENIENCE;
-            if (Physics.Raycast(transform.position, -Vector3.up, distToBottom))
+            float distToBottom = collider.bounds.extents.y * GROUND_LENIENCE - collider.bounds.extents.x;
+            if (Physics.SphereCast(transform.position, collider.bounds.extents.x, -transform.up, 
+                    out RaycastHit hit, distToBottom))
             {
                 if (dash != null) dash.Replenish();
                 return true;
@@ -278,11 +283,17 @@ namespace BigModeGameJam.Level.Controls
 
         private IEnumerator CrouchAnimation(float targetHeight, float targetCameraHeight, float period)
         {
-            float time = 0;
             float colliderRate = Mathf.Abs((targetHeight - collider.height) / period);
             float cameraRate = Mathf.Abs((targetCameraHeight - camera.transform.localPosition.y) / period);
-            while (time < period)
+            while (collider.height != targetHeight)
             {
+                yield return new WaitForEndOfFrame();
+                if(targetHeight > collider.height && 
+                    Physics.SphereCast(transform.position, collider.bounds.extents.x, transform.up, 
+                    out RaycastHit hit, collider.bounds.extents.y + CROUCH_HEADROOM - collider.bounds.extents.x))
+                {
+                    continue;
+                }
                 collider.height = Mathf.MoveTowards(collider.height, targetHeight, colliderRate * Time.deltaTime);
                 camera.transform.localPosition = new Vector3(
                     camera.transform.localPosition.x,
@@ -299,10 +310,7 @@ namespace BigModeGameJam.Level.Controls
                     }
                     transform.Translate(translate);
                 }
-                yield return new WaitForEndOfFrame();
-                time += Time.deltaTime;
             }
-            collider.height = targetHeight;
             camera.transform.localPosition = new Vector3(
                     camera.transform.localPosition.x,
                     targetCameraHeight,
