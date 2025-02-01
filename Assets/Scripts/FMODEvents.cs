@@ -41,6 +41,12 @@ namespace BigModeGameJam.Core
 
         [field: Header("Death")]
         [field: SerializeField] public EventReference Death { get; private set; }
+
+        [field: Header("Food")]
+        [field: SerializeField] public EventReference Food { get; private set; }
+
+        [field: Header("Money")]
+        [field: SerializeField] public EventReference Money { get; private set; }
         public static FMODEvents instance { get; private set; }
 
         private void Awake()

@@ -18,13 +18,13 @@ namespace BigModeGameJam.Level.Interactables
         [SerializeField] protected int timesInteracted;
         public void Hover()
         {
-            mesh.materials = new Material[] {mesh.material, highlightMaterial};
+            mesh.materials = new Material[] { mesh.material, highlightMaterial };
         }
 
         public void Unhover()
         {
             // Remove added materials
-            mesh.materials = new Material[] {mesh.material};
+            mesh.materials = new Material[] { mesh.material };
         }
         /// <summary>
         /// Unimplemented interaction logic
@@ -38,11 +38,36 @@ namespace BigModeGameJam.Level.Interactables
             timesInteracted++;
             SendToLevelManger();
             Debug.Log($"{gameObject.name} interaction has happened");
+            Pickup();
         }
 
         protected void Awake()
         {
             mesh = GetComponent<MeshRenderer>();
+        }
+        public enum PickupType
+        {
+            Food,
+            Money,
+            Item
+        }
+
+        [SerializeField]
+        private PickupType pickupType;
+        private void Pickup()
+        {
+            if (pickupType == PickupType.Food)
+            {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.Food, this.transform.position);
+            }
+            else if (pickupType == PickupType.Money)
+            {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.Money, this.transform.position);
+            }
+            else if (pickupType == PickupType.Item)
+            {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.Item, this.transform.position);
+            }
         }
     }
 }
