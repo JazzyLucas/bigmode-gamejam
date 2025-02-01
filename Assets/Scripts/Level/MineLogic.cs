@@ -20,6 +20,7 @@ namespace BigModeGameJam.Level
                 if (player != null && !player.isDead)
                 {
                     player.Die();
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.Death, this.transform.position);
                 }
             }
         }

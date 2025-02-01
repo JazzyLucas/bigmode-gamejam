@@ -1,4 +1,5 @@
 using BigModeGameJam.Level;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,21 +9,29 @@ namespace BigModeGameJam
     {
         public GameObject player;
         public GameObject electricBallPlayer;
+        public GameObject particleEffects;
         public GameObject powerBox;
+        public float scaleUp = 10;
         public float chargeValue = 0;
         public List<GameObject> lasersToEnable;
+        private Coroutine coroutine = null;
 
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (chargeValue < 100)
+            if(coroutine != null) return;
+            coroutine = StartCoroutine(EndAnimation());
+            IEnumerator EndAnimation()
             {
-                // Made framerate independent. - Jay
-                chargeValue += Time.deltaTime * 60;
-            }
-            else
-            {
+                PlayerTransitioner.Transition(Level.Controls.PlayerMovement.PlayerType.Human);
+                float time = 0;
+                while(time < PlayerTransitioner.TRANSITION_PERIOD / 2)
+                {
+                    yield return new WaitForEndOfFrame();
+                    particleEffects.transform.localScale += new Vector3(scaleUp, scaleUp, scaleUp) * Time.deltaTime;
+                    PlayerRefs.electricPlayer.playerHealth.RegenHealth(50 * Time.deltaTime);
+                    time += Time.deltaTime;
+                }
                 electricBallPlayer.SetActive(false);
-                PlayerRefs.PlayerTransition(Level.Controls.PlayerMovement.PlayerType.Human);
 
                 InteractablePowerBox ipb = powerBox.GetComponent<InteractablePowerBox>();
                 ipb.IsComplete = true;

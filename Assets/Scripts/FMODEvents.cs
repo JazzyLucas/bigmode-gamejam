@@ -38,6 +38,9 @@ namespace BigModeGameJam.Core
 
         [field: Header("Test")]
         [field: SerializeField] public EventReference Test { get; private set; }
+
+        [field: Header("Death")]
+        [field: SerializeField] public EventReference Death { get; private set; }
         public static FMODEvents instance { get; private set; }
 
         private void Awake()

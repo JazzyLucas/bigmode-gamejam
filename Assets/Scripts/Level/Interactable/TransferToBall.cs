@@ -11,6 +11,7 @@ namespace BigModeGameJam.Level.Interactables
         {
             electricBall.transform.position = startPos;
             electricBall.SetActive(true);
+            interacter.SetActive(false);
         }
 
         private void Start()

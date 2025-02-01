@@ -16,7 +16,7 @@ namespace BigModeGameJam.Level
                 return;
             }
 
-            PlayerRefs.PlayerTransition(Controls.PlayerMovement.PlayerType.Electric, electricPlayerStart);
+            PlayerTransitioner.Transition(Controls.PlayerMovement.PlayerType.Electric, electricPlayerStart);
 
             timesInteracted++;
             SendToLevelManger();
