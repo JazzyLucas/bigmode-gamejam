@@ -35,6 +35,9 @@ namespace BigModeGameJam.Core
 
         [field: Header("LevelComplete")]
         [field: SerializeField] public EventReference LevelComplete { get; private set; }
+
+        [field: Header("Test")]
+        [field: SerializeField] public EventReference Test { get; private set; }
         public static FMODEvents instance { get; private set; }
 
         private void Awake()

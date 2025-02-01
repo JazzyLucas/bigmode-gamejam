@@ -40,15 +40,7 @@ namespace BigModeGameJam.Level
         {
             instance = this;
             initWidth = healthFill.rect.width;
-        }
-
-        private void Start()
-        {
-            // Hide if human
-            if(PlayerRefs.curPlayer && PlayerRefs.curPlayer.playerType == PlayerMovement.PlayerType.Human)
-            {
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(false);
         }
     }
 }

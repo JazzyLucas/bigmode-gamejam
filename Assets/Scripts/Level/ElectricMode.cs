@@ -78,7 +78,7 @@ namespace BigModeGameJam.Level.Controls
             transform.forward = new Vector3(tempUp.x, 0, tempUp.z); // Look away from surface
             playerMovement.enabled = true;
             // Go back to first person, re-enable third person camera logic
-            playerRefs.FirstPerson();
+            playerRefs.ToggleCam();
             tpCam.enabled = true;
             fpCam.transform.localRotation = Quaternion.Euler(Vector3.zero); // Look straight ahead
             // Unlock interactable - back to normal
@@ -97,6 +97,11 @@ namespace BigModeGameJam.Level.Controls
 
         public void Move(Vector3 dir)
         {
+            // Invert x input when in first person. it makes sense trust
+            if(fpCam.gameObject.activeInHierarchy)
+            {
+                dir = new Vector3(-dir.x, dir.y, dir.z);
+            }
             transform.position += moveSpeed * Time.deltaTime * 
                 Vector3.ProjectOnPlane(CamRelativeDirection(dir), hit.normal);
             if(LeftConductive()) 

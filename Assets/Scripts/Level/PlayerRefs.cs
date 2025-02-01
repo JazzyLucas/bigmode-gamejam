@@ -58,6 +58,18 @@ namespace BigModeGameJam.Level
             curCam = firstPersonCam.gameObject;
         }
 
+        public void ToggleCam()
+        {
+            if(firstPersonCam.gameObject.activeInHierarchy)
+            {
+                ThirdPerson();
+            }
+            else
+            {
+                FirstPerson();
+            }
+        }
+
         /// <summary>
         /// Transition to the specified player
         /// </summary>
@@ -82,7 +94,10 @@ namespace BigModeGameJam.Level
                         break;
                     case PlayerMovement.PlayerType.Electric:
                         if(playerTo)
+                        {
                             electricPlayer.transform.position = playerTo.position;
+                            electricPlayer.checkpoint = playerTo;
+                        }
                         electricPlayer.gameObject.SetActive(true);
                         ElectricHUD.instance.gameObject.SetActive(true);
                         curPlayer = electricPlayer;
@@ -110,14 +125,16 @@ namespace BigModeGameJam.Level
         /// <summary>
         /// Disables non-primary player (electric) if both players are active
         /// </summary>
-        private static void CheckMultipleInstances()
+        private void CheckMultipleInstances()
         {
             if(humanPlayer && humanPlayer.gameObject.activeInHierarchy && 
                 electricPlayer && electricPlayer.gameObject.activeInHierarchy)
             {
                 electricPlayer.gameObject.SetActive(false);
                 curPlayer = humanPlayer;
+                return;
             }
+            curPlayer = this;
         }
 
         private void OnEnabled()

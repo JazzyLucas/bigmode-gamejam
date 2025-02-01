@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace BigModeGameJam.Core
 {
-    public static class SceneChange
+    public class SceneChange : MonoBehaviour
     {
         public static void LoadNewScene(string sceneToLoad)
         {

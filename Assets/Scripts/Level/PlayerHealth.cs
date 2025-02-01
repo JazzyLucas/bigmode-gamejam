@@ -43,11 +43,13 @@ namespace BigModeGameJam.Level
             playerRefs.playerMovement.enabled = false;
             playerRefs.lookToInteract.enabled = false;
             playerRefs.rigidbody.linearVelocity = Vector3.zero;
-            if(playerRefs.electricMode && playerRefs.electricMode.enabled) playerRefs.electricMode.Exit();
-            // Transition to human player if you can
-            if(playerRefs.playerType == PlayerMovement.PlayerType.Electric && PlayerRefs.humanPlayer)
+            // Handle electric death
+            if(playerRefs.electricMode)
             {
-                PlayerRefs.PlayerTransition(PlayerMovement.PlayerType.Human);
+                if(playerRefs.electricMode.enabled)
+                    playerRefs.electricMode.Exit();
+                if(PlayerRefs.humanPlayer)
+                    PlayerRefs.PlayerTransition(PlayerMovement.PlayerType.Human);
                 return;
             }
             FadeEffect.StartAnimation(FadeEffect.Animation.Transition, Color.black, RESPAWN_PERIOD);
@@ -57,8 +59,8 @@ namespace BigModeGameJam.Level
             {
                 // Wait until peak of effect
                 yield return new WaitForSeconds(RESPAWN_PERIOD / 2);
-                transform.position = PlayerRefs.electricPlayer.checkpoint != null
-                 ? PlayerRefs.electricPlayer.checkpoint.position : Vector3.zero;
+                transform.position = playerRefs.checkpoint != null
+                    ? playerRefs.checkpoint.position : Vector3.zero;
                 playerRefs.playerMovement.enabled = true;
                 playerRefs.lookToInteract.enabled = true;
             }
