@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Recharge
-  m_Shader: {fileID: -6465566751694194690, guid: 98826cd34dc58ffdaabd83948360706f, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7619c79e82be7f6448e4eab9b23aa1f0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

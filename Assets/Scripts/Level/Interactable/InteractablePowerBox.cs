@@ -11,7 +11,7 @@ namespace BigModeGameJam.Level
 
         public override void Interact(GameObject interacter)
         {
-            if (!canInteractMultipleTimes && timesInteracted > 0)
+            if (!canInteractMultipleTimes && timesInteracted > 0 || IsComplete)
             {
                 Unhover();
                 return;

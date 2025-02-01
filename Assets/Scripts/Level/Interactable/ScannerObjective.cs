@@ -1,14 +1,14 @@
 using UnityEngine;
 using BigModeGameJam.Level.Interactables;
 using BigModeGameJam.UI;
+using System.Collections.Generic;
 
 namespace BigModeGameJam.Level.Interactables
 {
     public class ScannerObjective : Interactable
     {
         [SerializeField] private bool keycardObtained = false;
-        [SerializeField] private GameObject objectToAnimate;
-        [SerializeField] private Animator animator;
+        public List<Animator> animator;
         [SerializeField] private MeshRenderer scannerLight;
         public InteractablePowerBox powerBox;
 
@@ -42,10 +42,12 @@ namespace BigModeGameJam.Level.Interactables
             }
 
             // Enable animation
-            if (objectToAnimate != null && animator != null)
+            if (animator != null)
             {
-                objectToAnimate.SetActive(true);
-                animator.enabled = true;
+                foreach (Animator animator in animator)
+                {
+                    animator.enabled = true;
+                }
             }
 
             timesInteracted++;
