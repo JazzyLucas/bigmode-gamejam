@@ -1,6 +1,8 @@
 using System.Collections;
 using BigModeGameJam.Core;
+using BigModeGameJam.Level.Controls;
 using UnityEngine;
+using static BigModeGameJam.Level.Controls.PlayerMovement;
 
 namespace BigModeGameJam.Level
 {
@@ -22,7 +24,9 @@ namespace BigModeGameJam.Level
                 if (player != null && !player.isDead)
                 {
                     player.Die();
-                    AudioManager.instance.PlayOneShot(FMODEvents.instance.Death, this.transform.position);
+                    if (collider.GetComponent<PlayerMovement>().playerType == PlayerType.Human)
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.Death, this.transform.position);
+                    else AudioManager.instance.PlayOneShot(FMODEvents.instance.ElectricDeath, this.transform.position);
                 }
             }
 

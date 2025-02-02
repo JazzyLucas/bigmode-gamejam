@@ -50,6 +50,9 @@ namespace BigModeGameJam.Core
 
         [field: Header("ElectricMove")]
         [field: SerializeField] public EventReference ElectricMove { get; private set; }
+
+        [field: Header("ElectricDeath")]
+        [field: SerializeField] public EventReference ElectricDeath { get; private set; }
         public static FMODEvents instance { get; private set; }
 
         private void Awake()

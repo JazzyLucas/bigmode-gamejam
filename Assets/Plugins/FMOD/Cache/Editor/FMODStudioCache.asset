@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: fmod/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638739544377604782
+  lastModified: 638739531979485143
   FileSizes: []
   Exists: 1
 --- !u!114 &-6730708463330372014
@@ -93,12 +93,12 @@ MonoBehaviour:
   Banks:
   - {fileID: -2218682167560535347}
   IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
+  Is3D: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3392
+  Length: 1986
 --- !u!114 &-5065492428033858485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
   Path: fmod/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638740104818447399
+  lastModified: 638740365190420638
   FileSizes: []
   Exists: 1
 --- !u!114 &-2270248294159589527
@@ -240,7 +240,7 @@ MonoBehaviour:
   Path: fmod/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638740242766692679
+  lastModified: 638740365190453639
   FileSizes: []
   Exists: 1
 --- !u!114 &-1087773200792479536
@@ -386,13 +386,14 @@ MonoBehaviour:
   - {fileID: 5029087469833388665}
   - {fileID: 2515639678479700200}
   - {fileID: -1087773200792479536}
+  - {fileID: 3999608291982491079}
   EditorParameters:
   - {fileID: -625250032961730806}
   MasterBanks:
   - {fileID: -3274170253632912852}
   StringsBanks:
   - {fileID: 548082194791309392}
-  cacheTime: 638740242766692679
+  cacheTime: 638740365190453639
   cacheVersion: 131622
 --- !u!114 &548082194791309392
 MonoBehaviour:
@@ -409,10 +410,10 @@ MonoBehaviour:
   Path: fmod/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638740242766621613
+  lastModified: 638740365190430689
   FileSizes:
   - Name: 
-    Value: 1736
+    Value: 1784
   Exists: 1
 --- !u!114 &745774943050611615
 MonoBehaviour:
@@ -548,6 +549,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 964
+--- !u!114 &3999608291982491079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ElectricDeath
+  m_EditorClassIdentifier: 
+  Path: event:/ElectricDeath
+  Guid:
+    Data1: 2125211912
+    Data2: 1130852135
+    Data3: 1869877648
+    Data4: -1711399202
+  Banks:
+  - {fileID: -2218682167560535347}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1117
 --- !u!114 &4447644597626455028
 MonoBehaviour:
   m_ObjectHideFlags: 0
