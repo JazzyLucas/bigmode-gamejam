@@ -13,6 +13,7 @@ namespace BigModeGameJam
         public float scaleUp = 10;
         public float chargeValue = 0;
         public List<GameObject> lasersToEnable;
+        public GameObject lightToEnable;
         private Coroutine coroutine = null;
 
         private void OnTriggerEnter(Collider other)
@@ -35,6 +36,7 @@ namespace BigModeGameJam
                 InteractablePowerBox ipb = powerBox.GetComponent<InteractablePowerBox>();
                 ipb.IsComplete = true;
                 powerBox.GetComponent<BoxCollider>().enabled = false;
+                lightToEnable.gameObject.SetActive(true);
                 if (lasersToEnable.Count > 0)
                 {
                     foreach (GameObject l in lasersToEnable)
