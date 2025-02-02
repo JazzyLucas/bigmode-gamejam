@@ -1,3 +1,4 @@
+using BigModeGameJam.Level;
 using UnityEngine;
 
 namespace BigModeGameJam.Core
@@ -9,6 +10,7 @@ namespace BigModeGameJam.Core
     {
         public void StartGame()
         {
+            PlayerTransitioner.Transition(Level.Controls.PlayerMovement.PlayerType.Human);
         }
     }
 }
