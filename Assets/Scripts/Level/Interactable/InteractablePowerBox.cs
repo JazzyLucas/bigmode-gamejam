@@ -15,6 +15,7 @@ namespace BigModeGameJam.Level
                 Unhover();
                 return;
             }
+            PlayerRefs.electricPlayer.fpAnimator.SetBool("Activate", true);
 
             PlayerTransitioner.Transition(Controls.PlayerMovement.PlayerType.Electric, electricPlayerStart);
 
