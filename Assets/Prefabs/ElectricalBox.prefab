@@ -246,7 +246,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6882215457316258262, guid: 6958372c82470484ba829eff5e0aa6b6, type: 2}
+  - {fileID: -8532465838990676941, guid: 6958372c82470484ba829eff5e0aa6b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_text: FIX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6958372c82470484ba829eff5e0aa6b6, type: 2}
-  m_sharedMaterial: {fileID: -6882215457316258262, guid: 6958372c82470484ba829eff5e0aa6b6, type: 2}
+  m_sharedMaterial: {fileID: -8532465838990676941, guid: 6958372c82470484ba829eff5e0aa6b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1674,7 +1674,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1492447135138992, guid: 68bad1cd05d95b94699b8b61b594f053, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68bad1cd05d95b94699b8b61b594f053, type: 3}
