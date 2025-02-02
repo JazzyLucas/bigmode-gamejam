@@ -53,7 +53,7 @@ namespace BigModeGameJam.Level.Interactables
 
             timesInteracted++;
             SendToLevelManger();
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.Test, this.transform.position);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Test2, this.transform.position);
         }
 
         public void SetKeycardObtained(bool obtained)

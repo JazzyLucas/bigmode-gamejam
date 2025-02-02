@@ -69,9 +69,36 @@ MonoBehaviour:
   Path: fmod/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638740584657102277
+  lastModified: 638740485476621120
   FileSizes: []
   Exists: 1
+--- !u!114 &-7295542242113150349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Test2
+  m_EditorClassIdentifier: 
+  Path: event:/Test2
+  Guid:
+    Data1: -1817828310
+    Data2: 1132807489
+    Data3: 2030171558
+    Data4: 823716971
+  Banks:
+  - {fileID: -2218682167560535347}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 10000
+  Length: 0
 --- !u!114 &-6730708463330372014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +195,7 @@ MonoBehaviour:
   Path: fmod/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638740441252253444
+  lastModified: 638740545204691162
   FileSizes: []
   Exists: 1
 --- !u!114 &-2893246010301484828
@@ -213,7 +240,7 @@ MonoBehaviour:
   Path: fmod/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638740584657122277
+  lastModified: 638740559007903691
   FileSizes: []
   Exists: 1
 --- !u!114 &-1087773200792479536
@@ -332,13 +359,14 @@ MonoBehaviour:
   - {fileID: 3999608291982491079}
   - {fileID: -5626830089685348723}
   - {fileID: -2893246010301484828}
+  - {fileID: -7295542242113150349}
   EditorParameters:
   - {fileID: -625250032961730806}
   MasterBanks:
   - {fileID: -3274170253632912852}
   StringsBanks:
   - {fileID: 548082194791309392}
-  cacheTime: 638740584657122277
+  cacheTime: 638740559007903691
   cacheVersion: 131622
 --- !u!114 &548082194791309392
 MonoBehaviour:
@@ -355,10 +383,10 @@ MonoBehaviour:
   Path: fmod/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638740584657042277
+  lastModified: 638740545204711162
   FileSizes:
   - Name: 
-    Value: 1750
+    Value: 1794
   Exists: 1
 --- !u!114 &745774943050611615
 MonoBehaviour:

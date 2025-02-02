@@ -53,6 +53,9 @@ namespace BigModeGameJam.Core
 
         [field: Header("Dash")]
         [field: SerializeField] public EventReference Dash { get; private set; }
+
+        [field: Header("Test2")]
+        [field: SerializeField] public EventReference Test2 { get; private set; }
         public static FMODEvents instance { get; private set; }
 
         private void Awake()
