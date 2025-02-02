@@ -24,9 +24,6 @@ namespace BigModeGameJam.Core
         [field: Header("Boom")]
         [field: SerializeField] public EventReference Boom { get; private set; }
 
-        [field: Header("LevelOne")]
-        [field: SerializeField] public EventReference LevelOne { get; private set; }
-
         [field: Header("LevelTwo")]
         [field: SerializeField] public EventReference LevelTwo { get; private set; }
 
