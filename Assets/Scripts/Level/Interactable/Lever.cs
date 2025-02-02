@@ -7,6 +7,7 @@ namespace BigModeGameJam.Level
     {
         [SerializeField] public bool isOn = false;
         [SerializeField] private bool breakerSwitch = false;
+        [SerializeField] private InteractablePowerBox ipb;
         public override void Interact(GameObject interacter)
         {
             if(!canInteractMultipleTimes && timesInteracted > 0)
@@ -19,6 +20,12 @@ namespace BigModeGameJam.Level
             UpdateVisual();
             timesInteracted++;
             SendToLevelManger();
+
+            if(breakerSwitch)
+            {
+                ipb.IsComplete = true;
+                ipb.GetComponent<BoxCollider>().enabled = false;
+            }
         }
 
         new private void Awake()
