@@ -17,7 +17,7 @@ namespace BigModeGameJam.Level.Controls
         private InputAction lookAction, moveAction, jumpAction, dashAction, crouchAction, toggleCamAction, interactAction, pauseAction;
         private PlayerRefs playerRefs;
 
-        static bool menuIsUp;
+        public static bool menuIsUp;
 
         private void Awake()
         {
@@ -31,7 +31,11 @@ namespace BigModeGameJam.Level.Controls
             toggleCamAction = actions.FindAction("ToggleView");
             interactAction = actions.FindAction("Interact");
             pauseAction = actions.FindAction("Pause");
+            OnEnable();
+        }
 
+        private void OnEnable()
+        {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -108,7 +112,9 @@ namespace BigModeGameJam.Level.Controls
                 playerRefs.lookToInteract.Interact();
 
             // Hold to change perspective
-            if(toggleCamAction.WasPerformedThisFrame() || toggleCamAction.WasReleasedThisFrame())
+            // REMOVED THIRD PERSON FUNCTIONALITY WHEN NOT CONDUCTING
+            if(playerRefs.electricMode && playerRefs.electricMode.enabled &&
+                (toggleCamAction.WasPerformedThisFrame() || toggleCamAction.WasReleasedThisFrame()))
                 ToggleCam();
         }
     }

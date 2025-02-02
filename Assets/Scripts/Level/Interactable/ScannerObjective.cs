@@ -2,6 +2,8 @@ using UnityEngine;
 using BigModeGameJam.Level.Interactables;
 using BigModeGameJam.UI;
 using System.Collections.Generic;
+using BigModeGameJam.Core;
+using Unity.VisualScripting.YamlDotNet.Core;
 
 namespace BigModeGameJam.Level.Interactables
 {
@@ -52,6 +54,8 @@ namespace BigModeGameJam.Level.Interactables
 
             timesInteracted++;
             SendToLevelManger();
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Test2, this.transform.position);
+            gameObject.GetComponent<ScannerObjective>().canInteractMultipleTimes = false;
         }
 
         public void SetKeycardObtained(bool obtained)

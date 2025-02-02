@@ -127,7 +127,7 @@ MonoBehaviour:
   highlightMaterial: {fileID: 2100000, guid: ec960e99cc9573c4f9cd32754466c38c, type: 2}
   canInteractMultipleTimes: 0
   timesInteracted: 0
-  pickupType: 0
+  pickupType: 2
 --- !u!1 &4099370696096521910
 GameObject:
   m_ObjectHideFlags: 0

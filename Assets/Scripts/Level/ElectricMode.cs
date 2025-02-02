@@ -83,8 +83,7 @@ namespace BigModeGameJam.Level.Controls
             transform.up = Vector3.up;
             transform.forward = new Vector3(tempUp.x, 0, tempUp.z); // Look away from surface
             playerMovement.enabled = true;
-            // Go back to first person, re-enable third person camera logic
-            playerRefs.ToggleCam();
+            playerRefs.FirstPerson();
             tpCam.enabled = true;
             fpCam.transform.localRotation = Quaternion.Euler(Vector3.zero); // Look straight ahead
             // Unlock interactable - back to normal
