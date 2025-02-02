@@ -1,3 +1,4 @@
+using System.Collections;
 using BigModeGameJam.Core;
 using UnityEngine;
 
@@ -22,6 +23,12 @@ namespace BigModeGameJam.Level
                     player.Die();
                     AudioManager.instance.PlayOneShot(FMODEvents.instance.Death, this.transform.position);
                 }
+            }
+
+            IEnumerator WaitAndDestroy()
+            {
+                yield return new WaitForSeconds(1);
+                Destroy(this.gameObject);
             }
         }
     }

@@ -291,7 +291,7 @@ MonoBehaviour:
   playerType: 1
   acceleration: 3
   maxSpeed: 5
-  jumpVelocity: 3
+  jumpVelocity: 4
   airFriction: 10
   groundFriction: 15
   gravity: 9.8

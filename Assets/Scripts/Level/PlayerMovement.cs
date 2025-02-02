@@ -16,7 +16,7 @@ namespace BigModeGameJam.Level.Controls
         /// <summary>
         /// Multiplier to collider extents to detect ground.
         /// </summary>
-        private const float GROUND_LENIENCE = 1.25f;
+        private const float GROUND_LENIENCE = 1.05f;
         /// <summary>
         /// Uncrouch animation will temporarily hold until there is this amount of clearance.
         /// </summary>
