@@ -3,7 +3,6 @@ using BigModeGameJam.Level.Interactables;
 using BigModeGameJam.UI;
 using System.Collections.Generic;
 using BigModeGameJam.Core;
-using Unity.VisualScripting.YamlDotNet.Core;
 
 namespace BigModeGameJam.Level.Interactables
 {
