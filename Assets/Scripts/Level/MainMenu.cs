@@ -22,8 +22,9 @@ namespace BigModeGameJam.Core
             IEnumerator WaitAndDisable()
             {
                 yield return new WaitForSeconds(PlayerTransitioner.TRANSITION_PERIOD / 2);
-                gameObject.SetActive(false);
                 Crosshair.instance.gameObject.SetActive(true);
+                FadeEffect.StartAnimation(FadeEffect.Animation.FadeIn, Color.black, 1);
+                gameObject.SetActive(false);
             }
         }
 
@@ -45,6 +46,7 @@ namespace BigModeGameJam.Core
 
         public void BackToMain()
         {
+            FMODUnity.RuntimeManager.CreateInstance("event:/LevelTwo").stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
