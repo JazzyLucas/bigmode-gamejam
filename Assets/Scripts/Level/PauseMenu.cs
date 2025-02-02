@@ -20,7 +20,7 @@ namespace BigModeGameJam.Level
         {
             Time.timeScale = 0.0f;
             gameObject.SetActive(true);
-            moneyText.GetComponent<TextMeshProUGUI>().text = GameManager.GameData.Money.ToString();
+            moneyText.GetComponent<TextMeshProUGUI>().text = "$" + GameManager.GameData.Money.ToString();
         }
 
         internal void UnpauseGame()
