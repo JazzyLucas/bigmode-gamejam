@@ -108,7 +108,9 @@ namespace BigModeGameJam.Level.Controls
                 playerRefs.lookToInteract.Interact();
 
             // Hold to change perspective
-            if(toggleCamAction.WasPerformedThisFrame() || toggleCamAction.WasReleasedThisFrame())
+            // REMOVED THIRD PERSON FUNCTIONALITY WHEN NOT CONDUCTING
+            if(playerRefs.electricMode && playerRefs.electricMode.enabled &&
+                (toggleCamAction.WasPerformedThisFrame() || toggleCamAction.WasReleasedThisFrame()))
                 ToggleCam();
         }
     }
