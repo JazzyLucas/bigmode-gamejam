@@ -17,7 +17,7 @@ namespace BigModeGameJam.Level.Controls
         private InputAction lookAction, moveAction, jumpAction, dashAction, crouchAction, toggleCamAction, interactAction, pauseAction;
         private PlayerRefs playerRefs;
 
-        static bool menuIsUp;
+        public static bool menuIsUp;
 
         private void Awake()
         {

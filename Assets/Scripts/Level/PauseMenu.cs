@@ -2,12 +2,12 @@ using BigModeGameJam.Level.Manager;
 using UnityEngine;
 using TMPro;
 using BigModeGameJam.Core.Manager;
+using BigModeGameJam.Level.Controls;
 
 namespace BigModeGameJam.Level
 {
     public class PauseMenu : MonoBehaviour
     {
-        [SerializeField] GameObject allObjects;
         [SerializeField] GameObject moneyText;
 
         void Awake()
@@ -27,6 +27,12 @@ namespace BigModeGameJam.Level
         {
             Time.timeScale = 1.0f;
             gameObject.SetActive(false);
-        } 
+        }
+
+        public void UnpauseButton()
+        {
+            LevelManager.UnpauseGame(PlayerRefs.curPlayer.gameObject.activeInHierarchy);
+            PlayerControls.menuIsUp = false;
+        }
     }
 }

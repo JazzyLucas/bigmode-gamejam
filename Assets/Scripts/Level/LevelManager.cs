@@ -42,13 +42,15 @@ namespace BigModeGameJam.Level.Manager
         /// <summary>
         /// Unpauses game and turns off Pause Menu
         /// </summary>
-        public static void UnpauseGame()
+        public static void UnpauseGame(bool lockCursor = true)
         {
             if (!PauseMenu)
                 return;
-
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            if(lockCursor)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
 
             PauseMenu.UnpauseGame();
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using BigModeGameJam.Core.Manager;
 using BigModeGameJam.Level;
 using BigModeGameJam.Level.Manager;
+using BigModeGameJam.UI;
 using UnityEngine;
 
 namespace BigModeGameJam.Core
@@ -21,6 +22,7 @@ namespace BigModeGameJam.Core
             {
                 yield return new WaitForSeconds(PlayerTransitioner.TRANSITION_PERIOD / 2);
                 gameObject.SetActive(false);
+                Crosshair.instance.gameObject.SetActive(true);
             }
         }
 
@@ -51,6 +53,7 @@ namespace BigModeGameJam.Core
             Cursor.lockState = CursorLockMode.None;
             PlayerRefs.humanPlayer.gameObject.SetActive(false);
             PlayerRefs.electricPlayer.gameObject.SetActive(false);
+            Crosshair.instance.gameObject.SetActive(false);
         }
     }
 }
