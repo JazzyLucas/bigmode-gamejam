@@ -1,6 +1,7 @@
 using System.Collections;
 using BigModeGameJam.Level.Controls;
 using BigModeGameJam.UI;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace BigModeGameJam.Level
@@ -29,8 +30,9 @@ namespace BigModeGameJam.Level
         [SerializeField] public PlayerHealth playerHealth;
         [SerializeField] public GameObject playerModel; // We can change the type of this when we start integrating animation
         [SerializeField] public Transform checkpoint;
+		[SerializeField] public Animator fpAnimator;
 
-        [Header("For electric character only")]
+		[Header("For electric character only")]
         [SerializeField] public ElectricMode electricMode;
         [SerializeField] public Dash dash;
         [SerializeField] public GameObject orb;

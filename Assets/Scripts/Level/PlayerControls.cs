@@ -74,15 +74,26 @@ namespace BigModeGameJam.Level.Controls
             Vector2 moveDir = moveAction.ReadValue<Vector2>();
             Vector3 hDir = new Vector3(moveDir.x, 0, moveDir.y);
             playerRefs.playerMovement.Move(hDir);
+
+            bool walking = hDir.sqrMagnitude > 0.1;
+            playerRefs.fpAnimator.SetBool("Walking", walking);
+            
+
             // Handle Rotation input
             playerRefs.playerMovement.Look(
                 lookAction.ReadValue<Vector2>() * lookSensitivity
             );
-            // Movement
-            if (jumpAction.IsPressed())
+
+            // only set the trigger once or the animation repeats
+			if( jumpAction.WasPressedThisFrame() ) playerRefs.fpAnimator.SetTrigger("Jump");
+
+			// Movement
+			if (jumpAction.IsPressed())
             {
-                if(playerRefs.electricMode == null || !playerRefs.electricMode.enabled)
+                if (playerRefs.electricMode == null || !playerRefs.electricMode.enabled)
+                {
                     playerRefs.playerMovement.Jump();
+                }
                 else
                     playerRefs.electricMode.Exit(true); // Jump exit
             }
