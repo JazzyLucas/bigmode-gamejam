@@ -55,6 +55,7 @@ namespace BigModeGameJam.Level.Interactables
             timesInteracted++;
             SendToLevelManger();
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Test2, this.transform.position);
+            gameObject.GetComponent<ScannerObjective>().canInteractMultipleTimes = false;
         }
 
         public void SetKeycardObtained(bool obtained)
