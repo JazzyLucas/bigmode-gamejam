@@ -98,6 +98,7 @@ namespace BigModeGameJam.Level.Controls
         {
             if (playerType == PlayerType.Human || dash == null) return;
             dash.StartDash(dir);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Dash, this.transform.position);
         }
 
         /// <summary>

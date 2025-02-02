@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8266671243918499874}
   - component: {fileID: 6962534114365846614}
   - component: {fileID: 7286082845718980431}
-  - component: {fileID: -5118543664531379948}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -130,20 +129,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &-5118543664531379948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1332314604553392925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nonRigidbodyVelocity: 0
-  attenuationObject: {fileID: 0}
 --- !u!1 &3826957089057645189
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +140,6 @@ GameObject:
   - component: {fileID: 3465008798610697866}
   - component: {fileID: 1297992820958635218}
   - component: {fileID: 6978733804139532470}
-  - component: {fileID: 8813424768355147359}
   - component: {fileID: 4966040649130501922}
   - component: {fileID: 619723010962558654}
   - component: {fileID: 3203859292892936917}
@@ -236,20 +220,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8813424768355147359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3826957089057645189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nonRigidbodyVelocity: 0
-  attenuationObject: {fileID: 0}
 --- !u!114 &4966040649130501922
 MonoBehaviour:
   m_ObjectHideFlags: 0

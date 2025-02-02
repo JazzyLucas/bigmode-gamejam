@@ -94,11 +94,11 @@ MonoBehaviour:
   - {fileID: -2218682167560535347}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3392
+  Length: 1986
 --- !u!114 &-5626830089685348723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
   Path: fmod/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638740485477391850
+  lastModified: 638740499691858387
   FileSizes: []
   Exists: 1
 --- !u!114 &-1087773200792479536
@@ -338,7 +338,7 @@ MonoBehaviour:
   - {fileID: -3274170253632912852}
   StringsBanks:
   - {fileID: 548082194791309392}
-  cacheTime: 638740485477391850
+  cacheTime: 638740499691858387
   cacheVersion: 131622
 --- !u!114 &548082194791309392
 MonoBehaviour:

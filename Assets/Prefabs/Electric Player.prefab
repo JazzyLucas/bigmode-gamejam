@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5118543664531379948, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 7408605281919261849}
     - target: {fileID: 11451677786364821, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -226,7 +230,9 @@ PrefabInstance:
       propertyPath: m_Height
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8813424768355147359, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+    - {fileID: -5118543664531379948, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3465008798610697866, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
@@ -294,3 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2832ed83bc7d4720cae8b551ae695ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7408605281919261849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1332314604553392925, guid: cc92c3cad0c6fe84fb5913531ee30c8e, type: 3}
+  m_PrefabInstance: {fileID: 8407642516334645124}
+  m_PrefabAsset: {fileID: 0}
