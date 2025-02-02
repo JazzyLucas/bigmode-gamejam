@@ -1,6 +1,11 @@
+using BigModeGameJam.Core;
 using BigModeGameJam.Level.Interactables;
 using BigModeGameJam.UI;
+using FMOD.Studio;
+using Unity.VisualScripting.YamlDotNet.Core;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static BigModeGameJam.Level.Controls.PlayerMovement;
 
 namespace BigModeGameJam.Level.Controls
 {
@@ -11,6 +16,7 @@ namespace BigModeGameJam.Level.Controls
     [RequireComponent(typeof(PlayerRefs))]
     public class ElectricMode : MonoBehaviour
     {
+
         /// <summary>
         /// Used to detect an object even if the player is percisely on the surface of it.
         /// </summary>
@@ -24,9 +30,9 @@ namespace BigModeGameJam.Level.Controls
         public float exitImpulse = 10;
         public float camDist = 25;
         public float moveSpeed = 5;
-        
+
         private PlayerRefs playerRefs;
-        new private Collider collider; 
+        new private Collider collider;
         new private Rigidbody rigidbody;
         private PlayerMovement playerMovement;
         private LookToInteract lookToInteract;
@@ -43,7 +49,7 @@ namespace BigModeGameJam.Level.Controls
         public void Enter(Conductive con)
         {
             // Ensure that the correct conductive material is hit
-            if(!Physics.Raycast(fpCam.transform.position, fpCam.transform.forward, out hit, Mathf.Infinity)
+            if (!Physics.Raycast(fpCam.transform.position, fpCam.transform.forward, out hit, Mathf.Infinity)
                 || hit.collider.gameObject != con.gameObject) return;
             con.Unhover();
             targetConductor = con;
@@ -63,7 +69,6 @@ namespace BigModeGameJam.Level.Controls
             playerRefs.orb.SetActive(true);
             playerRefs.playerModel.SetActive(false);
             con.Unhover();
-
         }
 
         // Exits conductive mode
@@ -87,31 +92,36 @@ namespace BigModeGameJam.Level.Controls
             lookToInteract.SetInteractable(null);
             lookToInteract.enabled = true;
             playerRefs.dash.Replenish();
-            if(jump)
+            if (jump)
                 playerMovement.Jump(jump);
             playerRefs.dash.enabled = true;
             // (don't) Be the ball
             playerRefs.orb.SetActive(false);
             playerRefs.playerModel.SetActive(true);
             targetConductor.Unhover();
-            
         }
 
         public void Move(Vector3 dir)
         {
             // Invert x input when in first person. it makes sense trust
-            if(fpCam.gameObject.activeInHierarchy)
+            if (fpCam.gameObject.activeInHierarchy)
             {
                 dir = new Vector3(-dir.x, dir.y, dir.z);
             }
-            transform.position += moveSpeed * Time.deltaTime * 
+            transform.position += moveSpeed * Time.deltaTime *
                 Vector3.ProjectOnPlane(CamRelativeDirection(dir), hit.normal);
-            if(LeftConductive()) 
+            if (LeftConductive())
             {
                 Exit();
                 return;
             }
             LockToPlane();
+        }
+
+        private EventInstance ElectricMove;
+        private void Start()
+        {
+            ElectricMove = AudioManager.instance.CreateEventInstance(FMODEvents.instance.ElectricMove);
         }
 
         private void Awake()
@@ -143,19 +153,19 @@ namespace BigModeGameJam.Level.Controls
         private bool LeftConductive()
         {
             // There is no material under player. They have definitely left
-            if(!Physics.Raycast(transform.position + transform.up * RAYCAST_PADDING, -transform.up, out hit, Mathf.Infinity))
+            if (!Physics.Raycast(transform.position + transform.up * RAYCAST_PADDING, -transform.up, out hit, Mathf.Infinity))
             {
                 return true;
             }
             // The player is still connected to the same Conductive object
-            if(hit.collider.gameObject == targetConductor.gameObject)
+            if (hit.collider.gameObject == targetConductor.gameObject)
             {
                 return false;
             }
             // If the player has left the target object but hit a new object
             // see if new object is connected
             Conductive newTarget = hit.collider.gameObject.GetComponent<Conductive>();
-            if(targetConductor.IsConnected(newTarget))
+            if (targetConductor.IsConnected(newTarget))
             {
                 targetConductor = newTarget;
                 return false;
@@ -189,6 +199,28 @@ namespace BigModeGameJam.Level.Controls
         private void Update()
         {
             HandleCamera();
+            UpdateSound();
+        }
+
+        private void UpdateSound()
+        {
+            //start footsteps event if player has an x velocity and is on the ground
+            if (playerRefs.orb == isActiveAndEnabled)
+            {
+                //get playback state
+                PLAYBACK_STATE playbackState;
+                ElectricMove.getPlaybackState(out playbackState);
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    ElectricMove.start();
+                }
+
+            }
+            //otherwise, stop the footsteps event
+            else
+            {
+                ElectricMove.stop(STOP_MODE.IMMEDIATE);
+            }
         }
     }
 }

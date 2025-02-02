@@ -47,6 +47,9 @@ namespace BigModeGameJam.Core
 
         [field: Header("Money")]
         [field: SerializeField] public EventReference Money { get; private set; }
+
+        [field: Header("ElectricMove")]
+        [field: SerializeField] public EventReference ElectricMove { get; private set; }
         public static FMODEvents instance { get; private set; }
 
         private void Awake()
