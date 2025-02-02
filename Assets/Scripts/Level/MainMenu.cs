@@ -4,6 +4,7 @@ using BigModeGameJam.Level;
 using BigModeGameJam.Level.Manager;
 using BigModeGameJam.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace BigModeGameJam.Core
 {
@@ -42,6 +43,11 @@ namespace BigModeGameJam.Core
             Debug.Log("Game data reset!");
         }
 
+        public void BackToMain()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         private void Start()
         {
             OnEnable();
@@ -51,8 +57,8 @@ namespace BigModeGameJam.Core
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            PlayerRefs.humanPlayer.gameObject.SetActive(false);
-            PlayerRefs.electricPlayer.gameObject.SetActive(false);
+            if(PlayerRefs.humanPlayer) PlayerRefs.humanPlayer.gameObject.SetActive(false);
+            if(PlayerRefs.electricPlayer) PlayerRefs.electricPlayer.gameObject.SetActive(false);
             Crosshair.instance.gameObject.SetActive(false);
         }
     }
