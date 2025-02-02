@@ -10,6 +10,7 @@ namespace BigModeGameJam.Level.Interactables
         public List<Animator> animator;
         public List<GameObject> objectsToTurnOff;
         public List<GameObject> objectsToTurnOn;
+        public List<BoxCollider> boxCollidersToTurnOff;
         public InteractablePowerBox powerBox;
 
         //LIGHTING TRANSITION SETTINGS
@@ -54,6 +55,11 @@ namespace BigModeGameJam.Level.Interactables
             foreach (GameObject obj in objectsToTurnOn)
             {
                 obj.SetActive(true);
+            }
+
+            foreach (var collider in boxCollidersToTurnOff)
+            {
+                collider.GetComponent<BoxCollider>().enabled = false;
             }
 
             if (Mathf.Approximately(RenderSettings.ambientIntensity, INTENSITY))
