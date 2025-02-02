@@ -56,6 +56,15 @@ namespace BigModeGameJam.Core
 
         [field: Header("Test2")]
         [field: SerializeField] public EventReference Test2 { get; private set; }
+
+        [field: Header("KeypadFail")]
+        [field: SerializeField] public EventReference KeypadFail { get; private set; }
+
+        [field: Header("KeypadOff")]
+        [field: SerializeField] public EventReference KeypadOff { get; private set; }
+
+        [field: Header("GarageDoor")]
+        [field: SerializeField] public EventReference GarageDoor { get; private set; }
         public static FMODEvents instance { get; private set; }
 
         private void Awake()
