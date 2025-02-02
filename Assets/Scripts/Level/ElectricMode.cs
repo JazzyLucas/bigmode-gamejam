@@ -63,6 +63,7 @@ namespace BigModeGameJam.Level.Controls
             playerRefs.orb.SetActive(true);
             playerRefs.playerModel.SetActive(false);
             con.Unhover();
+
         }
 
         // Exits conductive mode
@@ -93,6 +94,7 @@ namespace BigModeGameJam.Level.Controls
             playerRefs.orb.SetActive(false);
             playerRefs.playerModel.SetActive(true);
             targetConductor.Unhover();
+            
         }
 
         public void Move(Vector3 dir)

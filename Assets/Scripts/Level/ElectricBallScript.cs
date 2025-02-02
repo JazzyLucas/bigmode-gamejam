@@ -66,7 +66,7 @@ namespace BigModeGameJam
             moveDirection = (forward * vertical + right * horizontal).normalized;
 
             // Handle mouse input for camera rotation
-            horizontalRotation += Input.GetAxis("Mouse X") * PlayerControls.lookSensitivity;
+            horizontalRotation += Input.GetAxis("Mouse X") * PlayerControls.lookSensitivity * 5;
         }
 
         void UpdateCamera()

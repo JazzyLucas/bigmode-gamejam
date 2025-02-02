@@ -11,6 +11,7 @@ namespace BigModeGameJam.Level
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Boom, this.transform.position);
             if(collider.CompareTag("Player"))
             {
+                StartCoroutine(WaitAndDestroy());
                 PlayerHealth player = collider.GetComponent<PlayerHealth>();
                 gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = false;
                 GameObject dynamite = gameObject.transform.GetChild(1).gameObject;

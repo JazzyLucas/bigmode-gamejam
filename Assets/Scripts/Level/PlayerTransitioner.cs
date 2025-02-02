@@ -2,19 +2,16 @@ using UnityEngine;
 using BigModeGameJam.Level.Controls;
 using BigModeGameJam.UI;
 using System.Collections;
-using BigModeGameJam.Core;
 using FMOD.Studio;
-using static BigModeGameJam.Level.Controls.PlayerMovement;
 using FMODUnity;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
-using Unity.VisualScripting.YamlDotNet.Core;
-using static UnityEditor.Profiling.RawFrameDataView;
+
 namespace BigModeGameJam.Level
 {
     public class PlayerTransitioner : MonoBehaviour
     {
         public const float TRANSITION_PERIOD = 3;
         public static PlayerTransitioner instance;
+        private FMOD.Studio.EventInstance music;
         /// <summary>
         /// Transition to the specified player
         /// </summary>
@@ -25,6 +22,10 @@ namespace BigModeGameJam.Level
             FadeEffect.StartAnimation(FadeEffect.Animation.Transition, Color.white, TRANSITION_PERIOD);
             instance.StartCoroutine(PlayerTransitionCoroutine());
             PlayerRefs.curPlayer.lookToInteract.enabled = false;
+            if(playerType == PlayerMovement.PlayerType.Human)
+                instance.music.setParameterByName("ElectricTrans", 0);
+            else
+                instance.music.setParameterByName("ElectricTrans", 1);
             IEnumerator PlayerTransitionCoroutine()
             {
                 yield return new WaitForSeconds(TRANSITION_PERIOD / 2);
@@ -37,7 +38,6 @@ namespace BigModeGameJam.Level
                         ElectricHUD.instance.gameObject.SetActive(false);
                         PlayerRefs.curPlayer = PlayerRefs.humanPlayer;
                         PlayerRefs.electricPlayer.gameObject.SetActive(false);
-                        EventInstance.setParameterByName("ElectricTrans", 0);
                         PlayerRefs.humanPlayer.lookToInteract.enabled = true;
                         break;
                     case PlayerMovement.PlayerType.Electric:
@@ -51,7 +51,6 @@ namespace BigModeGameJam.Level
                         ElectricHUD.instance.gameObject.SetActive(true);
                         PlayerRefs.curPlayer = PlayerRefs.electricPlayer;
                         PlayerRefs.humanPlayer.gameObject.SetActive(false);
-                        EventInstance.setParameterByName("ElectricTrans", 1);
                         PlayerRefs.electricPlayer.lookToInteract.enabled = true;
                         break;
                 }
@@ -60,19 +59,8 @@ namespace BigModeGameJam.Level
         private void Awake()
         {
             instance = this;
-        }
-
-        FMODUnity.StudioEventEmitter emitter;
-        void OnEnable()
-        {
-            var target = GameObject.Find("Music");
-            emitter = target.GetComponent<FMODUnity.StudioEventEmitter>();
-        }
-
-        void Update()
-        {
-            float value = 1.0f; // calculate the value every frame
-            emitter.SetParameter("ParameterName", value);
+            music = FMODUnity.RuntimeManager.CreateInstance("event:/LevelTwo");
+            music.start();
         }
     }
 }
