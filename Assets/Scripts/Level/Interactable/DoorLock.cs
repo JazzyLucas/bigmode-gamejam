@@ -7,7 +7,6 @@ namespace BigModeGameJam.Level.Interactables
     public class DoorLock : Interactable
     {
         [SerializeField] private bool keyObtained = false;
-        [SerializeField] private GameObject objectToAnimate;
         [SerializeField] private Animator animator;
         [SerializeField] private GameObject unlockedLock;
 
@@ -30,13 +29,11 @@ namespace BigModeGameJam.Level.Interactables
             }
 
             unlockedLock.SetActive(true);
-            objectToAnimate.SetActive(false);
             gameObject.GetComponent<MeshRenderer>().enabled = false;
 
             // Enable animation
-            if (objectToAnimate != null && animator != null)
+            if (animator != null)
             {
-                objectToAnimate.SetActive(true);
                 animator.enabled = true;
             }
 
