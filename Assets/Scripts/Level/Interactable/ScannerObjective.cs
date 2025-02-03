@@ -15,27 +15,30 @@ namespace BigModeGameJam.Level.Interactables
 
         public override void Interact(GameObject interacter)
         {
-            if (!keycardObtained)
+            if (!canInteractMultipleTimes && timesInteracted > 0)
             {
-                // Show "locked" message using UI system
-                if (Crosshair.instance)
-                {
-                    //Crosshair.instance.ShowMessage("Locked");
-                }
+                Unhover();
                 return;
             }
 
-            if (!canInteractMultipleTimes && timesInteracted > 0 || !powerBox.IsComplete)
+            if (!powerBox.IsComplete)
             {
                 Unhover();
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.KeypadOff, this.transform.position);
+                return;
+            }
+
+            if (!keycardObtained)
+            {
+                Unhover();
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.KeypadFail, this.transform.position);
                 return;
             }
 
             // Change material colors to green
             if (scannerLight != null)
             {
-                MeshRenderer childRenderer = scannerLight.GetComponent<MeshRenderer>();
-                Material material = childRenderer.material;
+                Material material = scannerLight.material;
                 material.color = Color.green;  // Base color
                 material.SetColor("_SpecColor", Color.green);  // Specular color
                 material.SetColor("_EmissionColor", Color.green);  // Emission color

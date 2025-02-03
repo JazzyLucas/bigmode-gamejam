@@ -11,7 +11,7 @@ namespace BigModeGameJam.Level
     {
         public const float TRANSITION_PERIOD = 3;
         public static PlayerTransitioner instance;
-        private FMOD.Studio.EventInstance music;
+        public FMOD.Studio.EventInstance music;
         /// <summary>
         /// Transition to the specified player
         /// </summary>

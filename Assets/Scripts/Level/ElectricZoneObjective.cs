@@ -14,6 +14,7 @@ namespace BigModeGameJam
         public float chargeValue = 0;
         public List<GameObject> lasersToEnable;
         public GameObject lightToEnable;
+        public MeshRenderer scannerLight;
         private Coroutine coroutine = null;
 
         private void OnTriggerEnter(Collider other)
@@ -37,6 +38,11 @@ namespace BigModeGameJam
                 ipb.IsComplete = true;
                 powerBox.GetComponent<BoxCollider>().enabled = false;
                 lightToEnable.gameObject.SetActive(true);
+                Material material = scannerLight.material;
+                material.color = Color.red;  // Base color
+                material.SetColor("_SpecColor", Color.red);  // Specular color
+                material.SetColor("_EmissionColor", Color.red);  // Emission color
+                material.EnableKeyword("_EMISSION");  // Make sure emission is enabled
                 if (lasersToEnable.Count > 0)
                 {
                     foreach (GameObject l in lasersToEnable)
