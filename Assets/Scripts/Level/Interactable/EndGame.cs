@@ -15,12 +15,14 @@ namespace BigModeGameJam.Level.Interactables
             timesInteracted++;
             IEnumerator EndAnimation()
             {
+                PlayerTransitioner.instance.music.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.LevelComplete, this.transform.position);
                 FadeEffect.StartAnimation(FadeEffect.Animation.FadeOut, Color.black, 6);
                 yield return new WaitForSeconds(6);
                 FadeEffect.StartAnimation(FadeEffect.Animation.FadeIn, Color.black, 2);
-                PlayerTransitioner.instance.music.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 endScreen.SetActive(true);
             }
+            
         }
     }
 }
