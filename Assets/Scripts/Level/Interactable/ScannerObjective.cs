@@ -38,8 +38,7 @@ namespace BigModeGameJam.Level.Interactables
             // Change material colors to green
             if (scannerLight != null)
             {
-                MeshRenderer childRenderer = scannerLight.GetComponent<MeshRenderer>();
-                Material material = childRenderer.material;
+                Material material = scannerLight.material;
                 material.color = Color.green;  // Base color
                 material.SetColor("_SpecColor", Color.green);  // Specular color
                 material.SetColor("_EmissionColor", Color.green);  // Emission color
