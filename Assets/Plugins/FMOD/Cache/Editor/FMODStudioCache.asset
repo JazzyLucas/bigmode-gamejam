@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: fmod/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638740584657102277
+  lastModified: 638741202257774184
   FileSizes: []
   Exists: 1
 --- !u!114 &-7295542242113150349
@@ -205,7 +205,7 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 20
   Length: 10500
 --- !u!114 &-4559567472453755894
 MonoBehaviour:
@@ -249,7 +249,7 @@ MonoBehaviour:
   Path: fmod/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638740441252253444
+  lastModified: 638741193942573048
   FileSizes: []
   Exists: 1
 --- !u!114 &-2893246010301484828
@@ -294,7 +294,7 @@ MonoBehaviour:
   Path: fmod/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638741269707594243
+  lastModified: 638741204656671031
   FileSizes: []
   Exists: 1
 --- !u!114 &-1087773200792479536
@@ -451,7 +451,7 @@ MonoBehaviour:
   - {fileID: -3274170253632912852}
   StringsBanks:
   - {fileID: 548082194791309392}
-  cacheTime: 638741269707594243
+  cacheTime: 638741204656671031
   cacheVersion: 131622
 --- !u!114 &548082194791309392
 MonoBehaviour:
@@ -468,7 +468,7 @@ MonoBehaviour:
   Path: fmod/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638741183380961465
+  lastModified: 638741193942598096
   FileSizes:
   - Name: 
     Value: 1966
@@ -648,10 +648,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/KeypadOff
   Guid:
-    Data1: 1676644208
-    Data2: 1260917801
-    Data3: -1017414012
-    Data4: -1705532111
+    Data1: -1839348344
+    Data2: 1246160661
+    Data3: -189469023
+    Data4: -54874322
   Banks:
   - {fileID: -2218682167560535347}
   IsStream: 0
@@ -659,8 +659,8 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  MaxDistance: 10000
+  Length: 857
 --- !u!114 &3999608291982491079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,10 +892,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/KeypadFail
   Guid:
-    Data1: 333913000
-    Data2: 1299781296
-    Data3: -1290703221
-    Data4: 1742967095
+    Data1: -1906142522
+    Data2: 1186113712
+    Data3: 883430033
+    Data4: -234212792
   Banks:
   - {fileID: -2218682167560535347}
   IsStream: 0
@@ -903,5 +903,5 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  MaxDistance: 10000
+  Length: 1714
