@@ -57,6 +57,7 @@ namespace BigModeGameJam.Level.Interactables
             foreach (GameObject obj in objectsToTurnOn)
             {
                 obj.SetActive(true);
+                soundPos.SetActive(true);
             }
 
             foreach (var collider in boxCollidersToTurnOff)
@@ -102,7 +103,6 @@ namespace BigModeGameJam.Level.Interactables
                 }
             }
             initialAmbientIntensity = RenderSettings.ambientIntensity;
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.GarageDoor, soundPos.transform.position);
         }
 
         private void Update()
