@@ -9,7 +9,7 @@ namespace BigModeGameJam.Level
     [RequireComponent(typeof(TMP_Text))]
     public class ScoreTally : MonoBehaviour
     {
-        private const int GOLD = 1000, SILVER = 500, BRONZE = 250;
+        private const int GOLD = 4440, SILVER = 2500, BRONZE = 1000;
         [SerializeField] private GameObject goldTrophy, silverTrophy, bronzeTrophy;
         private TMP_Text textBox;
 
