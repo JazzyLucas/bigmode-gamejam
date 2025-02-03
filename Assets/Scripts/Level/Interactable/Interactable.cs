@@ -1,4 +1,5 @@
 using BigModeGameJam.Core;
+using BigModeGameJam.Core.Manager;
 using BigModeGameJam.Level.Controls;
 using UnityEngine;
 
@@ -59,6 +60,7 @@ namespace BigModeGameJam.Level.Interactables
             if (pickupType == PickupType.Food)
             {
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.Food, this.transform.position);
+                GameManager.GameData.foodsEaten++;
             }
             else if (pickupType == PickupType.Money)
             {

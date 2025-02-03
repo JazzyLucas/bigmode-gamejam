@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: fmod/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638741202257774184
+  lastModified: 638741282648252441
   FileSizes: []
   Exists: 1
 --- !u!114 &-7295542242113150349
@@ -303,7 +303,7 @@ MonoBehaviour:
   Path: fmod/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638741193942573048
+  lastModified: 638740441252253444
   FileSizes: []
   Exists: 1
 --- !u!114 &-2893246010301484828
@@ -348,7 +348,7 @@ MonoBehaviour:
   Path: fmod/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638741216787446865
+  lastModified: 638741290304336087
   FileSizes: []
   Exists: 1
 --- !u!114 &-1087773200792479536
@@ -470,7 +470,6 @@ MonoBehaviour:
   - {fileID: -7295542242113150349}
   - {fileID: -5281778078627593252}
   - {fileID: -6503675948029339055}
-  - {fileID: 2847421821660162203}
   - {fileID: -7682021895339185335}
   - {fileID: -4622707051905942810}
   EditorParameters:
@@ -479,7 +478,7 @@ MonoBehaviour:
   - {fileID: -3274170253632912852}
   StringsBanks:
   - {fileID: 548082194791309392}
-  cacheTime: 638741216787446865
+  cacheTime: 638741290304336087
   cacheVersion: 131622
 --- !u!114 &548082194791309392
 MonoBehaviour:
@@ -496,7 +495,7 @@ MonoBehaviour:
   Path: fmod/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638741193942598096
+  lastModified: 638741282648182442
   FileSizes:
   - Name: 
     Value: 1966
@@ -603,33 +602,6 @@ MonoBehaviour:
   - {fileID: -2218682167560535347}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &2847421821660162203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Path: 
-  Guid:
-    Data1: 333913000
-    Data2: 1299781296
-    Data3: -1290703221
-    Data4: 1742967095
-  Banks:
-  - {fileID: -2218682167560535347}
-  IsStream: 0
-  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
