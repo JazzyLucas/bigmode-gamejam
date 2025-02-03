@@ -102,7 +102,10 @@ namespace BigModeGameJam.Level.Controls
                     playerRefs.electricMode.Exit(true); // Jump exit
             }
             if (dashAction.WasPerformedThisFrame())
+            {
                 playerRefs.playerMovement.Dash(hDir);
+                playerRefs.fpAnimator.SetTrigger("Dash");
+            }
             if(crouchAction.WasPerformedThisFrame())
                 playerRefs.playerMovement.Crouch();
             else if(crouchAction.WasReleasedThisFrame())
