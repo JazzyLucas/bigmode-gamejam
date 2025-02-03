@@ -504,6 +504,17 @@
                 },
                 {
                     "name": "",
+                    "id": "804c39d1-e48e-4058-9e93-3aace52c225a",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9907fcea-a644-416a-8ef5-7f9829cc667b",
                     "path": "<Keyboard>/v",
                     "interactions": "",

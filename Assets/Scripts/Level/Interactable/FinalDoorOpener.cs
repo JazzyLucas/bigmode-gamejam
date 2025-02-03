@@ -2,6 +2,7 @@ using NUnit.Framework;
 using BigModeGameJam.UI;
 using System.Collections.Generic;
 using UnityEngine;
+using BigModeGameJam.Core;
 
 namespace BigModeGameJam.Level.Interactables
 {
@@ -12,6 +13,7 @@ namespace BigModeGameJam.Level.Interactables
         public List<GameObject> objectsToTurnOn;
         public List<BoxCollider> boxCollidersToTurnOff;
         public InteractablePowerBox powerBox;
+        public GameObject soundPos;
 
         //LIGHTING TRANSITION SETTINGS
         [SerializeField] private Light directionalLight;
@@ -100,6 +102,7 @@ namespace BigModeGameJam.Level.Interactables
                 }
             }
             initialAmbientIntensity = RenderSettings.ambientIntensity;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.GarageDoor, soundPos.transform.position);
         }
 
         private void Update()

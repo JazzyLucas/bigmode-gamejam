@@ -2,7 +2,6 @@ using BigModeGameJam.Core;
 using BigModeGameJam.Level.Interactables;
 using BigModeGameJam.UI;
 using FMOD.Studio;
-using Unity.VisualScripting.YamlDotNet.Core;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static BigModeGameJam.Level.Controls.PlayerMovement;
