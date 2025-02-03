@@ -10,7 +10,7 @@ namespace BigModeGameJam.UI
     [RequireComponent(typeof(Slider))]
     public class SensitivitySlider : MonoBehaviour, IPersistentOBJ
     {
-        private Slider slider;
+        [SerializeField] private Slider slider;
         [SerializeField] private TMP_Text textBox;
 
         public void UpdateValue()

@@ -12,7 +12,7 @@ namespace BigModeGameJam.Level.Controls
     [RequireComponent(typeof(PlayerRefs))]
     public class PlayerControls : MonoBehaviour
     {
-        public static float lookSensitivity = 1;
+        public static float lookSensitivity = 0.5f;
 
         private InputAction lookAction, moveAction, jumpAction, dashAction, crouchAction, toggleCamAction, interactAction, pauseAction;
         private PlayerRefs playerRefs;
