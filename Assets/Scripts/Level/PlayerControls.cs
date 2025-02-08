@@ -12,7 +12,7 @@ namespace BigModeGameJam.Level.Controls
     [RequireComponent(typeof(PlayerRefs))]
     public class PlayerControls : MonoBehaviour
     {
-        public static float lookSensitivity = 1;
+        public static float lookSensitivity = 0.5f;
 
         private InputAction lookAction, moveAction, jumpAction, dashAction, crouchAction, toggleCamAction, interactAction, pauseAction;
         private PlayerRefs playerRefs;
@@ -79,17 +79,20 @@ namespace BigModeGameJam.Level.Controls
             Vector3 hDir = new Vector3(moveDir.x, 0, moveDir.y);
             playerRefs.playerMovement.Move(hDir);
 
-            bool walking = hDir.sqrMagnitude > 0.1;
-            playerRefs.fpAnimator.SetBool("Walking", walking);
-            
+            bool walking = hDir.sqrMagnitude > 0.1 && playerRefs.playerMovement.IsGrounded();
+            playerRefs.fpAnimator.SetBool("Walking", walking);            
 
             // Handle Rotation input
             playerRefs.playerMovement.Look(
                 lookAction.ReadValue<Vector2>() * lookSensitivity
             );
 
-            // only set the trigger once or the animation repeats
-			if( jumpAction.WasPressedThisFrame() ) playerRefs.fpAnimator.SetTrigger("Jump");
+
+			// Set the trigger only on the frame jump was pressed, and if the player can jump
+			if (jumpAction.WasPressedThisFrame() && playerRefs.playerMovement.IsGrounded())
+			{
+				playerRefs.fpAnimator.SetTrigger("Jump");
+			}
 
 			// Movement
 			if (jumpAction.IsPressed())
@@ -99,10 +102,15 @@ namespace BigModeGameJam.Level.Controls
                     playerRefs.playerMovement.Jump();
                 }
                 else
+                {
                     playerRefs.electricMode.Exit(true); // Jump exit
+                }
             }
             if (dashAction.WasPerformedThisFrame())
+            {
                 playerRefs.playerMovement.Dash(hDir);
+                playerRefs.fpAnimator.SetTrigger("Dash");
+            }
             if(crouchAction.WasPerformedThisFrame())
                 playerRefs.playerMovement.Crouch();
             else if(crouchAction.WasReleasedThisFrame())
@@ -111,9 +119,10 @@ namespace BigModeGameJam.Level.Controls
             if(interactAction.WasPressedThisFrame())
                 playerRefs.lookToInteract.Interact();
 
-            // Hold to change perspective
-            // REMOVED THIRD PERSON FUNCTIONALITY WHEN NOT CONDUCTING
-            if(playerRefs.electricMode && playerRefs.electricMode.enabled &&
+
+			// Hold to change perspective
+			// REMOVED THIRD PERSON FUNCTIONALITY WHEN NOT CONDUCTING
+			if (playerRefs.electricMode && playerRefs.electricMode.enabled &&
                 (toggleCamAction.WasPerformedThisFrame() || toggleCamAction.WasReleasedThisFrame()))
                 ToggleCam();
         }

@@ -61,7 +61,7 @@ namespace BigModeGameJam.Core
             Cursor.lockState = CursorLockMode.None;
             if(PlayerRefs.humanPlayer) PlayerRefs.humanPlayer.gameObject.SetActive(false);
             if(PlayerRefs.electricPlayer) PlayerRefs.electricPlayer.gameObject.SetActive(false);
-            Crosshair.instance.gameObject.SetActive(false);
+            if(Crosshair.instance) Crosshair.instance.gameObject.SetActive(false);
         }
     }
 }
